@@ -39,7 +39,7 @@ Day 10 is anchored to **2026-09-16**. Study days run Monday–Saturday; Sundays 
 | 07 | ✅ Done | completed | Generic classes/methods, bounds, wildcards, invariance, PECS, erasure | — | Java: Collections → Generic Collections; Spring: — | [Java Generics](./%5BDay%2007%5D%20%20Java%20Generics.md) |
 | 08 | ✅ Done | completed | Checked/unchecked, custom exceptions, try-with-resources | @Transactional rollback behavior (supplemental) | Java: Exception Handling / I/O Operations; Spring: Transactions | [Exceptions & Error Handling](./%5BDay%2008%5D%20Exceptions%20%26%20Error%20Handling.md) |
 | 09 | ✅ Done | completed | final, immutable objects, defensive copies, HashMap key stability | singleton/prototype/request/session, @PostConstruct, @PreDestroy | Java: Object Oriented Programming → Final Keyword; Spring: Introduction → Spring Bean Scope | [final, Immutability, Bean Scopes & Lifecycle](./%5BDay%2009%5D%20final%2C%20Immutability%2C%20Spring%20Bean%20Scopes%20%26.md) |
-| 10 | ⬜ Upcoming | 2026-09-16 | Annotations: what metadata is and why frameworks use it | @Configuration, @Bean, explicit bean creation and dependencies | Java: Object Oriented Programming → Annotations; Spring: Introduction → Configuration / Dependency Injection | — |
+| 10 | ✅ Done | completed | Annotations: what metadata is and why frameworks use it | @Configuration, @Bean, explicit bean creation and dependencies | Java: Object Oriented Programming → Annotations; Spring: Introduction → Configuration / Dependency Injection | [Java Annotations & Spring `@Configuration`/`@Bean`](./%5BDay%2010%5D%20Annotations.md) |
 | 11 | ⬜ Upcoming | 2026-09-17 | Reflection basics: Class, fields, methods, runtime metadata | @Value and @ConfigurationProperties | Java: Object Oriented Programming → Annotations (reflection support); Spring: Introduction → Configuration | — |
 | 12 | ⬜ Upcoming | 2026-09-18 | Enums and switch expressions for finite states | Profiles, @Profile, @ConditionalOnProperty | Java: Object Oriented Programming → Enums / Switch Expressions; Spring: Introduction → Configuration / Autoconfiguration | — |
 | 13 | ⬜ Upcoming | 2026-09-19 | Maven lifecycle, dependency scopes, transitive dependencies; recognize Gradle/Bazel | Spring Boot Starters and autoconfiguration | Java: Build Tools → Maven / Gradle / Bazel; Spring: Spring Boot Starters / Autoconfiguration | — |
@@ -183,12 +183,13 @@ Day 10 is anchored to **2026-09-16**. Study days run Monday–Saturday; Sundays 
 
 All Spring snippets assume the existing Spring Boot study project. Add snippets under a package scanned by the application, add the named starter/dependency when needed, and run with `./mvnw spring-boot:run`. Plain Java snippets can be copied into a matching `DayXX.java` and run directly.
 
-## Day 10 — @Configuration and @Bean ⬜
+## Day 10 — @Configuration and @Bean ✅
 
 **Planned date:** 2026-09-16  
 **Java track:** Annotations: what metadata is and why frameworks use it  
 **Spring track:** @Configuration, @Bean, explicit bean creation and dependencies  
 **roadmap.sh mapping:** Java — Object Oriented Programming → Annotations; Spring Boot — Introduction → Configuration / Dependency Injection
+**Note:** [Java Annotations & Spring `@Configuration`/`@Bean`](./%5BDay%2010%5D%20Annotations.md)
 
 ### Tutorial
 
@@ -221,10 +222,10 @@ Add the file under a scanned package, inject `GreetingService` into a `CommandLi
 
 ### Done when
 
-- [ ] Explain the concept in English without notes.
-- [ ] Run/implement the mini-lab and intentionally change or break one thing.
-- [ ] Answer 3–5 interview questions or review a short code sample.
-- [ ] Generate the detailed Joplin note, manual-note version, and Anki TSV.
+- [x] Explain the concept in English without notes.
+- [x] Run/implement the mini-lab and intentionally change or break one thing.
+- [x] Answer 3–5 interview questions or review a short code sample.
+- [x] Generate the detailed Joplin note, manual-note version, and Anki TSV.
 
 ## Day 11 — External Configuration and Property Binding ⬜
 
