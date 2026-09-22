@@ -1,0 +1,6 @@
+﻿"Front","Back","Tags"
+"What is Java Reflection?","Reflection is Java's ability to inspect and interact with classes, methods, fields, constructors, and annotations at runtime.","day11 java::reflection"
+"What does Class<?> represent, and how can you obtain it?","Class<?> is the runtime representation of a Java type. Common ways: MyClass.class, object.getClass(), and Class.forName(""..."").","day11 java::reflection"
+"What is the difference between getMethods() and getDeclaredMethods()?","getMethods() returns public methods, including inherited ones. getDeclaredMethods() returns methods declared in the class, including non-public methods.","day11 java::reflection"
+"Why must an annotation use RetentionPolicy.RUNTIME to be read with reflection?","Only RUNTIME-retained annotations remain available while the program is running, so reflection can discover them with isAnnotationPresent() and getAnnotation().","day11 java::reflection java::annotations"
+"Why do frameworks such as Spring use reflection, and what are the main tradeoffs?","Reflection enables dynamic discovery, inspection, and invocation of application classes. Tradeoffs include reduced compile-time safety, more runtime errors, more complexity, and possible runtime overhead.","day11 java::reflection spring"
