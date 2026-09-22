@@ -9,12 +9,6 @@ public class Main {
         Class<PropertyService> clazz = PropertyService.class;
         PropertyService instance = clazz.getDeclaredConstructor().newInstance();
 
-        // TODO:
-        // iterate through methods
-        // detect @Audit
-        // retrieve annotation
-        // print action + enabled
-
         for(Method method: clazz.getDeclaredMethods()){
             if(method.isAnnotationPresent(Audit.class)){
                 Audit audit = method.getAnnotation(Audit.class);

@@ -851,8 +851,8 @@ Framework
 - [x] Connect Reflection to Day 10 annotations
 - [x] Understand why frameworks use reflection
 - [x] Understand main tradeoffs
-- [ ] Complete practical `Main` implementation
+- [x] Complete practical `Main` implementation
 - [ ] Interview round
 - [ ] Day 11 Spring track: `@Value` and `@ConfigurationProperties`
 
-**Current Day 11 Java status: theory complete; practical implementation and interview review pending.**
+**Current Day 11 Java status: theory and practical implementation complete; interview review pending. Spring track (`@Value`/`@ConfigurationProperties`) still open.**
