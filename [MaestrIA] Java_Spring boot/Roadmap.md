@@ -24,7 +24,7 @@ The original Month 1 plan was strong on Collections, Generics, exceptions, funct
 
 ## Calendar rule
 
-Day 10 is anchored to **2026-09-16**. Study days run Monday–Saturday; Sundays are rest days and are not numbered. If a session slips, move the sequence forward instead of cramming two sessions into one day.
+Day 11 is anchored to **2026-09-22** (completed; slipped from its original 2026-09-17 target, so Days 12–90 moved forward by the same four study days). Study days run Monday–Saturday; Sundays are rest days and are not numbered. If a session slips, move the sequence forward instead of cramming two sessions into one day.
 
 ## Master index — Day 01 to Day 90
 
@@ -40,86 +40,86 @@ Day 10 is anchored to **2026-09-16**. Study days run Monday–Saturday; Sundays 
 | 08 | ✅ Done | completed | Checked/unchecked, custom exceptions, try-with-resources | @Transactional rollback behavior (supplemental) | Java: Exception Handling / I/O Operations; Spring: Transactions | [Exceptions & Error Handling](./%5BDay%2008%5D%20Exceptions%20%26%20Error%20Handling.md) |
 | 09 | ✅ Done | completed | final, immutable objects, defensive copies, HashMap key stability | singleton/prototype/request/session, @PostConstruct, @PreDestroy | Java: Object Oriented Programming → Final Keyword; Spring: Introduction → Spring Bean Scope | [final, Immutability, Bean Scopes & Lifecycle](./%5BDay%2009%5D%20final%2C%20Immutability%2C%20Spring%20Bean%20Scopes%20%26.md) |
 | 10 | ✅ Done | completed | Annotations: what metadata is and why frameworks use it | @Configuration, @Bean, explicit bean creation and dependencies | Java: Object Oriented Programming → Annotations; Spring: Introduction → Configuration / Dependency Injection | [Java Annotations & Spring `@Configuration`/`@Bean`](./%5BDay%2010%5D%20Annotations.md) |
-| 11 | ⬜ Upcoming | 2026-09-17 | Reflection basics: Class, fields, methods, runtime metadata | @Value and @ConfigurationProperties | Java: Object Oriented Programming → Annotations (reflection support); Spring: Introduction → Configuration | — |
-| 12 | ⬜ Upcoming | 2026-09-18 | Enums and switch expressions for finite states | Profiles, @Profile, @ConditionalOnProperty | Java: Object Oriented Programming → Enums / Switch Expressions; Spring: Introduction → Configuration / Autoconfiguration | — |
-| 13 | ⬜ Upcoming | 2026-09-19 | Maven lifecycle, dependency scopes, transitive dependencies; recognize Gradle/Bazel | Spring Boot Starters and autoconfiguration | Java: Build Tools → Maven / Gradle / Bazel; Spring: Spring Boot Starters / Autoconfiguration | — |
-| 14 | ⬜ Upcoming | 2026-09-21 | Access modifiers, static, nested classes, overloading/overriding, dynamic binding, pass-by-value | Layered Spring architecture and component boundaries | Java: Object Oriented Programming → Basics / More about OOP; Spring: Introduction → Architecture | — |
-| 15 | ⬜ Upcoming | 2026-09-22 | Lambda expressions and functional interfaces | Inject multiple strategy beans and select behavior cleanly | Java: Lambda Expressions / Functional Programming → Functional Interfaces; Spring: Introduction → Dependency Injection | — |
-| 16 | ⬜ Upcoming | 2026-09-23 | Predicate, Function, Consumer, Supplier | Inject `List<T>` / `Map<String,T>` of beans | Java: Functional Programming → Functional Interfaces / Functional Composition; Spring: Introduction → Dependency Injection | — |
-| 17 | ⬜ Upcoming | 2026-09-24 | Stream pipeline, lazy intermediate operations, terminal operations | @RestController returning a typed collection | Java: Functional Programming → Stream API; Spring: Spring MVC | — |
-| 18 | ⬜ Upcoming | 2026-09-25 | flatMap, reduce, groupingBy, toMap | Map domain objects to API DTOs | Java: Functional Programming → Stream API; Spring: Spring MVC → Components | — |
-| 19 | ⬜ Upcoming | 2026-09-26 | Optional creation, map/flatMap/orElse/orElseGet/orElseThrow | Service/repository not-found handling | Java: Optionals; Spring: Spring Data / Spring MVC | — |
-| 20 | ⬜ Upcoming | 2026-09-28 | Method references, andThen/compose | Mapper/service composition | Java: Functional Programming → Functional Composition; Spring: Spring MVC → Components | — |
-| 21 | ⬜ Upcoming | 2026-09-29 | Records as immutable data carriers | Request/response DTO serialization with Jackson | Java: Object Oriented Programming → Record; Spring: Spring MVC | — |
-| 22 | ⬜ Upcoming | 2026-09-30 | Sealed classes/interfaces and pattern matching | @ControllerAdvice and @ExceptionHandler | Java: Object Oriented Programming → Sealed Types / Pattern Matching; Spring: Spring MVC | — |
-| 23 | ⬜ Upcoming | 2026-10-01 | Instant, LocalDate, LocalDateTime, ZonedDateTime, Duration | Jackson date/time serialization and API contracts | Java: Date and Time; Spring: Spring MVC | — |
-| 24 | ⬜ Upcoming | 2026-10-02 | Pattern/Matcher and regex boundaries | @Valid, @Pattern, validation errors | Java: Regular Expressions; Spring: Spring MVC | — |
-| 25 | ⬜ Upcoming | 2026-10-03 | Path, Files, buffered I/O, try-with-resources | Multipart upload/download endpoint | Java: I/O Operations / File Operations; Spring: Spring MVC | — |
-| 26 | ⬜ Upcoming | 2026-10-05 | URI, HTTP client, timeouts, status handling | Spring RestClient/WebClient fundamentals | Java: Networking; Spring: Spring MVC / Microservices | — |
-| 27 | ⬜ Upcoming | 2026-10-06 | Java modules/classpath/JAR packaging | Embedded server and Spring Boot executable JAR | Java: Modules / Build Tools; Spring: Embedded Server / Spring Boot | — |
-| 28 | ⬜ Upcoming | 2026-10-07 | Logging abstraction vs implementation, parameterized logs | Boot logging levels and configuration | Java: Logging Frameworks → SLF4J / Logback / Log4j2; Spring: Spring Boot | — |
-| 29 | ⬜ Upcoming | 2026-10-08 | Dynamic proxies and method interception concept | AOP, @Aspect, cross-cutting concerns | Java: Object Oriented Programming → Annotations / Dynamic Binding; Spring: Introduction → Spring AOP | — |
-| 30 | ⬜ Upcoming | 2026-10-09 | JVM process, heap/stack/class loading overview | SpringApplication startup, ApplicationContext, autoconfiguration report, Actuator intro | Java: Lifecycle of a Program / Java Memory Model (preview); Spring: Spring Boot / Autoconfiguration / Actuators / Embedded Server | — |
-| 31 | ⬜ Upcoming | 2026-10-10 | JDBC connection/statement/result-set lifecycle | Spring DataSource and JdbcTemplate | Java: Database Access → JDBC; Spring: Spring Data JDBC / Spring Data | — |
-| 32 | ⬜ Upcoming | 2026-10-12 | PreparedStatement, parameter binding, transaction boundaries | Spring Data JDBC repositories | Java: Database Access → JDBC; Spring: Spring Data JDBC | — |
-| 33 | ⬜ Upcoming | 2026-10-13 | POJO identity and object mapping concepts | @Entity, @Id, repository basics | Java: Database Access → Hibernate / Spring Data JPA; Spring: Hibernate / Spring Data JPA | — |
-| 34 | ⬜ Upcoming | 2026-10-14 | Object reachability and lifecycle review | Transient, managed, detached, removed; persistence context | Java: Object Oriented Programming → Object Lifecycle; Spring: Entity Lifecycle / Hibernate | — |
-| 35 | ⬜ Upcoming | 2026-10-15 | Set/List semantics in aggregates | @OneToMany, @ManyToOne, ownership | Java: Collections; Spring: Relationships / Spring Data JPA | — |
-| 36 | ⬜ Upcoming | 2026-10-16 | equals/hashCode rules revisited for persisted identity | Fetch types, lazy proxies, N+1 query problem | Java: Object Oriented Programming / Collections; Spring: Hibernate / Relationships | — |
-| 37 | ⬜ Upcoming | 2026-10-17 | Generic interfaces and type bounds revisited | CrudRepository/JpaRepository generics and derived queries | Java: Collections → Generic Collections; Spring: Spring Data / Spring Data JPA | — |
-| 38 | ⬜ Upcoming | 2026-10-19 | Comparator review and stable ordering | Pageable, Page, Sort | Java: Collections; Spring: Spring Data JPA | — |
-| 39 | ⬜ Upcoming | 2026-10-20 | Exception propagation review | @Transactional propagation and rollback rules | Java: Exception Handling; Spring: Transactions | — |
-| 40 | ⬜ Upcoming | 2026-10-21 | Thread states, race conditions, Executor basics | Transaction isolation, optimistic/pessimistic locking | Java: Concurrency → Threads; Spring: Transactions / Spring Data JPA | — |
-| 41 | ⬜ Upcoming | 2026-10-22 | Executors, task submission, lifecycle | Spring @Async and TaskExecutor | Java: Concurrency → Threads; Spring: Introduction → Task Execution (terminology) / Spring Boot | — |
-| 42 | ⬜ Upcoming | 2026-10-23 | synchronized, Lock, AtomicInteger | Singleton services under concurrent requests | Java: Concurrency → Threads; Spring: Introduction → Spring Bean Scope | — |
-| 43 | ⬜ Upcoming | 2026-10-24 | Visibility, happens-before, volatile vs atomicity | Memory visibility in singleton beans | Java: Concurrency → volatile keyword / Java Memory Model; Spring: Introduction → Spring Bean Scope | — |
-| 44 | ⬜ Upcoming | 2026-10-26 | CompletableFuture pipelines and exception handling | Compose independent service calls asynchronously | Java: Concurrency → Threads / Functional Programming; Spring: Microservices | — |
-| 45 | ⬜ Upcoming | 2026-10-27 | Virtual thread model and blocking I/O tradeoffs | Spring Boot virtual-thread support | Java: Concurrency → Virtual Threads; Spring: Spring Boot | — |
-| 46 | ⬜ Upcoming | 2026-10-28 | ScheduledExecutorService | Spring @Scheduled | Java: Concurrency → Threads; Spring: Introduction → Task Execution (terminology) | — |
-| 47 | ⬜ Upcoming | 2026-10-29 | Assertions, lifecycle, parameterized tests | Unit-test Spring services without loading a context | Java: Testing → Unit Testing → JUnit; Spring: Testing | — |
-| 48 | ⬜ Upcoming | 2026-10-30 | Mocks, stubs, verification, test doubles | Mock repository dependencies in service tests | Java: Testing → Mocking → Mockito; Spring: Testing | — |
-| 49 | ⬜ Upcoming | 2026-10-31 | Integration-test principles | @SpringBootTest, context loading | Java: Testing → Integration Testing; Spring: Testing → @SpringBootTest Annotation | — |
-| 50 | ⬜ Upcoming | 2026-11-02 | HTTP contract assertions | @WebMvcTest and MockMvc | Java: Testing → Integration Testing; Spring: Testing → Mock MVC | — |
-| 51 | ⬜ Upcoming | 2026-11-03 | Database test isolation | @DataJpaTest; real database with Testcontainers | Java: Testing → Integration Testing; Spring: Testing → JPA Test | — |
-| 52 | ⬜ Upcoming | 2026-11-04 | End-to-end test thinking; recognize REST Assured/JMeter/Cucumber roles | Run a real Boot server and exercise HTTP | Java: Testing → REST Assured / JMeter / Cucumber-JVM; Spring: Testing | — |
-| 53 | ⬜ Upcoming | 2026-11-05 | Hashing vs encryption, salts, secure random | Spring Security introduction and PasswordEncoder | Java: Cryptography; Spring: Spring Security | — |
-| 54 | ⬜ Upcoming | 2026-11-06 | Identity/authentication concepts | Spring Security filter chain and authentication | Java: Cryptography / Web Frameworks; Spring: Spring Security → Authentication | — |
-| 55 | ⬜ Upcoming | 2026-11-07 | Roles vs permissions; least privilege | @PreAuthorize and authorization rules | Java: Object Oriented Programming → Interfaces (policy abstraction); Spring: Spring Security → Authorization | — |
-| 56 | ⬜ Upcoming | 2026-11-09 | Base64URL, signatures, claims, expiration | JWT resource-server authentication | Java: Cryptography; Spring: Spring Security → JWT Authentication | — |
-| 57 | ⬜ Upcoming | 2026-11-10 | Protocol roles: resource owner/client/resource server/authorization server | OAuth2 resource server / OIDC login | Java: Networking / Cryptography; Spring: Spring Security → OAuth2 | — |
-| 58 | ⬜ Upcoming | 2026-11-11 | HTTP/browser security boundaries | Spring Security CORS/CSRF configuration | Java: Networking; Spring: Spring Security | — |
-| 59 | ⬜ Upcoming | 2026-11-12 | Annotations/proxies review | Test authenticated/authorized MVC methods | Java: Annotations / Dynamic Binding; Spring: Testing / Spring Security | — |
-| 60 | ⬜ Upcoming | 2026-11-13 | Review Java Core, functional Java, concurrency, testing | Review configuration, MVC, data, transactions, security | Java: Multiple roadmap sections; Spring: Multiple roadmap sections | — |
-| 61 | ⬜ Upcoming | 2026-11-14 | Packages/modules, cohesion and coupling | Microservice responsibilities and tradeoffs | Java: Modules / Object Oriented Programming; Spring: Microservices | — |
-| 62 | ⬜ Upcoming | 2026-11-16 | Networking failure modes and timeouts | Declarative/service-to-service HTTP client | Java: Networking; Spring: Spring Cloud Open Feign / Microservices | — |
-| 63 | ⬜ Upcoming | 2026-11-17 | DNS/service naming concepts | Eureka/service discovery concepts | Java: Networking; Spring: Spring Cloud → Eureka | — |
-| 64 | ⬜ Upcoming | 2026-11-18 | Configuration precedence and environment variables | Spring Cloud Config | Java: Build Tools / Modules (configuration delivery); Spring: Spring Cloud → Cloud Config | — |
-| 65 | ⬜ Upcoming | 2026-11-19 | Request/response abstractions | Spring Cloud Gateway routes and filters | Java: Networking; Spring: Spring Cloud → Spring Cloud Gateway | — |
-| 66 | ⬜ Upcoming | 2026-11-20 | Exception classification and retry-safe operations | Spring Cloud Circuit Breaker / Resilience4j | Java: Exception Handling; Spring: Spring Cloud → Spring Cloud Circuit Breaker | — |
-| 67 | ⬜ Upcoming | 2026-11-21 | Semaphores and bounded resources | Resilience patterns around remote calls | Java: Concurrency → Threads; Spring: Spring Cloud Circuit Breaker / Microservices | — |
-| 68 | ⬜ Upcoming | 2026-11-23 | Observer-style decoupling and event objects | ApplicationEventPublisher and @EventListener | Java: Object Oriented Programming → Interfaces; Spring: Introduction → Terminology (event model) | — |
-| 69 | ⬜ Upcoming | 2026-11-24 | Serialization, keys, partitions, ordering | Event-driven microservice integration | Java: Networking / Functional Programming (applied); Spring: Microservices (ecosystem extension) | — |
-| 70 | ⬜ Upcoming | 2026-11-25 | Set/map deduplication patterns applied | Idempotent consumers, retry topics, dead-letter handling | Java: Collections → Set / Map; Spring: Microservices (ecosystem extension) | — |
-| 71 | ⬜ Upcoming | 2026-11-26 | HashMap cache semantics, eviction tradeoffs | Spring Cache / @Cacheable | Java: Collections → Map; Spring: Spring Boot ecosystem / Microservices | — |
-| 72 | ⬜ Upcoming | 2026-11-27 | Serialization/key design | External cache for multi-instance applications | Java: Database Access (NoSQL adjacent); Spring: Microservices / related Redis roadmap | — |
-| 73 | ⬜ Upcoming | 2026-11-28 | Counters/timers as quantitative feedback | Micrometer meters and Actuator metrics | Java: Logging Frameworks / Java runtime observation; Spring: Spring Cloud → Micrometer / Actuators | — |
-| 74 | ⬜ Upcoming | 2026-11-30 | Thread/context propagation concepts | Actuator health/info, Micrometer tracing concepts | Java: Concurrency / Logging Frameworks; Spring: Actuators / Micrometer | — |
-| 75 | ⬜ Upcoming | 2026-12-01 | Enums/records for explicit API contracts | Spring MVC response status and ProblemDetail | Java: Object Oriented Programming → Record / Enum; Spring: Spring MVC | — |
-| 76 | ⬜ Upcoming | 2026-12-02 | Predicate composition | Spring Data JPA Specifications / dynamic queries | Java: Functional Programming → Functional Composition; Spring: Spring Data JPA | — |
-| 77 | ⬜ Upcoming | 2026-12-03 | Document modeling and Java records/classes | Mongo repositories and document mapping | Java: Database Access; Spring: Spring Data MongoDB | — |
-| 78 | ⬜ Upcoming | 2026-12-04 | Interfaces/adapters and substitution | Spring Data JDBC vs JPA vs MongoDB | Java: Database Access → JDBC / Hibernate / Spring Data JPA; Spring: Spring Data JDBC / JPA / MongoDB | — |
-| 79 | ⬜ Upcoming | 2026-12-05 | Fakes/stubs at network boundaries | WireMock/MockWebServer style client tests | Java: Testing → Integration Testing; Spring: Testing / Microservices | — |
-| 80 | ⬜ Upcoming | 2026-12-07 | Resource lifecycle in tests | Spring Boot + PostgreSQL/Kafka containers | Java: Testing → Integration Testing; Spring: Testing | — |
-| 81 | ⬜ Upcoming | 2026-12-08 | Heap, stack, metaspace, allocation, GC basics | Diagnose memory behavior in Boot services | Java: Java Memory Model / Lifecycle of a Program; Spring: Spring Boot | — |
-| 82 | ⬜ Upcoming | 2026-12-09 | Measure CPU/allocation before optimizing | Actuator metrics + Java Flight Recorder workflow | Java: Java runtime / performance; Spring: Actuators / Micrometer | — |
-| 83 | ⬜ Upcoming | 2026-12-10 | Queues, backpressure, bounded executors | Protect Spring services from overload | Java: Collections → Queue / Concurrency; Spring: Microservices / Spring Boot | — |
-| 84 | ⬜ Upcoming | 2026-12-11 | Input trust boundaries and secure coding | Security headers, validation, authz, secrets | Java: Cryptography / Networking; Spring: Spring Security | — |
-| 85 | ⬜ Upcoming | 2026-12-12 | JAR/runtime process model | Containerize a Spring Boot application | Java: Build Tools; Spring: Spring Boot / related Docker roadmap | — |
-| 86 | ⬜ Upcoming | 2026-12-14 | Environment variables and process configuration | Boot config precedence, profiles, secret injection | Java: Build Tools / Java runtime; Spring: Introduction → Configuration / Spring Cloud Config | — |
-| 87 | ⬜ Upcoming | 2026-12-15 | Interfaces, dependency direction, immutability | Organize Spring adapters around domain/application boundaries | Java: Object Oriented Programming; Spring: Architecture / Dependency Injection | — |
-| 88 | ⬜ Upcoming | 2026-12-16 | Data structures, concurrency, caching, API contracts | Compose MVC, data, cache, security, observability, messaging | Java: Multiple Java sections; Spring: Multiple Spring Boot sections | — |
-| 89 | ⬜ Upcoming | 2026-12-17 | Java Core/concurrency/JVM/coding review | Spring Core/MVC/Data/Security/Microservices review | Java: All covered sections; Spring: All covered sections | — |
-| 90 | ⬜ Upcoming | 2026-12-18 | Java evaluation: core, functional, concurrency, JVM, persistence, testing | Spring evaluation: core, Boot, MVC, Data, Security, testing, microservices | Java: All covered sections; Spring: All covered sections | — |
+| 11 | ✅ Done | completed | Reflection basics: Class, fields, methods, runtime metadata | @Value and @ConfigurationProperties | Java: Object Oriented Programming → Annotations (reflection support); Spring: Introduction → Configuration | [Java Reflection](./%5BDay%2011%5D%20Java%20Reflection.md) |
+| 12 | ⬜ Upcoming | 2026-09-23 | Enums and switch expressions for finite states | Profiles, @Profile, @ConditionalOnProperty | Java: Object Oriented Programming → Enums / Switch Expressions; Spring: Introduction → Configuration / Autoconfiguration | — |
+| 13 | ⬜ Upcoming | 2026-09-24 | Maven lifecycle, dependency scopes, transitive dependencies; recognize Gradle/Bazel | Spring Boot Starters and autoconfiguration | Java: Build Tools → Maven / Gradle / Bazel; Spring: Spring Boot Starters / Autoconfiguration | — |
+| 14 | ⬜ Upcoming | 2026-09-25 | Access modifiers, static, nested classes, overloading/overriding, dynamic binding, pass-by-value | Layered Spring architecture and component boundaries | Java: Object Oriented Programming → Basics / More about OOP; Spring: Introduction → Architecture | — |
+| 15 | ⬜ Upcoming | 2026-09-26 | Lambda expressions and functional interfaces | Inject multiple strategy beans and select behavior cleanly | Java: Lambda Expressions / Functional Programming → Functional Interfaces; Spring: Introduction → Dependency Injection | — |
+| 16 | ⬜ Upcoming | 2026-09-28 | Predicate, Function, Consumer, Supplier | Inject `List<T>` / `Map<String,T>` of beans | Java: Functional Programming → Functional Interfaces / Functional Composition; Spring: Introduction → Dependency Injection | — |
+| 17 | ⬜ Upcoming | 2026-09-29 | Stream pipeline, lazy intermediate operations, terminal operations | @RestController returning a typed collection | Java: Functional Programming → Stream API; Spring: Spring MVC | — |
+| 18 | ⬜ Upcoming | 2026-09-30 | flatMap, reduce, groupingBy, toMap | Map domain objects to API DTOs | Java: Functional Programming → Stream API; Spring: Spring MVC → Components | — |
+| 19 | ⬜ Upcoming | 2026-10-01 | Optional creation, map/flatMap/orElse/orElseGet/orElseThrow | Service/repository not-found handling | Java: Optionals; Spring: Spring Data / Spring MVC | — |
+| 20 | ⬜ Upcoming | 2026-10-02 | Method references, andThen/compose | Mapper/service composition | Java: Functional Programming → Functional Composition; Spring: Spring MVC → Components | — |
+| 21 | ⬜ Upcoming | 2026-10-03 | Records as immutable data carriers | Request/response DTO serialization with Jackson | Java: Object Oriented Programming → Record; Spring: Spring MVC | — |
+| 22 | ⬜ Upcoming | 2026-10-05 | Sealed classes/interfaces and pattern matching | @ControllerAdvice and @ExceptionHandler | Java: Object Oriented Programming → Sealed Types / Pattern Matching; Spring: Spring MVC | — |
+| 23 | ⬜ Upcoming | 2026-10-06 | Instant, LocalDate, LocalDateTime, ZonedDateTime, Duration | Jackson date/time serialization and API contracts | Java: Date and Time; Spring: Spring MVC | — |
+| 24 | ⬜ Upcoming | 2026-10-07 | Pattern/Matcher and regex boundaries | @Valid, @Pattern, validation errors | Java: Regular Expressions; Spring: Spring MVC | — |
+| 25 | ⬜ Upcoming | 2026-10-08 | Path, Files, buffered I/O, try-with-resources | Multipart upload/download endpoint | Java: I/O Operations / File Operations; Spring: Spring MVC | — |
+| 26 | ⬜ Upcoming | 2026-10-09 | URI, HTTP client, timeouts, status handling | Spring RestClient/WebClient fundamentals | Java: Networking; Spring: Spring MVC / Microservices | — |
+| 27 | ⬜ Upcoming | 2026-10-10 | Java modules/classpath/JAR packaging | Embedded server and Spring Boot executable JAR | Java: Modules / Build Tools; Spring: Embedded Server / Spring Boot | — |
+| 28 | ⬜ Upcoming | 2026-10-12 | Logging abstraction vs implementation, parameterized logs | Boot logging levels and configuration | Java: Logging Frameworks → SLF4J / Logback / Log4j2; Spring: Spring Boot | — |
+| 29 | ⬜ Upcoming | 2026-10-13 | Dynamic proxies and method interception concept | AOP, @Aspect, cross-cutting concerns | Java: Object Oriented Programming → Annotations / Dynamic Binding; Spring: Introduction → Spring AOP | — |
+| 30 | ⬜ Upcoming | 2026-10-14 | JVM process, heap/stack/class loading overview | SpringApplication startup, ApplicationContext, autoconfiguration report, Actuator intro | Java: Lifecycle of a Program / Java Memory Model (preview); Spring: Spring Boot / Autoconfiguration / Actuators / Embedded Server | — |
+| 31 | ⬜ Upcoming | 2026-10-15 | JDBC connection/statement/result-set lifecycle | Spring DataSource and JdbcTemplate | Java: Database Access → JDBC; Spring: Spring Data JDBC / Spring Data | — |
+| 32 | ⬜ Upcoming | 2026-10-16 | PreparedStatement, parameter binding, transaction boundaries | Spring Data JDBC repositories | Java: Database Access → JDBC; Spring: Spring Data JDBC | — |
+| 33 | ⬜ Upcoming | 2026-10-17 | POJO identity and object mapping concepts | @Entity, @Id, repository basics | Java: Database Access → Hibernate / Spring Data JPA; Spring: Hibernate / Spring Data JPA | — |
+| 34 | ⬜ Upcoming | 2026-10-19 | Object reachability and lifecycle review | Transient, managed, detached, removed; persistence context | Java: Object Oriented Programming → Object Lifecycle; Spring: Entity Lifecycle / Hibernate | — |
+| 35 | ⬜ Upcoming | 2026-10-20 | Set/List semantics in aggregates | @OneToMany, @ManyToOne, ownership | Java: Collections; Spring: Relationships / Spring Data JPA | — |
+| 36 | ⬜ Upcoming | 2026-10-21 | equals/hashCode rules revisited for persisted identity | Fetch types, lazy proxies, N+1 query problem | Java: Object Oriented Programming / Collections; Spring: Hibernate / Relationships | — |
+| 37 | ⬜ Upcoming | 2026-10-22 | Generic interfaces and type bounds revisited | CrudRepository/JpaRepository generics and derived queries | Java: Collections → Generic Collections; Spring: Spring Data / Spring Data JPA | — |
+| 38 | ⬜ Upcoming | 2026-10-23 | Comparator review and stable ordering | Pageable, Page, Sort | Java: Collections; Spring: Spring Data JPA | — |
+| 39 | ⬜ Upcoming | 2026-10-24 | Exception propagation review | @Transactional propagation and rollback rules | Java: Exception Handling; Spring: Transactions | — |
+| 40 | ⬜ Upcoming | 2026-10-26 | Thread states, race conditions, Executor basics | Transaction isolation, optimistic/pessimistic locking | Java: Concurrency → Threads; Spring: Transactions / Spring Data JPA | — |
+| 41 | ⬜ Upcoming | 2026-10-27 | Executors, task submission, lifecycle | Spring @Async and TaskExecutor | Java: Concurrency → Threads; Spring: Introduction → Task Execution (terminology) / Spring Boot | — |
+| 42 | ⬜ Upcoming | 2026-10-28 | synchronized, Lock, AtomicInteger | Singleton services under concurrent requests | Java: Concurrency → Threads; Spring: Introduction → Spring Bean Scope | — |
+| 43 | ⬜ Upcoming | 2026-10-29 | Visibility, happens-before, volatile vs atomicity | Memory visibility in singleton beans | Java: Concurrency → volatile keyword / Java Memory Model; Spring: Introduction → Spring Bean Scope | — |
+| 44 | ⬜ Upcoming | 2026-10-30 | CompletableFuture pipelines and exception handling | Compose independent service calls asynchronously | Java: Concurrency → Threads / Functional Programming; Spring: Microservices | — |
+| 45 | ⬜ Upcoming | 2026-10-31 | Virtual thread model and blocking I/O tradeoffs | Spring Boot virtual-thread support | Java: Concurrency → Virtual Threads; Spring: Spring Boot | — |
+| 46 | ⬜ Upcoming | 2026-11-02 | ScheduledExecutorService | Spring @Scheduled | Java: Concurrency → Threads; Spring: Introduction → Task Execution (terminology) | — |
+| 47 | ⬜ Upcoming | 2026-11-03 | Assertions, lifecycle, parameterized tests | Unit-test Spring services without loading a context | Java: Testing → Unit Testing → JUnit; Spring: Testing | — |
+| 48 | ⬜ Upcoming | 2026-11-04 | Mocks, stubs, verification, test doubles | Mock repository dependencies in service tests | Java: Testing → Mocking → Mockito; Spring: Testing | — |
+| 49 | ⬜ Upcoming | 2026-11-05 | Integration-test principles | @SpringBootTest, context loading | Java: Testing → Integration Testing; Spring: Testing → @SpringBootTest Annotation | — |
+| 50 | ⬜ Upcoming | 2026-11-06 | HTTP contract assertions | @WebMvcTest and MockMvc | Java: Testing → Integration Testing; Spring: Testing → Mock MVC | — |
+| 51 | ⬜ Upcoming | 2026-11-07 | Database test isolation | @DataJpaTest; real database with Testcontainers | Java: Testing → Integration Testing; Spring: Testing → JPA Test | — |
+| 52 | ⬜ Upcoming | 2026-11-09 | End-to-end test thinking; recognize REST Assured/JMeter/Cucumber roles | Run a real Boot server and exercise HTTP | Java: Testing → REST Assured / JMeter / Cucumber-JVM; Spring: Testing | — |
+| 53 | ⬜ Upcoming | 2026-11-10 | Hashing vs encryption, salts, secure random | Spring Security introduction and PasswordEncoder | Java: Cryptography; Spring: Spring Security | — |
+| 54 | ⬜ Upcoming | 2026-11-11 | Identity/authentication concepts | Spring Security filter chain and authentication | Java: Cryptography / Web Frameworks; Spring: Spring Security → Authentication | — |
+| 55 | ⬜ Upcoming | 2026-11-12 | Roles vs permissions; least privilege | @PreAuthorize and authorization rules | Java: Object Oriented Programming → Interfaces (policy abstraction); Spring: Spring Security → Authorization | — |
+| 56 | ⬜ Upcoming | 2026-11-13 | Base64URL, signatures, claims, expiration | JWT resource-server authentication | Java: Cryptography; Spring: Spring Security → JWT Authentication | — |
+| 57 | ⬜ Upcoming | 2026-11-14 | Protocol roles: resource owner/client/resource server/authorization server | OAuth2 resource server / OIDC login | Java: Networking / Cryptography; Spring: Spring Security → OAuth2 | — |
+| 58 | ⬜ Upcoming | 2026-11-16 | HTTP/browser security boundaries | Spring Security CORS/CSRF configuration | Java: Networking; Spring: Spring Security | — |
+| 59 | ⬜ Upcoming | 2026-11-17 | Annotations/proxies review | Test authenticated/authorized MVC methods | Java: Annotations / Dynamic Binding; Spring: Testing / Spring Security | — |
+| 60 | ⬜ Upcoming | 2026-11-18 | Review Java Core, functional Java, concurrency, testing | Review configuration, MVC, data, transactions, security | Java: Multiple roadmap sections; Spring: Multiple roadmap sections | — |
+| 61 | ⬜ Upcoming | 2026-11-19 | Packages/modules, cohesion and coupling | Microservice responsibilities and tradeoffs | Java: Modules / Object Oriented Programming; Spring: Microservices | — |
+| 62 | ⬜ Upcoming | 2026-11-20 | Networking failure modes and timeouts | Declarative/service-to-service HTTP client | Java: Networking; Spring: Spring Cloud Open Feign / Microservices | — |
+| 63 | ⬜ Upcoming | 2026-11-21 | DNS/service naming concepts | Eureka/service discovery concepts | Java: Networking; Spring: Spring Cloud → Eureka | — |
+| 64 | ⬜ Upcoming | 2026-11-23 | Configuration precedence and environment variables | Spring Cloud Config | Java: Build Tools / Modules (configuration delivery); Spring: Spring Cloud → Cloud Config | — |
+| 65 | ⬜ Upcoming | 2026-11-24 | Request/response abstractions | Spring Cloud Gateway routes and filters | Java: Networking; Spring: Spring Cloud → Spring Cloud Gateway | — |
+| 66 | ⬜ Upcoming | 2026-11-25 | Exception classification and retry-safe operations | Spring Cloud Circuit Breaker / Resilience4j | Java: Exception Handling; Spring: Spring Cloud → Spring Cloud Circuit Breaker | — |
+| 67 | ⬜ Upcoming | 2026-11-26 | Semaphores and bounded resources | Resilience patterns around remote calls | Java: Concurrency → Threads; Spring: Spring Cloud Circuit Breaker / Microservices | — |
+| 68 | ⬜ Upcoming | 2026-11-27 | Observer-style decoupling and event objects | ApplicationEventPublisher and @EventListener | Java: Object Oriented Programming → Interfaces; Spring: Introduction → Terminology (event model) | — |
+| 69 | ⬜ Upcoming | 2026-11-28 | Serialization, keys, partitions, ordering | Event-driven microservice integration | Java: Networking / Functional Programming (applied); Spring: Microservices (ecosystem extension) | — |
+| 70 | ⬜ Upcoming | 2026-11-30 | Set/map deduplication patterns applied | Idempotent consumers, retry topics, dead-letter handling | Java: Collections → Set / Map; Spring: Microservices (ecosystem extension) | — |
+| 71 | ⬜ Upcoming | 2026-12-01 | HashMap cache semantics, eviction tradeoffs | Spring Cache / @Cacheable | Java: Collections → Map; Spring: Spring Boot ecosystem / Microservices | — |
+| 72 | ⬜ Upcoming | 2026-12-02 | Serialization/key design | External cache for multi-instance applications | Java: Database Access (NoSQL adjacent); Spring: Microservices / related Redis roadmap | — |
+| 73 | ⬜ Upcoming | 2026-12-03 | Counters/timers as quantitative feedback | Micrometer meters and Actuator metrics | Java: Logging Frameworks / Java runtime observation; Spring: Spring Cloud → Micrometer / Actuators | — |
+| 74 | ⬜ Upcoming | 2026-12-04 | Thread/context propagation concepts | Actuator health/info, Micrometer tracing concepts | Java: Concurrency / Logging Frameworks; Spring: Actuators / Micrometer | — |
+| 75 | ⬜ Upcoming | 2026-12-05 | Enums/records for explicit API contracts | Spring MVC response status and ProblemDetail | Java: Object Oriented Programming → Record / Enum; Spring: Spring MVC | — |
+| 76 | ⬜ Upcoming | 2026-12-07 | Predicate composition | Spring Data JPA Specifications / dynamic queries | Java: Functional Programming → Functional Composition; Spring: Spring Data JPA | — |
+| 77 | ⬜ Upcoming | 2026-12-08 | Document modeling and Java records/classes | Mongo repositories and document mapping | Java: Database Access; Spring: Spring Data MongoDB | — |
+| 78 | ⬜ Upcoming | 2026-12-09 | Interfaces/adapters and substitution | Spring Data JDBC vs JPA vs MongoDB | Java: Database Access → JDBC / Hibernate / Spring Data JPA; Spring: Spring Data JDBC / JPA / MongoDB | — |
+| 79 | ⬜ Upcoming | 2026-12-10 | Fakes/stubs at network boundaries | WireMock/MockWebServer style client tests | Java: Testing → Integration Testing; Spring: Testing / Microservices | — |
+| 80 | ⬜ Upcoming | 2026-12-11 | Resource lifecycle in tests | Spring Boot + PostgreSQL/Kafka containers | Java: Testing → Integration Testing; Spring: Testing | — |
+| 81 | ⬜ Upcoming | 2026-12-12 | Heap, stack, metaspace, allocation, GC basics | Diagnose memory behavior in Boot services | Java: Java Memory Model / Lifecycle of a Program; Spring: Spring Boot | — |
+| 82 | ⬜ Upcoming | 2026-12-14 | Measure CPU/allocation before optimizing | Actuator metrics + Java Flight Recorder workflow | Java: Java runtime / performance; Spring: Actuators / Micrometer | — |
+| 83 | ⬜ Upcoming | 2026-12-15 | Queues, backpressure, bounded executors | Protect Spring services from overload | Java: Collections → Queue / Concurrency; Spring: Microservices / Spring Boot | — |
+| 84 | ⬜ Upcoming | 2026-12-16 | Input trust boundaries and secure coding | Security headers, validation, authz, secrets | Java: Cryptography / Networking; Spring: Spring Security | — |
+| 85 | ⬜ Upcoming | 2026-12-17 | JAR/runtime process model | Containerize a Spring Boot application | Java: Build Tools; Spring: Spring Boot / related Docker roadmap | — |
+| 86 | ⬜ Upcoming | 2026-12-18 | Environment variables and process configuration | Boot config precedence, profiles, secret injection | Java: Build Tools / Java runtime; Spring: Introduction → Configuration / Spring Cloud Config | — |
+| 87 | ⬜ Upcoming | 2026-12-19 | Interfaces, dependency direction, immutability | Organize Spring adapters around domain/application boundaries | Java: Object Oriented Programming; Spring: Architecture / Dependency Injection | — |
+| 88 | ⬜ Upcoming | 2026-12-21 | Data structures, concurrency, caching, API contracts | Compose MVC, data, cache, security, observability, messaging | Java: Multiple Java sections; Spring: Multiple Spring Boot sections | — |
+| 89 | ⬜ Upcoming | 2026-12-22 | Java Core/concurrency/JVM/coding review | Spring Core/MVC/Data/Security/Microservices review | Java: All covered sections; Spring: All covered sections | — |
+| 90 | ⬜ Upcoming | 2026-12-23 | Java evaluation: core, functional, concurrency, JVM, persistence, testing | Spring evaluation: core, Boot, MVC, Data, Security, testing, microservices | Java: All covered sections; Spring: All covered sections | — |
 
 ## Completed sessions — Day 01 to Day 09
 
@@ -227,12 +227,13 @@ Add the file under a scanned package, inject `GreetingService` into a `CommandLi
 - [x] Answer 3–5 interview questions or review a short code sample.
 - [x] Generate the detailed Joplin note, manual-note version, and Anki TSV.
 
-## Day 11 — External Configuration and Property Binding ⬜
+## Day 11 — External Configuration and Property Binding ✅
 
-**Planned date:** 2026-09-17  
+**Planned date:** 2026-09-17 (completed 2026-09-22)  
 **Java track:** Reflection basics: Class, fields, methods, runtime metadata  
 **Spring track:** @Value and @ConfigurationProperties  
 **roadmap.sh mapping:** Java — Object Oriented Programming → Annotations (reflection support); Spring Boot — Introduction → Configuration
+**Note:** [Java Reflection](./%5BDay%2011%5D%20Java%20Reflection.md)
 
 ### Tutorial
 
@@ -257,14 +258,14 @@ Enable configuration-properties scanning, inject `RentMapProperties`, print the 
 
 ### Done when
 
-- [ ] Explain the concept in English without notes.
-- [ ] Run/implement the mini-lab and intentionally change or break one thing.
-- [ ] Answer 3–5 interview questions or review a short code sample.
-- [ ] Generate the detailed Joplin note, manual-note version, and Anki TSV.
+- [x] Explain the concept in English without notes.
+- [x] Run/implement the mini-lab and intentionally change or break one thing.
+- [x] Answer 3–5 interview questions or review a short code sample.
+- [x] Generate the detailed Joplin note, manual-note version, and Anki TSV.
 
 ## Day 12 — Profiles and Conditional Configuration ⬜
 
-**Planned date:** 2026-09-18  
+**Planned date:** 2026-09-23  
 **Java track:** Enums and switch expressions for finite states  
 **Spring track:** Profiles, @Profile, @ConditionalOnProperty  
 **roadmap.sh mapping:** Java — Object Oriented Programming → Enums / Switch Expressions; Spring Boot — Introduction → Configuration / Autoconfiguration
@@ -303,7 +304,7 @@ Run the class, then create two Spring beans with `@Profile("dev")` and `@Profile
 
 ## Day 13 — Maven, Starters and Autoconfiguration ⬜
 
-**Planned date:** 2026-09-19  
+**Planned date:** 2026-09-24  
 **Java track:** Maven lifecycle, dependency scopes, transitive dependencies; recognize Gradle/Bazel  
 **Spring track:** Spring Boot Starters and autoconfiguration  
 **roadmap.sh mapping:** Java — Build Tools → Maven / Gradle / Bazel; Spring Boot — Spring Boot Starters / Autoconfiguration
@@ -341,7 +342,7 @@ Run the three Maven commands, identify which starter brings Jackson/Tomcat, then
 
 ## Day 14 — OOP Gap Audit + Spring Architecture ⬜
 
-**Planned date:** 2026-09-21  
+**Planned date:** 2026-09-25  
 **Java track:** Access modifiers, static, nested classes, overloading/overriding, dynamic binding, pass-by-value  
 **Spring track:** Layered Spring architecture and component boundaries  
 **roadmap.sh mapping:** Java — Object Oriented Programming → Basics / More about OOP; Spring Boot — Introduction → Architecture
@@ -381,7 +382,7 @@ Run it and explain why both calls print `dog`, and why `reassign` does not repla
 
 ## Day 15 — Lambdas and Strategy Injection ⬜
 
-**Planned date:** 2026-09-22  
+**Planned date:** 2026-09-26  
 **Java track:** Lambda expressions and functional interfaces  
 **Spring track:** Inject multiple strategy beans and select behavior cleanly  
 **roadmap.sh mapping:** Java — Lambda Expressions / Functional Programming → Functional Interfaces; Spring Boot — Introduction → Dependency Injection
@@ -416,7 +417,7 @@ Run it, then create two Spring `PricingStrategy` beans and inject `List<PricingS
 
 ## Day 16 — Core Functional Interfaces + Bean Collections ⬜
 
-**Planned date:** 2026-09-23  
+**Planned date:** 2026-09-28  
 **Java track:** Predicate, Function, Consumer, Supplier  
 **Spring track:** Inject `List<T>` / `Map<String,T>` of beans  
 **roadmap.sh mapping:** Java — Functional Programming → Functional Interfaces / Functional Composition; Spring Boot — Introduction → Dependency Injection
@@ -454,7 +455,7 @@ Run it; then inject `Map<String, NotificationService>` in Spring and print the b
 
 ## Day 17 — Streams: map/filter + REST Collection Endpoint ⬜
 
-**Planned date:** 2026-09-24  
+**Planned date:** 2026-09-29  
 **Java track:** Stream pipeline, lazy intermediate operations, terminal operations  
 **Spring track:** @RestController returning a typed collection  
 **roadmap.sh mapping:** Java — Functional Programming → Stream API; Spring Boot — Spring MVC
@@ -490,7 +491,7 @@ Run it, then expose the same transformation from a `GET /properties` controller 
 
 ## Day 18 — flatMap, reduce, Collectors + DTO Mapping ⬜
 
-**Planned date:** 2026-09-25  
+**Planned date:** 2026-09-30  
 **Java track:** flatMap, reduce, groupingBy, toMap  
 **Spring track:** Map domain objects to API DTOs  
 **roadmap.sh mapping:** Java — Functional Programming → Stream API; Spring Boot — Spring MVC → Components
@@ -526,7 +527,7 @@ Run it, then map a `Property` list to `PropertyResponse` records with `stream().
 
 ## Day 19 — Optional + Not-Found Flow ⬜
 
-**Planned date:** 2026-09-26  
+**Planned date:** 2026-10-01  
 **Java track:** Optional creation, map/flatMap/orElse/orElseGet/orElseThrow  
 **Spring track:** Service/repository not-found handling  
 **roadmap.sh mapping:** Java — Optionals; Spring Boot — Spring Data / Spring MVC
@@ -561,7 +562,7 @@ Run it; then implement `repository.findById(id).orElseThrow(PropertyNotFoundExce
 
 ## Day 20 — Method References and Functional Composition ⬜
 
-**Planned date:** 2026-09-28  
+**Planned date:** 2026-10-02  
 **Java track:** Method references, andThen/compose  
 **Spring track:** Mapper/service composition  
 **roadmap.sh mapping:** Java — Functional Programming → Functional Composition; Spring Boot — Spring MVC → Components
@@ -597,7 +598,7 @@ Run it, then extract a Spring DTO mapper and use method references in a stream.
 
 ## Day 21 — Records + Jackson DTOs ⬜
 
-**Planned date:** 2026-09-29  
+**Planned date:** 2026-10-03  
 **Java track:** Records as immutable data carriers  
 **Spring track:** Request/response DTO serialization with Jackson  
 **roadmap.sh mapping:** Java — Object Oriented Programming → Record; Spring Boot — Spring MVC
@@ -632,7 +633,7 @@ Run it, then return `PropertyResponse` from a controller and inspect the JSON wi
 
 ## Day 22 — Sealed Types + Global Exception Handling ⬜
 
-**Planned date:** 2026-09-30  
+**Planned date:** 2026-10-05  
 **Java track:** Sealed classes/interfaces and pattern matching  
 **Spring track:** @ControllerAdvice and @ExceptionHandler  
 **roadmap.sh mapping:** Java — Object Oriented Programming → Sealed Types / Pattern Matching; Spring Boot — Spring MVC
@@ -669,7 +670,7 @@ Run it, then create a `@RestControllerAdvice` mapping your two exception types t
 
 ## Day 23 — Date/Time API + JSON Dates ⬜
 
-**Planned date:** 2026-10-01  
+**Planned date:** 2026-10-06  
 **Java track:** Instant, LocalDate, LocalDateTime, ZonedDateTime, Duration  
 **Spring track:** Jackson date/time serialization and API contracts  
 **roadmap.sh mapping:** Java — Date and Time; Spring Boot — Spring MVC
@@ -705,7 +706,7 @@ Run it, then expose an `Instant createdAt` field from a Spring DTO and inspect i
 
 ## Day 24 — Regular Expressions + Bean Validation ⬜
 
-**Planned date:** 2026-10-02  
+**Planned date:** 2026-10-07  
 **Java track:** Pattern/Matcher and regex boundaries  
 **Spring track:** @Valid, @Pattern, validation errors  
 **roadmap.sh mapping:** Java — Regular Expressions; Spring Boot — Spring MVC
@@ -740,7 +741,7 @@ Run it, then put `@Pattern` on a request DTO and POST one valid and one invalid 
 
 ## Day 25 — I/O and File Operations + Multipart ⬜
 
-**Planned date:** 2026-10-03  
+**Planned date:** 2026-10-08  
 **Java track:** Path, Files, buffered I/O, try-with-resources  
 **Spring track:** Multipart upload/download endpoint  
 **roadmap.sh mapping:** Java — I/O Operations / File Operations; Spring Boot — Spring MVC
@@ -777,7 +778,7 @@ Run it; then create a Spring `MultipartFile` endpoint that prints file size and 
 
 ## Day 26 — Networking and Java HTTP Client + RestClient ⬜
 
-**Planned date:** 2026-10-05  
+**Planned date:** 2026-10-09  
 **Java track:** URI, HTTP client, timeouts, status handling  
 **Spring track:** Spring RestClient/WebClient fundamentals  
 **roadmap.sh mapping:** Java — Networking; Spring Boot — Spring MVC / Microservices
@@ -815,7 +816,7 @@ Run it with internet access; in your Spring app, repeat using `RestClient` again
 
 ## Day 27 — Modules, Classpath and Executable JAR ⬜
 
-**Planned date:** 2026-10-06  
+**Planned date:** 2026-10-10  
 **Java track:** Java modules/classpath/JAR packaging  
 **Spring track:** Embedded server and Spring Boot executable JAR  
 **roadmap.sh mapping:** Java — Modules / Build Tools; Spring Boot — Embedded Server / Spring Boot
@@ -848,7 +849,7 @@ Compile/run it, then package your Boot project and inspect `BOOT-INF/classes` an
 
 ## Day 28 — Logging: SLF4J/Logback + Spring Logging ⬜
 
-**Planned date:** 2026-10-07  
+**Planned date:** 2026-10-12  
 **Java track:** Logging abstraction vs implementation, parameterized logs  
 **Spring track:** Boot logging levels and configuration  
 **roadmap.sh mapping:** Java — Logging Frameworks → SLF4J / Logback / Log4j2; Spring Boot — Spring Boot
@@ -882,7 +883,7 @@ Run inside the Boot project, then set your package to DEBUG and verify a debug m
 
 ## Day 29 — Reflection/Proxies + Spring AOP ⬜
 
-**Planned date:** 2026-10-08  
+**Planned date:** 2026-10-13  
 **Java track:** Dynamic proxies and method interception concept  
 **Spring track:** AOP, @Aspect, cross-cutting concerns  
 **roadmap.sh mapping:** Java — Object Oriented Programming → Annotations / Dynamic Binding; Spring Boot — Introduction → Spring AOP
@@ -919,7 +920,7 @@ Run it, then write a Spring `@Aspect` that times one service method.
 
 ## Day 30 — JVM + Spring Boot Startup Checkpoint ⬜
 
-**Planned date:** 2026-10-09  
+**Planned date:** 2026-10-14  
 **Java track:** JVM process, heap/stack/class loading overview  
 **Spring track:** SpringApplication startup, ApplicationContext, autoconfiguration report, Actuator intro  
 **roadmap.sh mapping:** Java — Lifecycle of a Program / Java Memory Model (preview); Spring Boot — Spring Boot / Autoconfiguration / Actuators / Embedded Server
@@ -956,7 +957,7 @@ Run with `--debug`, inspect the condition evaluation report, then call `/actuato
 
 ## Day 31 — JDBC + DataSource ⬜
 
-**Planned date:** 2026-10-10  
+**Planned date:** 2026-10-15  
 **Java track:** JDBC connection/statement/result-set lifecycle  
 **Spring track:** Spring DataSource and JdbcTemplate  
 **roadmap.sh mapping:** Java — Database Access → JDBC; Spring Boot — Spring Data JDBC / Spring Data
@@ -995,7 +996,7 @@ Add H2 as a test/runtime dependency, run it, then reproduce the query with `Jdbc
 
 ## Day 32 — Prepared Statements + Spring Data JDBC ⬜
 
-**Planned date:** 2026-10-12  
+**Planned date:** 2026-10-16  
 **Java track:** PreparedStatement, parameter binding, transaction boundaries  
 **Spring track:** Spring Data JDBC repositories  
 **roadmap.sh mapping:** Java — Database Access → JDBC; Spring Boot — Spring Data JDBC
@@ -1029,7 +1030,7 @@ Run against your H2 setup, then define a Spring Data JDBC `CrudRepository<Proper
 
 ## Day 33 — JPA/Hibernate Entity Basics ⬜
 
-**Planned date:** 2026-10-13  
+**Planned date:** 2026-10-17  
 **Java track:** POJO identity and object mapping concepts  
 **Spring track:** @Entity, @Id, repository basics  
 **roadmap.sh mapping:** Java — Database Access → Hibernate / Spring Data JPA; Spring Boot — Hibernate / Spring Data JPA
@@ -1066,7 +1067,7 @@ Add JPA + H2, create a `JpaRepository`, save one entity in a `CommandLineRunner`
 
 ## Day 34 — Object Lifecycle + JPA Entity Lifecycle ⬜
 
-**Planned date:** 2026-10-14  
+**Planned date:** 2026-10-19  
 **Java track:** Object reachability and lifecycle review  
 **Spring track:** Transient, managed, detached, removed; persistence context  
 **roadmap.sh mapping:** Java — Object Oriented Programming → Object Lifecycle; Spring Boot — Entity Lifecycle / Hibernate
@@ -1098,7 +1099,7 @@ Create the method, call it, then query the database and verify the title changed
 
 ## Day 35 — Collections + JPA Relationships ⬜
 
-**Planned date:** 2026-10-15  
+**Planned date:** 2026-10-20  
 **Java track:** Set/List semantics in aggregates  
 **Spring track:** @OneToMany, @ManyToOne, ownership  
 **roadmap.sh mapping:** Java — Collections; Spring Boot — Relationships / Spring Data JPA
@@ -1136,7 +1137,7 @@ Persist one building with two units and inspect the generated SQL and foreign ke
 
 ## Day 36 — Entity Equality + Lazy/Eager and N+1 ⬜
 
-**Planned date:** 2026-10-16  
+**Planned date:** 2026-10-21  
 **Java track:** equals/hashCode rules revisited for persisted identity  
 **Spring track:** Fetch types, lazy proxies, N+1 query problem  
 **roadmap.sh mapping:** Java — Object Oriented Programming / Collections; Spring Boot — Hibernate / Relationships
@@ -1167,7 +1168,7 @@ Run with Hibernate SQL logging enabled and compare query counts before/after a f
 
 ## Day 37 — Generic Repository Patterns + Spring Data ⬜
 
-**Planned date:** 2026-10-17  
+**Planned date:** 2026-10-22  
 **Java track:** Generic interfaces and type bounds revisited  
 **Spring track:** CrudRepository/JpaRepository generics and derived queries  
 **roadmap.sh mapping:** Java — Collections → Generic Collections; Spring Boot — Spring Data / Spring Data JPA
@@ -1198,7 +1199,7 @@ Compile the generic example, then inspect your `JpaRepository<PropertyEntity, Lo
 
 ## Day 38 — Ordering + Pagination/Sorting ⬜
 
-**Planned date:** 2026-10-19  
+**Planned date:** 2026-10-23  
 **Java track:** Comparator review and stable ordering  
 **Spring track:** Pageable, Page, Sort  
 **roadmap.sh mapping:** Java — Collections; Spring Boot — Spring Data JPA
@@ -1229,7 +1230,7 @@ Seed >20 rows, request page 0 and page 1, and verify stable ordering.
 
 ## Day 39 — Transactions: Propagation and Rollback ⬜
 
-**Planned date:** 2026-10-20  
+**Planned date:** 2026-10-24  
 **Java track:** Exception propagation review  
 **Spring track:** @Transactional propagation and rollback rules  
 **roadmap.sh mapping:** Java — Exception Handling; Spring Boot — Transactions
@@ -1261,7 +1262,7 @@ Run the method, catch the exception outside the service, and verify the inserted
 
 ## Day 40 — Concurrency Fundamentals + Isolation/Locking ⬜
 
-**Planned date:** 2026-10-21  
+**Planned date:** 2026-10-26  
 **Java track:** Thread states, race conditions, Executor basics  
 **Spring track:** Transaction isolation, optimistic/pessimistic locking  
 **roadmap.sh mapping:** Java — Concurrency → Threads; Spring Boot — Transactions / Spring Data JPA
@@ -1297,7 +1298,7 @@ Run it several times and observe lost updates; then add a JPA `@Version` field a
 
 ## Day 41 — ExecutorService + @Async ⬜
 
-**Planned date:** 2026-10-22  
+**Planned date:** 2026-10-27  
 **Java track:** Executors, task submission, lifecycle  
 **Spring track:** Spring @Async and TaskExecutor  
 **roadmap.sh mapping:** Java — Concurrency → Threads; Spring Boot — Introduction → Task Execution (terminology) / Spring Boot
@@ -1332,7 +1333,7 @@ Run it; then enable `@EnableAsync`, annotate a service method with `@Async`, and
 
 ## Day 42 — Synchronization, Locks and Atomics + Stateless Beans ⬜
 
-**Planned date:** 2026-10-23  
+**Planned date:** 2026-10-28  
 **Java track:** synchronized, Lock, AtomicInteger  
 **Spring track:** Singleton services under concurrent requests  
 **roadmap.sh mapping:** Java — Concurrency → Threads; Spring Boot — Introduction → Spring Bean Scope
@@ -1369,7 +1370,7 @@ Run it and compare with Day 40; explain why stateless services avoid this class 
 
 ## Day 43 — volatile and the Java Memory Model ⬜
 
-**Planned date:** 2026-10-24  
+**Planned date:** 2026-10-29  
 **Java track:** Visibility, happens-before, volatile vs atomicity  
 **Spring track:** Memory visibility in singleton beans  
 **roadmap.sh mapping:** Java — Concurrency → volatile keyword / Java Memory Model; Spring Boot — Introduction → Spring Bean Scope
@@ -1403,7 +1404,7 @@ Run it, then explain why `volatile int counter; counter++` is still not thread-s
 
 ## Day 44 — CompletableFuture + Async Composition ⬜
 
-**Planned date:** 2026-10-26  
+**Planned date:** 2026-10-30  
 **Java track:** CompletableFuture pipelines and exception handling  
 **Spring track:** Compose independent service calls asynchronously  
 **roadmap.sh mapping:** Java — Concurrency → Threads / Functional Programming; Spring Boot — Microservices
@@ -1438,7 +1439,7 @@ Run it, then combine two fake Spring service calls and add `orTimeout` plus exce
 
 ## Day 45 — Virtual Threads + Spring Boot ⬜
 
-**Planned date:** 2026-10-27  
+**Planned date:** 2026-10-31  
 **Java track:** Virtual thread model and blocking I/O tradeoffs  
 **Spring track:** Spring Boot virtual-thread support  
 **roadmap.sh mapping:** Java — Concurrency → Virtual Threads; Spring Boot — Spring Boot
@@ -1474,7 +1475,7 @@ Run on Java 21+, then enable Boot virtual threads and inspect request thread nam
 
 ## Day 46 — Scheduling ⬜
 
-**Planned date:** 2026-10-28  
+**Planned date:** 2026-11-02  
 **Java track:** ScheduledExecutorService  
 **Spring track:** Spring @Scheduled  
 **roadmap.sh mapping:** Java — Concurrency → Threads; Spring Boot — Introduction → Task Execution (terminology)
@@ -1509,7 +1510,7 @@ Run it; then create a Spring `@Scheduled(fixedDelay = 5000)` method and verify r
 
 ## Day 47 — JUnit Fundamentals ⬜
 
-**Planned date:** 2026-10-29  
+**Planned date:** 2026-11-03  
 **Java track:** Assertions, lifecycle, parameterized tests  
 **Spring track:** Unit-test Spring services without loading a context  
 **roadmap.sh mapping:** Java — Testing → Unit Testing → JUnit; Spring Boot — Testing
@@ -1541,7 +1542,7 @@ Run `./mvnw test`; then write a unit test for one of your services with no Sprin
 
 ## Day 48 — Mockito ⬜
 
-**Planned date:** 2026-10-30  
+**Planned date:** 2026-11-04  
 **Java track:** Mocks, stubs, verification, test doubles  
 **Spring track:** Mock repository dependencies in service tests  
 **roadmap.sh mapping:** Java — Testing → Mocking → Mockito; Spring Boot — Testing
@@ -1575,7 +1576,7 @@ Adapt class names to your project and run the test; add one not-found test.
 
 ## Day 49 — @SpringBootTest and Integration Boundaries ⬜
 
-**Planned date:** 2026-10-31  
+**Planned date:** 2026-11-05  
 **Java track:** Integration-test principles  
 **Spring track:** @SpringBootTest, context loading  
 **roadmap.sh mapping:** Java — Testing → Integration Testing; Spring Boot — Testing → @SpringBootTest Annotation
@@ -1607,7 +1608,7 @@ Run it, then intentionally break one bean dependency and observe how context sta
 
 ## Day 50 — Spring MVC Testing ⬜
 
-**Planned date:** 2026-11-02  
+**Planned date:** 2026-11-06  
 **Java track:** HTTP contract assertions  
 **Spring track:** @WebMvcTest and MockMvc  
 **roadmap.sh mapping:** Java — Testing → Integration Testing; Spring Boot — Testing → Mock MVC
@@ -1642,7 +1643,7 @@ Adapt dependencies with mocks and run the test.
 
 ## Day 51 — JPA Tests + Testcontainers ⬜
 
-**Planned date:** 2026-11-03  
+**Planned date:** 2026-11-07  
 **Java track:** Database test isolation  
 **Spring track:** @DataJpaTest; real database with Testcontainers  
 **roadmap.sh mapping:** Java — Testing → Integration Testing; Spring Boot — Testing → JPA Test
@@ -1677,7 +1678,7 @@ Run with H2 first, then add a PostgreSQL Testcontainer later and compare behavio
 
 ## Day 52 — REST Integration Testing ⬜
 
-**Planned date:** 2026-11-04  
+**Planned date:** 2026-11-09  
 **Java track:** End-to-end test thinking; recognize REST Assured/JMeter/Cucumber roles  
 **Spring track:** Run a real Boot server and exercise HTTP  
 **roadmap.sh mapping:** Java — Testing → REST Assured / JMeter / Cucumber-JVM; Spring Boot — Testing
@@ -1710,7 +1711,7 @@ Automate the same flow using REST Assured or your preferred integration-test cli
 
 ## Day 53 — Cryptography Basics + Password Hashing ⬜
 
-**Planned date:** 2026-11-05  
+**Planned date:** 2026-11-10  
 **Java track:** Hashing vs encryption, salts, secure random  
 **Spring track:** Spring Security introduction and PasswordEncoder  
 **roadmap.sh mapping:** Java — Cryptography; Spring Boot — Spring Security
@@ -1745,7 +1746,7 @@ Run it to understand hashing, then use Spring `BCryptPasswordEncoder` and compar
 
 ## Day 54 — Authentication + SecurityFilterChain ⬜
 
-**Planned date:** 2026-11-06  
+**Planned date:** 2026-11-11  
 **Java track:** Identity/authentication concepts  
 **Spring track:** Spring Security filter chain and authentication  
 **roadmap.sh mapping:** Java — Cryptography / Web Frameworks; Spring Boot — Spring Security → Authentication
@@ -1777,7 +1778,7 @@ Start the app and compare responses to `/public/x` and a protected endpoint with
 
 ## Day 55 — Authorization + Method Security ⬜
 
-**Planned date:** 2026-11-07  
+**Planned date:** 2026-11-12  
 **Java track:** Roles vs permissions; least privilege  
 **Spring track:** @PreAuthorize and authorization rules  
 **roadmap.sh mapping:** Java — Object Oriented Programming → Interfaces (policy abstraction); Spring Boot — Spring Security → Authorization
@@ -1808,7 +1809,7 @@ Enable method security, call as ADMIN and USER, and verify only ADMIN succeeds.
 
 ## Day 56 — JWT Fundamentals ⬜
 
-**Planned date:** 2026-11-09  
+**Planned date:** 2026-11-13  
 **Java track:** Base64URL, signatures, claims, expiration  
 **Spring track:** JWT resource-server authentication  
 **roadmap.sh mapping:** Java — Cryptography; Spring Boot — Spring Security → JWT Authentication
@@ -1842,7 +1843,7 @@ Run to see Base64URL encoding, then configure a Spring resource server with a re
 
 ## Day 57 — OAuth2 / OIDC ⬜
 
-**Planned date:** 2026-11-10  
+**Planned date:** 2026-11-14  
 **Java track:** Protocol roles: resource owner/client/resource server/authorization server  
 **Spring track:** OAuth2 resource server / OIDC login  
 **roadmap.sh mapping:** Java — Networking / Cryptography; Spring Boot — Spring Security → OAuth2
@@ -1874,7 +1875,7 @@ Draw the authorization-code flow, then configure a local/provider-backed resourc
 
 ## Day 58 — CSRF, CORS, Sessions vs Tokens ⬜
 
-**Planned date:** 2026-11-11  
+**Planned date:** 2026-11-16  
 **Java track:** HTTP/browser security boundaries  
 **Spring track:** Spring Security CORS/CSRF configuration  
 **roadmap.sh mapping:** Java — Networking; Spring Boot — Spring Security
@@ -1910,7 +1911,7 @@ Run React/local curl requests from allowed and disallowed origins and inspect re
 
 ## Day 59 — Security Tests + Proxy Boundaries ⬜
 
-**Planned date:** 2026-11-12  
+**Planned date:** 2026-11-17  
 **Java track:** Annotations/proxies review  
 **Spring track:** Test authenticated/authorized MVC methods  
 **roadmap.sh mapping:** Java — Annotations / Dynamic Binding; Spring Boot — Testing / Spring Security
@@ -1943,7 +1944,7 @@ Run alongside an ADMIN variant that expects success.
 
 ## Day 60 — Midpoint Review + Code Review ⬜
 
-**Planned date:** 2026-11-13  
+**Planned date:** 2026-11-18  
 **Java track:** Review Java Core, functional Java, concurrency, testing  
 **Spring track:** Review configuration, MVC, data, transactions, security  
 **roadmap.sh mapping:** Java — Multiple roadmap sections; Spring Boot — Multiple roadmap sections
@@ -1975,7 +1976,7 @@ Do a 45-minute mock interview + 30-minute coding problem + 15-minute code review
 
 ## Day 61 — Microservices Fundamentals + Module Boundaries ⬜
 
-**Planned date:** 2026-11-14  
+**Planned date:** 2026-11-19  
 **Java track:** Packages/modules, cohesion and coupling  
 **Spring track:** Microservice responsibilities and tradeoffs  
 **roadmap.sh mapping:** Java — Modules / Object Oriented Programming; Spring Boot — Microservices
@@ -2007,7 +2008,7 @@ Sketch two RentMap service boundaries and state which service owns each table/ev
 
 ## Day 62 — HTTP, DNS, Timeouts + OpenFeign/RestClient ⬜
 
-**Planned date:** 2026-11-16  
+**Planned date:** 2026-11-20  
 **Java track:** Networking failure modes and timeouts  
 **Spring track:** Declarative/service-to-service HTTP client  
 **roadmap.sh mapping:** Java — Networking; Spring Boot — Spring Cloud Open Feign / Microservices
@@ -2039,7 +2040,7 @@ Create a local second endpoint/service, call it through a Spring HTTP interface 
 
 ## Day 63 — Service Discovery ⬜
 
-**Planned date:** 2026-11-17  
+**Planned date:** 2026-11-21  
 **Java track:** DNS/service naming concepts  
 **Spring track:** Eureka/service discovery concepts  
 **roadmap.sh mapping:** Java — Networking; Spring Boot — Spring Cloud → Eureka
@@ -2071,7 +2072,7 @@ Run the Java lookup, then create a small Eureka lab or document how Kubernetes S
 
 ## Day 64 — Centralized Configuration ⬜
 
-**Planned date:** 2026-11-18  
+**Planned date:** 2026-11-23  
 **Java track:** Configuration precedence and environment variables  
 **Spring track:** Spring Cloud Config  
 **roadmap.sh mapping:** Java — Build Tools / Modules (configuration delivery); Spring Boot — Spring Cloud → Cloud Config
@@ -2103,7 +2104,7 @@ Run with and without `RENTMAP_CITY`, then externalize one Spring property and do
 
 ## Day 65 — API Gateway ⬜
 
-**Planned date:** 2026-11-19  
+**Planned date:** 2026-11-24  
 **Java track:** Request/response abstractions  
 **Spring track:** Spring Cloud Gateway routes and filters  
 **roadmap.sh mapping:** Java — Networking; Spring Boot — Spring Cloud → Spring Cloud Gateway
@@ -2135,7 +2136,7 @@ Run two local apps and verify the gateway forwards a request to the property ser
 
 ## Day 66 — Retries and Circuit Breakers ⬜
 
-**Planned date:** 2026-11-20  
+**Planned date:** 2026-11-25  
 **Java track:** Exception classification and retry-safe operations  
 **Spring track:** Spring Cloud Circuit Breaker / Resilience4j  
 **roadmap.sh mapping:** Java — Exception Handling; Spring Boot — Spring Cloud → Spring Cloud Circuit Breaker
@@ -2169,7 +2170,7 @@ Run it, then replace the manual loop with a Resilience4j retry/circuit-breaker a
 
 ## Day 67 — Timeouts, Bulkheads and Rate Limits ⬜
 
-**Planned date:** 2026-11-21  
+**Planned date:** 2026-11-26  
 **Java track:** Semaphores and bounded resources  
 **Spring track:** Resilience patterns around remote calls  
 **roadmap.sh mapping:** Java — Concurrency → Threads; Spring Boot — Spring Cloud Circuit Breaker / Microservices
@@ -2205,7 +2206,7 @@ Run it and explain the third result; configure a small bulkhead/rate-limit lab a
 
 ## Day 68 — Application Events ⬜
 
-**Planned date:** 2026-11-23  
+**Planned date:** 2026-11-27  
 **Java track:** Observer-style decoupling and event objects  
 **Spring track:** ApplicationEventPublisher and @EventListener  
 **roadmap.sh mapping:** Java — Object Oriented Programming → Interfaces; Spring Boot — Introduction → Terminology (event model)
@@ -2238,7 +2239,7 @@ Publish the event from a service and verify a listener runs; then discuss transa
 
 ## Day 69 — Kafka Fundamentals ⬜
 
-**Planned date:** 2026-11-24  
+**Planned date:** 2026-11-28  
 **Java track:** Serialization, keys, partitions, ordering  
 **Spring track:** Event-driven microservice integration  
 **roadmap.sh mapping:** Java — Networking / Functional Programming (applied); Spring Boot — Microservices (ecosystem extension)
@@ -2272,7 +2273,7 @@ Run a local Kafka/Redpanda broker, publish one keyed event, and consume it from 
 
 ## Day 70 — Idempotency, Retries and DLQ ⬜
 
-**Planned date:** 2026-11-25  
+**Planned date:** 2026-11-30  
 **Java track:** Set/map deduplication patterns applied  
 **Spring track:** Idempotent consumers, retry topics, dead-letter handling  
 **roadmap.sh mapping:** Java — Collections → Set / Map; Spring Boot — Microservices (ecosystem extension)
@@ -2306,7 +2307,7 @@ Run it, then explain why an in-memory set is insufficient across restarts/multip
 
 ## Day 71 — Caching ⬜
 
-**Planned date:** 2026-11-26  
+**Planned date:** 2026-12-01  
 **Java track:** HashMap cache semantics, eviction tradeoffs  
 **Spring track:** Spring Cache / @Cacheable  
 **roadmap.sh mapping:** Java — Collections → Map; Spring Boot — Spring Boot ecosystem / Microservices
@@ -2338,7 +2339,7 @@ Enable caching, call the method twice with the same id, and verify the expensive
 
 ## Day 72 — Redis and Distributed Cache ⬜
 
-**Planned date:** 2026-11-27  
+**Planned date:** 2026-12-02  
 **Java track:** Serialization/key design  
 **Spring track:** External cache for multi-instance applications  
 **roadmap.sh mapping:** Java — Database Access (NoSQL adjacent); Spring Boot — Microservices / related Redis roadmap
@@ -2371,7 +2372,7 @@ Run Redis locally, write/read one property through Spring Data Redis or `RedisTe
 
 ## Day 73 — Metrics with Micrometer ⬜
 
-**Planned date:** 2026-11-28  
+**Planned date:** 2026-12-03  
 **Java track:** Counters/timers as quantitative feedback  
 **Spring track:** Micrometer meters and Actuator metrics  
 **roadmap.sh mapping:** Java — Logging Frameworks / Java runtime observation; Spring Boot — Spring Cloud → Micrometer / Actuators
@@ -2406,7 +2407,7 @@ Call `searched()`, then query `/actuator/metrics/rentmap.searches`.
 
 ## Day 74 — Tracing, Correlation IDs and Production Actuator ⬜
 
-**Planned date:** 2026-11-30  
+**Planned date:** 2026-12-04  
 **Java track:** Thread/context propagation concepts  
 **Spring track:** Actuator health/info, Micrometer tracing concepts  
 **roadmap.sh mapping:** Java — Concurrency / Logging Frameworks; Spring Boot — Actuators / Micrometer
@@ -2439,7 +2440,7 @@ Run it, then add a request filter that puts a correlation ID into MDC and verify
 
 ## Day 75 — API Design: Status, Errors, Versioning ⬜
 
-**Planned date:** 2026-12-01  
+**Planned date:** 2026-12-05  
 **Java track:** Enums/records for explicit API contracts  
 **Spring track:** Spring MVC response status and ProblemDetail  
 **roadmap.sh mapping:** Java — Object Oriented Programming → Record / Enum; Spring Boot — Spring MVC
@@ -2470,7 +2471,7 @@ Return a Spring `ProblemDetail` or typed error body from your global handler and
 
 ## Day 76 — Filtering, Pagination and Specifications ⬜
 
-**Planned date:** 2026-12-02  
+**Planned date:** 2026-12-07  
 **Java track:** Predicate composition  
 **Spring track:** Spring Data JPA Specifications / dynamic queries  
 **roadmap.sh mapping:** Java — Functional Programming → Functional Composition; Spring Boot — Spring Data JPA
@@ -2502,7 +2503,7 @@ Fix placement if needed in your IDE, run the predicate composition, then impleme
 
 ## Day 77 — Spring Data MongoDB ⬜
 
-**Planned date:** 2026-12-03  
+**Planned date:** 2026-12-08  
 **Java track:** Document modeling and Java records/classes  
 **Spring track:** Mongo repositories and document mapping  
 **roadmap.sh mapping:** Java — Database Access; Spring Boot — Spring Data MongoDB
@@ -2531,7 +2532,7 @@ Run MongoDB locally, save/find one document with `MongoRepository`, and inspect 
 
 ## Day 78 — Persistence Strategy Comparison ⬜
 
-**Planned date:** 2026-12-04  
+**Planned date:** 2026-12-09  
 **Java track:** Interfaces/adapters and substitution  
 **Spring track:** Spring Data JDBC vs JPA vs MongoDB  
 **roadmap.sh mapping:** Java — Database Access → JDBC / Hibernate / Spring Data JPA; Spring Boot — Spring Data JDBC / JPA / MongoDB
@@ -2563,7 +2564,7 @@ Run it and write a short ADR choosing the default RentMap persistence approach w
 
 ## Day 79 — Testing Remote Dependencies ⬜
 
-**Planned date:** 2026-12-05  
+**Planned date:** 2026-12-10  
 **Java track:** Fakes/stubs at network boundaries  
 **Spring track:** WireMock/MockWebServer style client tests  
 **roadmap.sh mapping:** Java — Testing → Integration Testing; Spring Boot — Testing / Microservices
@@ -2595,7 +2596,7 @@ Use WireMock or MockWebServer to create those four responses and verify your Spr
 
 ## Day 80 — Full Integration with Testcontainers ⬜
 
-**Planned date:** 2026-12-07  
+**Planned date:** 2026-12-11  
 **Java track:** Resource lifecycle in tests  
 **Spring track:** Spring Boot + PostgreSQL/Kafka containers  
 **roadmap.sh mapping:** Java — Testing → Integration Testing; Spring Boot — Testing
@@ -2628,7 +2629,7 @@ Run one repository integration test against the container and inspect the JDBC U
 
 ## Day 81 — JVM Memory and Garbage Collection ⬜
 
-**Planned date:** 2026-12-08  
+**Planned date:** 2026-12-12  
 **Java track:** Heap, stack, metaspace, allocation, GC basics  
 **Spring track:** Diagnose memory behavior in Boot services  
 **roadmap.sh mapping:** Java — Java Memory Model / Lifecycle of a Program; Spring Boot — Spring Boot
@@ -2662,7 +2663,7 @@ Run with different `-Xmx` values and compare reported max memory.
 
 ## Day 82 — Profiling and JFR ⬜
 
-**Planned date:** 2026-12-09  
+**Planned date:** 2026-12-14  
 **Java track:** Measure CPU/allocation before optimizing  
 **Spring track:** Actuator metrics + Java Flight Recorder workflow  
 **roadmap.sh mapping:** Java — Java runtime / performance; Spring Boot — Actuators / Micrometer
@@ -2696,7 +2697,7 @@ Record the program, open the JFR file, and identify the hottest method.
 
 ## Day 83 — Production Concurrency Patterns ⬜
 
-**Planned date:** 2026-12-10  
+**Planned date:** 2026-12-15  
 **Java track:** Queues, backpressure, bounded executors  
 **Spring track:** Protect Spring services from overload  
 **roadmap.sh mapping:** Java — Collections → Queue / Concurrency; Spring Boot — Microservices / Spring Boot
@@ -2733,7 +2734,7 @@ Run it and explain why the third task can be rejected; relate this to protecting
 
 ## Day 84 — API Security / OWASP Review ⬜
 
-**Planned date:** 2026-12-11  
+**Planned date:** 2026-12-16  
 **Java track:** Input trust boundaries and secure coding  
 **Spring track:** Security headers, validation, authz, secrets  
 **roadmap.sh mapping:** Java — Cryptography / Networking; Spring Boot — Spring Security
@@ -2766,7 +2767,7 @@ Review one endpoint against injection, broken access control, mass assignment, a
 
 ## Day 85 — Packaging and Docker ⬜
 
-**Planned date:** 2026-12-12  
+**Planned date:** 2026-12-17  
 **Java track:** JAR/runtime process model  
 **Spring track:** Containerize a Spring Boot application  
 **roadmap.sh mapping:** Java — Build Tools; Spring Boot — Spring Boot / related Docker roadmap
@@ -2798,7 +2799,7 @@ Build the Boot JAR, `docker build -t rentmap-api .`, run it with a port mapping,
 
 ## Day 86 — Configuration Precedence and Secrets ⬜
 
-**Planned date:** 2026-12-14  
+**Planned date:** 2026-12-18  
 **Java track:** Environment variables and process configuration  
 **Spring track:** Boot config precedence, profiles, secret injection  
 **roadmap.sh mapping:** Java — Build Tools / Java runtime; Spring Boot — Introduction → Configuration / Spring Cloud Config
@@ -2831,7 +2832,7 @@ Run once without and once with `DB_URL`; then verify which Spring property sourc
 
 ## Day 87 — Architecture: SOLID, DDD, Hexagonal Boundaries ⬜
 
-**Planned date:** 2026-12-15  
+**Planned date:** 2026-12-19  
 **Java track:** Interfaces, dependency direction, immutability  
 **Spring track:** Organize Spring adapters around domain/application boundaries  
 **roadmap.sh mapping:** Java — Object Oriented Programming; Spring Boot — Architecture / Dependency Injection
@@ -2865,7 +2866,7 @@ Compile the core classes with a fake repository and prove the use case works wit
 
 ## Day 88 — System Design Exercise — RentMap Backend ⬜
 
-**Planned date:** 2026-12-16  
+**Planned date:** 2026-12-21  
 **Java track:** Data structures, concurrency, caching, API contracts  
 **Spring track:** Compose MVC, data, cache, security, observability, messaging  
 **roadmap.sh mapping:** Java — Multiple Java sections; Spring Boot — Multiple Spring Boot sections
@@ -2897,7 +2898,7 @@ Produce a one-page design with APIs, data model, critical sequence, failure mode
 
 ## Day 89 — Full Mock Interview + Code Review ⬜
 
-**Planned date:** 2026-12-17  
+**Planned date:** 2026-12-22  
 **Java track:** Java Core/concurrency/JVM/coding review  
 **Spring track:** Spring Core/MVC/Data/Security/Microservices review  
 **roadmap.sh mapping:** Java — All covered sections; Spring Boot — All covered sections
@@ -2929,7 +2930,7 @@ Do the session without notes. Record gaps as red/yellow/green and only review af
 
 ## Day 90 — Final Evaluation and Next 90 Days ⬜
 
-**Planned date:** 2026-12-18  
+**Planned date:** 2026-12-23  
 **Java track:** Java evaluation: core, functional, concurrency, JVM, persistence, testing  
 **Spring track:** Spring evaluation: core, Boot, MVC, Data, Security, testing, microservices  
 **roadmap.sh mapping:** Java — All covered sections; Spring Boot — All covered sections
