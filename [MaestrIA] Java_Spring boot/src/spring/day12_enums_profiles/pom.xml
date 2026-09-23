@@ -12,7 +12,7 @@
     </parent>
 
     <groupId>org.jfl</groupId>
-    <artifactId>day10_configuration</artifactId>
+    <artifactId>day12_enums_profiles</artifactId>
     <version>1.0-SNAPSHOT</version>
     <name>day10_configuration</name>
     <description>Day 12 - Enums and profiles</description>

@@ -12,6 +12,7 @@ public class PaymentService{
     }
 
     public void process(){
-        gateway.pay();
+        PaymentStatus status = gateway.pay();
+        System.out.println(status.describe());
     }
 }
