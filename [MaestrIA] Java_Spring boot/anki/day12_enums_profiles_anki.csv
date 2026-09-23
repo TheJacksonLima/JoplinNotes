@@ -1,0 +1,6 @@
+﻿"Front","Back","Tags"
+"Why use an enum instead of String constants for domain states?","Enums provide a finite, type-safe set of valid values. They improve domain modeling and let the compiler catch invalid states.","day12 java::enum"
+"What is the main advantage of a switch expression over a traditional switch statement?","A switch expression can return a value, avoids accidental fall-through with arrow syntax, and works well with exhaustive enum handling.","day12 java::switch"
+"Why can an exhaustive switch over an enum be better without a default case?","If every enum constant is handled explicitly, adding a new enum constant can make the compiler reveal missing handling. A default can hide that change.","day12 java::enum java::switch"
+"What does @Profile do in Spring?","@Profile makes bean registration conditional on the active Spring profile, such as dev, test, or prod.","day12 spring::profiles"
+"What is the difference between @Profile and @ConditionalOnProperty?","@Profile is mainly for environment-based conditions such as dev or prod. @ConditionalOnProperty enables or disables beans based on a specific configuration property.","day12 spring::profiles spring::conditional"

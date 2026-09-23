@@ -41,7 +41,7 @@ Day 11 is anchored to **2026-09-22** (completed; slipped from its original 2026-
 | 09 | ✅ Done | completed | final, immutable objects, defensive copies, HashMap key stability | singleton/prototype/request/session, @PostConstruct, @PreDestroy | Java: Object Oriented Programming → Final Keyword; Spring: Introduction → Spring Bean Scope | [final, Immutability, Bean Scopes & Lifecycle](./%5BDay%2009%5D%20final%2C%20Immutability%2C%20Spring%20Bean%20Scopes%20%26.md) |
 | 10 | ✅ Done | completed | Annotations: what metadata is and why frameworks use it | @Configuration, @Bean, explicit bean creation and dependencies | Java: Object Oriented Programming → Annotations; Spring: Introduction → Configuration / Dependency Injection | [Java Annotations & Spring `@Configuration`/`@Bean`](./%5BDay%2010%5D%20Annotations.md) |
 | 11 | ✅ Done | completed | Reflection basics: Class, fields, methods, runtime metadata | @Value and @ConfigurationProperties | Java: Object Oriented Programming → Annotations (reflection support); Spring: Introduction → Configuration | [Java Reflection](./%5BDay%2011%5D%20Java%20Reflection.md) |
-| 12 | ⬜ Upcoming | 2026-09-23 | Enums and switch expressions for finite states | Profiles, @Profile, @ConditionalOnProperty | Java: Object Oriented Programming → Enums / Switch Expressions; Spring: Introduction → Configuration / Autoconfiguration | — |
+| 12 | ✅ Done | completed | Enums and switch expressions for finite states | Profiles, @Profile, @ConditionalOnProperty | Java: Object Oriented Programming → Enums / Switch Expressions; Spring: Introduction → Configuration / Autoconfiguration | [Java Enums, Switch Expressions & Spring Profiles](./%5BDay%2012%5D%20Java%20Enums%2C%20Switch%20Expressions%20%26%20Spring%20Profiles.md) |
 | 13 | ⬜ Upcoming | 2026-09-24 | Maven lifecycle, dependency scopes, transitive dependencies; recognize Gradle/Bazel | Spring Boot Starters and autoconfiguration | Java: Build Tools → Maven / Gradle / Bazel; Spring: Spring Boot Starters / Autoconfiguration | — |
 | 14 | ⬜ Upcoming | 2026-09-25 | Access modifiers, static, nested classes, overloading/overriding, dynamic binding, pass-by-value | Layered Spring architecture and component boundaries | Java: Object Oriented Programming → Basics / More about OOP; Spring: Introduction → Architecture | — |
 | 15 | ⬜ Upcoming | 2026-09-26 | Lambda expressions and functional interfaces | Inject multiple strategy beans and select behavior cleanly | Java: Lambda Expressions / Functional Programming → Functional Interfaces; Spring: Introduction → Dependency Injection | — |
@@ -263,12 +263,13 @@ Enable configuration-properties scanning, inject `RentMapProperties`, print the 
 - [x] Answer 3–5 interview questions or review a short code sample.
 - [x] Generate the detailed Joplin note, manual-note version, and Anki TSV.
 
-## Day 12 — Profiles and Conditional Configuration ⬜
+## Day 12 — Profiles and Conditional Configuration ✅
 
 **Planned date:** 2026-09-23  
 **Java track:** Enums and switch expressions for finite states  
 **Spring track:** Profiles, @Profile, @ConditionalOnProperty  
 **roadmap.sh mapping:** Java — Object Oriented Programming → Enums / Switch Expressions; Spring Boot — Introduction → Configuration / Autoconfiguration
+**Note:** [Java Enums, Switch Expressions & Spring Profiles](./%5BDay%2012%5D%20Java%20Enums%2C%20Switch%20Expressions%20%26%20Spring%20Profiles.md)
 
 ### Tutorial
 
@@ -297,10 +298,10 @@ Run the class, then create two Spring beans with `@Profile("dev")` and `@Profile
 
 ### Done when
 
-- [ ] Explain the concept in English without notes.
-- [ ] Run/implement the mini-lab and intentionally change or break one thing.
-- [ ] Answer 3–5 interview questions or review a short code sample.
-- [ ] Generate the detailed Joplin note, manual-note version, and Anki TSV.
+- [x] Explain the concept in English without notes.
+- [x] Run/implement the mini-lab and intentionally change or break one thing.
+- [x] Answer 3–5 interview questions or review a short code sample.
+- [x] Generate the detailed Joplin note, manual-note version, and Anki TSV.
 
 ## Day 13 — Maven, Starters and Autoconfiguration ⬜
 
