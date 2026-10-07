@@ -1,10 +1,8 @@
 package org.jfl.service;
 
-import org.jfl.config.PaymentStrategyConfig;
 import org.jfl.domain.Payment;
 import org.jfl.domain.PaymentStatus;
 import org.jfl.strategy.PaymentStrategy;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import java.util.Map;
