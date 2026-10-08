@@ -461,12 +461,14 @@ Run it; then inject `Map<String, NotificationService>` in Spring and print the b
 - [ ] Answer 3–5 interview questions or review a short code sample.
 - [ ] Generate the detailed Joplin note, manual-note version, and Anki TSV.
 
-## Day 17 — Streams: map/filter + REST Collection Endpoint ⬜
+## Day 17 — Streams: map/filter + REST Collection Endpoint ✅
 
 **Planned date:** 2026-10-08  
 **Java track:** Stream pipeline, lazy intermediate operations, terminal operations  
 **Spring track:** @RestController returning a typed collection  
 **roadmap.sh mapping:** Java — Functional Programming → Stream API; Spring Boot — Spring MVC
+**Note:** [Java Stream Pipelines & Spring REST Controllers](./%5BDay%2017%5D%20Java%20Stream%20Pipelines%20%26%20Spring%20REST%20Controllers.md)  
+**Code:** `src/spring/day17_streams_restcontroller` — Day 16 module extended with Spring Web: `Main` runs the stream exercises (filter/map/sorted/limit, laziness), `PaymentService` holds an in-memory `List<Payment>` with stream-based finders, and `PaymentController` exposes `GET /payments`, `/payments/positive` and `/payments/type/{method}`
 
 ### Tutorial
 
@@ -493,7 +495,7 @@ Run it, then expose the same transformation from a `GET /properties` controller 
 ### Done when
 
 - [ ] Explain the concept in English without notes.
-- [ ] Run/implement the mini-lab and intentionally change or break one thing.
+- [x] Run/implement the mini-lab and intentionally change or break one thing.
 - [ ] Answer 3–5 interview questions or review a short code sample.
 - [ ] Generate the detailed Joplin note, manual-note version, and Anki TSV.
 
@@ -524,7 +526,7 @@ public class Day18 {
 
 ### Verify
 
-Run it, then map a `Property` list to `PropertyResponse` records with `stream().map(...)`.
+Run it, then extend the Day 17 payment API: add a `PaymentResponse` DTO (a plain class — records come on Day 21) and map `List<Payment>` to it in `PaymentService` with `stream().map(...)`; use `groupingBy`/`reduce` for a per-method summary (count and total amount per `PaymentMethod`).
 
 ### Done when
 
