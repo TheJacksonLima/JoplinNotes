@@ -24,7 +24,7 @@ The original Month 1 plan was strong on Collections, Generics, exceptions, funct
 
 ## Calendar rule
 
-Day 11 is anchored to **2026-09-22** (completed; slipped from its original 2026-09-17 target). Days 13–14 were completed on **2026-09-28** (planned 2026-09-24/25). Day 15 slipped from 2026-09-29 and was completed on **2026-09-30**. Day 16 slipped from its 2026-10-01 slot (no sessions Oct 1–3) and again from its rescheduled 2026-10-05 slot; it was completed on **2026-10-07**. Day 17 was completed the same day, one day ahead of its 2026-10-08 slot, so Days 18–90 moved back one study day: Day 18 is now **2026-10-08** and Day 90 is **2026-12-31**. Day 18 was completed on schedule on **2026-10-08**. Study days run Monday–Saturday; Sundays are rest days and are not numbered. If a session slips, move the sequence forward instead of cramming two sessions into one day.
+Day 11 is anchored to **2026-09-22** (completed; slipped from its original 2026-09-17 target). Days 13–14 were completed on **2026-09-28** (planned 2026-09-24/25). Day 15 slipped from 2026-09-29 and was completed on **2026-09-30**. Day 16 slipped from its 2026-10-01 slot (no sessions Oct 1–3) and again from its rescheduled 2026-10-05 slot; it was completed on **2026-10-07**. Day 17 was completed the same day, one day ahead of its 2026-10-08 slot, so Days 18–90 moved back one study day: Day 18 is now **2026-10-08** and Day 90 is **2026-12-31**. Days 18 and 19 were completed on schedule (**2026-10-08** and **2026-10-09**). Study days run Monday–Saturday; Sundays are rest days and are not numbered. If a session slips, move the sequence forward instead of cramming two sessions into one day.
 
 ## Codebase continuity rule
 
@@ -58,7 +58,7 @@ From Day 17 onward, the hands-on work evolves **one codebase built around the Pa
 | 16 | ✅ Done | completed | Predicate, Function, Consumer, Supplier | Inject `List<T>` / `Map<String,T>` of beans | Java: Functional Programming → Functional Interfaces / Functional Composition; Spring: Introduction → Dependency Injection | [Standard Functional Interfaces & Spring Collection Injection](./%5BDay%2016%5D%20Standard%20Functional%20Interfaces%20%26%20Spring%20Collection%20Injection.md) |
 | 17 | ✅ Done | completed | Stream pipeline, lazy intermediate operations, terminal operations | @RestController returning a typed collection | Java: Functional Programming → Stream API; Spring: Spring MVC | [Java Stream Pipelines & Spring REST Controllers](./%5BDay%2017%5D%20Java%20Stream%20Pipelines%20%26%20Spring%20REST%20Controllers.md) |
 | 18 | ✅ Done | completed | flatMap, reduce, groupingBy, toMap | Map domain objects to API DTOs | Java: Functional Programming → Stream API; Spring: Spring MVC → Components | [Advanced Streams & API DTO Mapping](./%5BDay%2018%5D%20Advanced%20Streams%20%26%20API%20DTO%20Mapping.md) |
-| 19 | ⬜ Upcoming | 2026-10-09 | Optional creation, map/flatMap/orElse/orElseGet/orElseThrow | Service/repository not-found handling | Java: Optionals; Spring: Spring Data / Spring MVC | — |
+| 19 | ✅ Done | completed | Optional creation, map/flatMap/orElse/orElseGet/orElseThrow | Service/repository not-found handling | Java: Optionals; Spring: Spring Data / Spring MVC | [Java Optional & Spring Not-Found Flow](./%5BDay%2019%5D%20Java%20Optional%20%26%20Spring%20Not-Found%20Flow.md) |
 | 20 | ⬜ Upcoming | 2026-10-10 | Method references, andThen/compose | Mapper/service composition | Java: Functional Programming → Functional Composition; Spring: Spring MVC → Components | — |
 | 21 | ⬜ Upcoming | 2026-10-12 | Records as immutable data carriers | Request/response DTO serialization with Jackson | Java: Object Oriented Programming → Record; Spring: Spring MVC | — |
 | 22 | ⬜ Upcoming | 2026-10-13 | Sealed classes/interfaces and pattern matching | @ControllerAdvice and @ExceptionHandler | Java: Object Oriented Programming → Sealed Types / Pattern Matching; Spring: Spring MVC | — |
@@ -547,12 +547,14 @@ Run it, then extend the Day 17 payment API: add a `PaymentResponse` DTO (a plain
 - [ ] Answer 3–5 interview questions or review a short code sample.
 - [ ] Generate the detailed Joplin note, manual-note version, and Anki TSV.
 
-## Day 19 — Optional + Not-Found Flow ⬜
+## Day 19 — Optional + Not-Found Flow ✅
 
-**Planned date:** 2026-10-09  
+**Planned date:** 2026-10-09 (completed 2026-10-09)  
 **Java track:** Optional creation, map/flatMap/orElse/orElseGet/orElseThrow  
 **Spring track:** Service/repository not-found handling  
 **roadmap.sh mapping:** Java — Optionals; Spring Boot — Spring Data / Spring MVC
+**Note:** [Java Optional & Spring Not-Found Flow](./%5BDay%2019%5D%20Java%20Optional%20%26%20Spring%20Not-Found%20Flow.md)  
+**Code:** `src/spring/day19_optional_not_found` — Day 18 module extended: new `@Repository PaymentRepository` owns the in-memory `Map<Long, Payment>` and returns `Optional<Payment>` from `findById`; `PaymentService` turns absence into `PaymentNotFoundException` with `orElseThrow`; new `GET /payments/{id}` still returns `PaymentResponse` via `PaymentMapper` (404 mapping deferred to Day 22)
 
 ### Tutorial
 
@@ -578,7 +580,7 @@ Run it; then implement `repository.findById(id).orElseThrow(PropertyNotFoundExce
 ### Done when
 
 - [ ] Explain the concept in English without notes.
-- [ ] Run/implement the mini-lab and intentionally change or break one thing.
+- [x] Run/implement the mini-lab and intentionally change or break one thing.
 - [ ] Answer 3–5 interview questions or review a short code sample.
 - [ ] Generate the detailed Joplin note, manual-note version, and Anki TSV.
 
