@@ -14,11 +14,11 @@ public class PaymentMapper {
     private final Function<Payment, PaymentMethod> extractMethod = Payment::getMethod;
     private final Function<Payment, BigDecimal> extractAmount = Payment::getAmount;
     private final Function<PaymentMethod, String> methodName = Enum::name;
-    private final Function<Payment, String> paymentResponse = extractMethod.andThen(methodName);
+    private final Function<Payment, String> methodNameExtractor = extractMethod.andThen(methodName);
 
 
     public PaymentResponse toResponse(Payment payment) {
-        return new PaymentResponse(extractAmount.apply(payment),paymentResponse.apply(payment));
+        return new PaymentResponse(extractAmount.apply(payment),methodNameExtractor.apply(payment));
     }
 
     public List<PaymentResponse> toResponseList(

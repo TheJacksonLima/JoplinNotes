@@ -1,14 +1,12 @@
 package org.jfl.service;
 
 import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
 import org.jfl.domain.Payment;
 import org.jfl.domain.PaymentMethod;
 import org.jfl.domain.PaymentStatus;
 import org.jfl.exception.PaymentNotFoundException;
 import org.jfl.repository.PaymentRepository;
 import org.jfl.strategy.PaymentStrategy;
-import org.jfl.utils.PaymentFunctions;
 import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Map;
@@ -55,9 +53,9 @@ public class PaymentService {
     public PaymentStatus processById(Long id){
         Function<Long, Payment> findPayment = this::findPaymentById;
         Function<Payment, PaymentStatus> processPayment = this::process;
-        Function<Long,PaymentStatus> processById = findPayment.andThen(processPayment);
+        Function<Long,PaymentStatus> findAndProcess = findPayment.andThen(processPayment);
 
-        return processById.apply(id);
+        return findAndProcess.apply(id);
 
     }
 }
