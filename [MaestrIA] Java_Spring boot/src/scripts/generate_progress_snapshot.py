@@ -320,21 +320,41 @@ def render_stat_row(roadmap: Roadmap, today: date) -> str:
     else:
         next_label, next_sub = "Done", "No days left in the plan"
 
+    # Schedule status: compare the plan with today, not "did I log something today".
+    # Behind = the next planned day's date has already passed.
     dated_completed = [
         (n, roadmap.days[n].actual_date) for n in completed if roadmap.days[n].actual_date
     ]
-    if dated_completed:
-        last_day, last_actual = max(dated_completed, key=lambda t: t[0])
-        if last_actual == today:
-            status_value, status_color = "On time", "var(--good)"
-            status_label = f"Logged today, {today.isoformat()}"
-        else:
-            days_since = (today - last_actual).days
-            status_value, status_color = f"{days_since}d ago", "var(--ink-primary)"
-            status_label = f"Day {last_day} logged {last_actual.isoformat()}"
+    last_logged = (
+        max(dated_completed, key=lambda t: t[0]) if dated_completed else None
+    )
+    last_part = (
+        f"last: Day {last_logged[0]} on {last_logged[1].strftime('%m-%d')}"
+        if last_logged
+        else "no dated completions yet"
+    )
+
+    if not upcoming:
+        status_value, status_color = "Done", "var(--good)"
+        status_label = "Plan complete"
+    elif roadmap.days[upcoming[0]].planned_date is None:
+        status_value, status_color = "No plan date", "var(--ink-primary)"
+        status_label = last_part
     else:
-        status_value, status_color = "Unlogged", "var(--ink-primary)"
-        status_label = "No dated completions yet"
+        next_due = roadmap.days[upcoming[0]].planned_date
+        behind_days = (today - next_due).days
+        overdue = [
+            n for n in upcoming
+            if roadmap.days[n].planned_date and roadmap.days[n].planned_date < today
+        ]
+        if behind_days <= 0:
+            status_value, status_color = "On track", "var(--good)"
+            status_label = f"Day {upcoming[0]} due {next_due.strftime('%a %m-%d')} · {last_part}"
+        else:
+            status_value, status_color = f"{behind_days}d behind", "var(--warning)"
+            status_label = (
+                f"{len(overdue)} planned day{'s' if len(overdue) != 1 else ''} overdue · {last_part}"
+            )
 
     return f"""
     <div class="stat">
