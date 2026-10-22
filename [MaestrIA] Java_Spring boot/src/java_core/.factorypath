@@ -1,0 +1,7 @@
+<factorypath>
+    <factorypathentry kind="VARJAR" id="M2_REPO/org/projectlombok/lombok/1.18.34/lombok-1.18.34.jar" enabled="true" runInBatchMode="false"/>
+    <factorypathentry kind="VARJAR" id="M2_REPO/net/datafaker/datafaker/2.4.2/datafaker-2.4.2.jar" enabled="true" runInBatchMode="false"/>
+    <factorypathentry kind="VARJAR" id="M2_REPO/org/yaml/snakeyaml/2.3/snakeyaml-2.3.jar" enabled="true" runInBatchMode="false"/>
+    <factorypathentry kind="VARJAR" id="M2_REPO/com/github/curious-odd-man/rgxgen/2.0/rgxgen-2.0.jar" enabled="true" runInBatchMode="false"/>
+    <factorypathentry kind="VARJAR" id="M2_REPO/com/googlecode/libphonenumber/libphonenumber/8.13.50/libphonenumber-8.13.50.jar" enabled="true" runInBatchMode="false"/>
+</factorypath>
