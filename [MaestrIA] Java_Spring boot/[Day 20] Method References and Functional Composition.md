@@ -320,11 +320,24 @@ Payment
 Example:
 
 ```text
-Payment(100, PIX)
-→ 100
-→ 110
-→ "Amount: 110"
+Payment(100.00, PIX)
+→ 100.00
+→ 110.0000
+→ "Amount: 110.0000"
 ```
+
+Why `110.0000` and not `110`? `BigDecimal.multiply()` adds the scales (decimal places) of both operands: `100.00` (scale 2) × `0.10` (scale 2) = `10.0000` (scale 4), and `add()` keeps the larger scale.
+
+To keep money at two decimals, set the scale explicitly:
+
+```java
+Function<BigDecimal, BigDecimal> addFee =
+        amount -> amount.add(
+                amount.multiply(new BigDecimal("0.10"))
+        ).setScale(2, RoundingMode.HALF_EVEN);
+```
+
+Result: `"Amount: 110.00"`.
 
 ---
 

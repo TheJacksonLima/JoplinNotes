@@ -18,6 +18,7 @@
     --accent-strong: #7A5609;
     --good: #00806B;
     --warning: #C1531F;
+    --cal-active: #1E9C5A; --cal-missed: #D23F3F; --cal-weekend: #111418; --cal-weekend-ink: #8B96A3;
     --shadow: 0 1px 2px rgba(19, 26, 34, 0.04), 0 8px 24px -12px rgba(19, 26, 34, 0.12);
     padding-top: env(safe-area-inset-top, 0px);
     padding-bottom: env(safe-area-inset-bottom, 0px);
@@ -43,7 +44,19 @@
     padding-inline: 20px; padding-block: 40px 64px;
   }
   [hidden] { display: none !important; }
-  .page { max-width: 760px; margin: 0 auto; display: flex; flex-direction: column; gap: 28px; }
+  .layout {
+    max-width: 1148px; margin: 0 auto; display: grid; gap: 28px;
+    grid-template-columns: minmax(0, 760px) 360px; justify-content: center;
+    grid-template-areas: "head head" "main side" "foot foot";
+  }
+  .layout > header { grid-area: head; }
+  .page { grid-area: main; min-width: 0; display: flex; flex-direction: column; gap: 28px; }
+  .side { grid-area: side; align-self: start; position: sticky; top: 24px; }
+  .layout > footer { grid-area: foot; }
+  @media (max-width: 1200px) {
+    .layout { max-width: 760px; grid-template-columns: minmax(0, 1fr); grid-template-areas: "head" "main" "side" "foot"; }
+    .side { position: static; }
+  }
   .mono { font-family: "JetBrains Mono", ui-monospace, "SF Mono", monospace; }
   .tnum { font-variant-numeric: tabular-nums; }
   .eyebrow {
@@ -63,7 +76,7 @@
   .hero-frac { font-family: "JetBrains Mono", monospace; font-size: 15px; color: var(--ink-secondary); }
   .bar-wrap { margin-top: 20px; position: relative; }
   .bar-track { position: relative; height: 16px; border-radius: 999px; background: var(--surface-2); border: 1px solid var(--border); overflow: hidden; }
-  .bar-fill { position: absolute; inset: 0; width: 21.11%; border-radius: 999px; background: linear-gradient(90deg, var(--accent) 0%, var(--accent-strong) 100%); }
+  .bar-fill { position: absolute; inset: 0; width: 23.33%; border-radius: 999px; background: linear-gradient(90deg, var(--accent) 0%, var(--accent-strong) 100%); }
   .bar-ticks { position: absolute; inset: 0; pointer-events: none; }
   .bar-ticks i { position: absolute; top: -4px; bottom: -4px; width: 1px; background: color-mix(in srgb, var(--ink-muted) 35%, transparent); }
   .bar-caption { margin-top: 10px; display: flex; justify-content: space-between; font-family: "JetBrains Mono", monospace; font-size: 11.5px; color: var(--ink-muted); letter-spacing: .02em; }
@@ -102,31 +115,53 @@
   .upnext-body { display: flex; flex-direction: column; gap: 2px; }
   .upnext-title { font-size: 13.5px; color: var(--ink-primary); line-height: 1.4; }
   .upnext-date { font-family: "JetBrains Mono", monospace; font-size: 11.5px; color: var(--ink-muted); }
+  .cal-head { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+  .cal-summary { font-family: "JetBrains Mono", monospace; font-size: 12px; color: var(--ink-secondary); }
+  .cal-legend { margin-top: 12px; display: flex; gap: 8px 16px; flex-wrap: wrap; font-size: 12px; color: var(--ink-secondary); }
+  .cal-legend span { display: inline-flex; align-items: center; gap: 6px; }
+  .cal-legend i { width: 12px; height: 12px; border-radius: 3px; display: inline-block; border: 1px solid var(--border); }
+  .cal-months { margin-top: 18px; display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 22px; }
+  .cal-title { font-size: 13px; font-weight: 700; margin-bottom: 8px; }
+  .cal-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 4px; }
+  .cal-dow { font-family: "JetBrains Mono", monospace; font-size: 10px; color: var(--ink-muted); text-align: center; padding-bottom: 2px; }
+  .cal-day { aspect-ratio: 1; border-radius: 5px; display: flex; align-items: center; justify-content: center; font-family: "JetBrains Mono", monospace; font-size: 10.5px; font-weight: 600; border: 1px solid transparent; }
+  .cal-day.blank { visibility: hidden; }
+  .cal-day.active { background: var(--cal-active); color: #fff; }
+  .cal-day.missed { background: var(--cal-missed); color: #fff; }
+  .cal-day.weekend { background: var(--cal-weekend); color: var(--cal-weekend-ink); border-color: var(--border); }
+  .cal-day.untracked { background: var(--surface-2); color: var(--ink-muted); opacity: .55; }
+  .cal-day.today { background: var(--surface-2); color: var(--ink-primary); }
+  .cal-day.is-today { outline: 2px solid var(--accent-strong); outline-offset: 1px; }
+  .cal-legend i.active { background: var(--cal-active); }
+  .cal-legend i.missed { background: var(--cal-missed); }
+  .cal-legend i.weekend { background: var(--cal-weekend); }
+  .cal-empty { margin: 12px 0 0; color: var(--ink-muted); font-size: 13px; }
   footer { text-align: center; font-size: 12px; color: var(--ink-muted); padding-top: 4px; }
   footer .mono { font-size: 11.5px; }
 </style>
 
-<div class="page">
+<div class="layout">
   <header>
     <div class="eyebrow">Java + Spring Boot &middot; 90-Day Roadmap</div>
     <h1>Reflection Point</h1>
     <p class="subhead">
-      A pace check on the roadmap, generated on <code>2026-10-09</code>.
+      A pace check on the roadmap, generated on <code>2026-10-23</code>.
       Days completed before this file started tracking real dates aren't counted as pace samples &mdash; only days with a known actual date are.
     </p>
   </header>
 
+  <div class="page">
   <section class="card">
     <div class="hero-top">
       <div>
         <div class="card-title">Overall progress</div>
-        <div class="hero-pct tnum">21.1%</div>
+        <div class="hero-pct tnum">23.3%</div>
       </div>
-      <div class="hero-frac tnum">19 / 90 days</div>
+      <div class="hero-frac tnum">21 / 90 days</div>
     </div>
 
     <div class="bar-wrap">
-      <div class="bar-track" role="img" aria-label="19 of 90 days complete, 21.1 percent">
+      <div class="bar-track" role="img" aria-label="21 of 90 days complete, 23.3 percent">
         <div class="bar-fill"></div>
         <div class="bar-ticks"><i style="left:6.67%"></i><i style="left:13.33%"></i><i style="left:20.00%"></i><i style="left:26.67%"></i><i style="left:33.33%"></i><i style="left:40.00%"></i><i style="left:46.67%"></i><i style="left:53.33%"></i><i style="left:60.00%"></i><i style="left:66.67%"></i><i style="left:73.33%"></i><i style="left:80.00%"></i><i style="left:86.67%"></i><i style="left:93.33%"></i></div>
       </div>
@@ -139,23 +174,24 @@
 
     <div class="stat-row">
     <div class="stat">
-      <div class="stat-value tnum">19</div>
+      <div class="stat-value tnum">21</div>
       <div class="stat-label">Days completed</div>
     </div>
     <div class="stat">
-      <div class="stat-value tnum">71</div>
+      <div class="stat-value tnum">69</div>
       <div class="stat-label">Days remaining</div>
     </div>
     <div class="stat">
-      <div class="stat-value mono">Day 20</div>
-      <div class="stat-label">Up next · due Sat 10-10</div>
+      <div class="stat-value mono">Day 22</div>
+      <div class="stat-label">Up next · due Tue 10-13</div>
     </div>
     <div class="stat">
-      <div class="stat-value" style="color:var(--good)">On time</div>
-      <div class="stat-label">Logged today, 2026-10-09</div>
+      <div class="stat-value" style="color:var(--warning)">10d behind</div>
+      <div class="stat-label">9 planned days overdue · last: Day 21 on 10-23</div>
     </div>
     </div>
   </section>
+
 
   <section class="card">
     <div class="pace-head">
@@ -166,22 +202,22 @@
     </div>
 
     <svg class="pace-chart" viewBox="0 0 700 210" role="img" aria-label="Bar chart comparing completion projections">
-      <line class="ref-line" x1="219" y1="34" x2="219" y2="178"></line>
-      <text class="axis-label" x="223" y="26">83-day mark</text>
+      <line class="ref-line" x1="182" y1="34" x2="182" y2="178"></line>
+      <text class="axis-label" x="186" y="26">81-day mark</text>
       <text class="row-label" x="20" y="52">If you hold the plan’s cadence</text>
-      <rect x="20" y="60" width="199" height="26" rx="6" fill="var(--accent)"></rect>
-      <text class="value-label" x="229" y="70" fill="var(--accent-strong)">83 days</text>
-      <text class="date-label" x="229" y="86">&rarr; Thu, Dec 31 2026</text>
+      <rect x="20" y="60" width="162" height="26" rx="6" fill="var(--accent)"></rect>
+      <text class="value-label" x="192" y="70" fill="var(--accent-strong)">81 days</text>
+      <text class="date-label" x="192" y="86">&rarr; Tue, Jan 12 2027</text>
       <text class="row-label" x="20" y="122">At your current logged pace</text>
-      <rect x="20" y="130" width="559" height="26" rx="6" fill="var(--warning)"></rect>
-      <text class="value-label" x="20" y="178" fill="var(--warning)">233 days</text>
-      <text class="date-label" x="94" y="178">&rarr; Sun, May 30 2027</text>
+      <rect x="20" y="130" width="568" height="26" rx="6" fill="var(--warning)"></rect>
+      <text class="value-label" x="20" y="178" fill="var(--warning)">284 days</text>
+      <text class="date-label" x="94" y="178">&rarr; Tue, Aug 3 2027</text>
       <line class="axis" x1="20" y1="196" x2="620" y2="196"></line>
       <text class="axis-label" x="20" y="207">Today</text>
-      <text class="axis-label" x="620" y="207" text-anchor="end">+250 days</text>
+      <text class="axis-label" x="620" y="207" text-anchor="end">+300 days</text>
     </svg>
 
-    <div class="caveat"><strong>Pace based on 7 intervals</strong> averaging 3.3 calendar days per completed topic. Still worth revisiting as more days land &mdash; a handful of samples can swing a lot.</div>
+    <div class="caveat"><strong>Pace based on 9 intervals</strong> averaging 4.1 calendar days per completed topic. Still worth revisiting as more days land &mdash; a handful of samples can swing a lot.</div>
   </section>
 
   <div class="twin">
@@ -191,22 +227,22 @@
         <thead><tr><th>Day</th><th>Planned</th><th>Actual</th><th>Status</th></tr></thead>
         <tbody>
           <tr>
-            <td class="day-cell">17</td>
-            <td class="date-cell tnum">10-08 Thu</td>
-            <td class="date-cell tnum">10-07 Wed</td>
-            <td><span class="chip good">on time</span></td>
-          </tr>
-          <tr>
-            <td class="day-cell">18</td>
-            <td class="date-cell tnum">10-08 Thu</td>
-            <td class="date-cell tnum">10-08 Thu</td>
-            <td><span class="chip good">on time</span></td>
-          </tr>
-          <tr>
             <td class="day-cell">19</td>
             <td class="date-cell tnum">10-09 Fri</td>
             <td class="date-cell tnum">10-09 Fri</td>
             <td><span class="chip good">on time</span></td>
+          </tr>
+          <tr>
+            <td class="day-cell">20</td>
+            <td class="date-cell tnum">10-10 Sat</td>
+            <td class="date-cell tnum">10-22 Thu</td>
+            <td><span class="chip warning">+12 days</span></td>
+          </tr>
+          <tr>
+            <td class="day-cell">21</td>
+            <td class="date-cell tnum">10-12 Mon</td>
+            <td class="date-cell tnum">10-23 Fri</td>
+            <td><span class="chip warning">+11 days</span></td>
           </tr>
         </tbody>
       </table>
@@ -216,32 +252,58 @@
       <div class="card-title">Up next</div>
       <ul class="upnext-list">
         <li class="upnext-item">
-          <span class="upnext-badge">20</span>
-          <span class="upnext-body">
-            <span class="upnext-title">Method references, andThen/compose · Mapper/service composition</span>
-            <span class="upnext-date">Sat, Oct 10 2026</span>
-          </span>
-        </li>
-        <li class="upnext-item">
-          <span class="upnext-badge">21</span>
-          <span class="upnext-body">
-            <span class="upnext-title">Records as immutable data carriers · Request/response DTO serialization with Jackson</span>
-            <span class="upnext-date">Mon, Oct 12 2026</span>
-          </span>
-        </li>
-        <li class="upnext-item">
           <span class="upnext-badge">22</span>
           <span class="upnext-body">
             <span class="upnext-title">Sealed classes/interfaces and pattern matching · @ControllerAdvice and @ExceptionHandler</span>
             <span class="upnext-date">Tue, Oct 13 2026</span>
           </span>
         </li>
+        <li class="upnext-item">
+          <span class="upnext-badge">23</span>
+          <span class="upnext-body">
+            <span class="upnext-title">Instant, LocalDate, LocalDateTime, ZonedDateTime, Duration · Jackson date/time…</span>
+            <span class="upnext-date">Wed, Oct 14 2026</span>
+          </span>
+        </li>
+        <li class="upnext-item">
+          <span class="upnext-badge">24</span>
+          <span class="upnext-body">
+            <span class="upnext-title">Pattern/Matcher and regex boundaries · @Valid, @Pattern, validation errors</span>
+            <span class="upnext-date">Thu, Oct 15 2026</span>
+          </span>
+        </li>
       </ul>
     </section>
   </div>
 
+  </div>
+
+  <aside class="side">
+  <section class="card">
+      <div class="cal-head">
+        <div class="card-title">Activity calendar</div>
+        <div class="cal-summary tnum">11 active &middot; 17 missed weekdays</div>
+      </div>
+      <div class="cal-legend">
+        <span><i class="active"></i>Did something</span>
+        <span><i class="missed"></i>Weekday, nothing done</span>
+        <span><i class="weekend"></i>Weekend, nothing done</span>
+      </div>
+      <div class="cal-months">
+          <div class="cal-month">
+          <div class="cal-title">September 2026</div>
+          <div class="cal-grid"><span class="cal-dow">M</span><span class="cal-dow">T</span><span class="cal-dow">W</span><span class="cal-dow">T</span><span class="cal-dow">F</span><span class="cal-dow">S</span><span class="cal-dow">S</span><span class="cal-day blank"></span><span class="cal-day untracked" title="Tue 2026-09-01 · not tracked">1</span><span class="cal-day untracked" title="Wed 2026-09-02 · not tracked">2</span><span class="cal-day untracked" title="Thu 2026-09-03 · not tracked">3</span><span class="cal-day untracked" title="Fri 2026-09-04 · not tracked">4</span><span class="cal-day untracked" title="Sat 2026-09-05 · not tracked">5</span><span class="cal-day untracked" title="Sun 2026-09-06 · not tracked">6</span><span class="cal-day untracked" title="Mon 2026-09-07 · not tracked">7</span><span class="cal-day untracked" title="Tue 2026-09-08 · not tracked">8</span><span class="cal-day untracked" title="Wed 2026-09-09 · not tracked">9</span><span class="cal-day untracked" title="Thu 2026-09-10 · not tracked">10</span><span class="cal-day untracked" title="Fri 2026-09-11 · not tracked">11</span><span class="cal-day untracked" title="Sat 2026-09-12 · not tracked">12</span><span class="cal-day untracked" title="Sun 2026-09-13 · not tracked">13</span><span class="cal-day untracked" title="Mon 2026-09-14 · not tracked">14</span><span class="cal-day untracked" title="Tue 2026-09-15 · not tracked">15</span><span class="cal-day active" title="Wed 2026-09-16 · done">16</span><span class="cal-day missed" title="Thu 2026-09-17 · nothing done">17</span><span class="cal-day missed" title="Fri 2026-09-18 · nothing done">18</span><span class="cal-day weekend" title="Sat 2026-09-19 · weekend">19</span><span class="cal-day weekend" title="Sun 2026-09-20 · weekend">20</span><span class="cal-day missed" title="Mon 2026-09-21 · nothing done">21</span><span class="cal-day active" title="Tue 2026-09-22 · done">22</span><span class="cal-day active" title="Wed 2026-09-23 · done">23</span><span class="cal-day missed" title="Thu 2026-09-24 · nothing done">24</span><span class="cal-day missed" title="Fri 2026-09-25 · nothing done">25</span><span class="cal-day weekend" title="Sat 2026-09-26 · weekend">26</span><span class="cal-day weekend" title="Sun 2026-09-27 · weekend">27</span><span class="cal-day active" title="Mon 2026-09-28 · done">28</span><span class="cal-day missed" title="Tue 2026-09-29 · nothing done">29</span><span class="cal-day active" title="Wed 2026-09-30 · done">30</span></div>
+        </div>
+        <div class="cal-month">
+          <div class="cal-title">October 2026</div>
+          <div class="cal-grid"><span class="cal-dow">M</span><span class="cal-dow">T</span><span class="cal-dow">W</span><span class="cal-dow">T</span><span class="cal-dow">F</span><span class="cal-dow">S</span><span class="cal-dow">S</span><span class="cal-day blank"></span><span class="cal-day blank"></span><span class="cal-day blank"></span><span class="cal-day missed" title="Thu 2026-10-01 · nothing done">1</span><span class="cal-day missed" title="Fri 2026-10-02 · nothing done">2</span><span class="cal-day weekend" title="Sat 2026-10-03 · weekend">3</span><span class="cal-day weekend" title="Sun 2026-10-04 · weekend">4</span><span class="cal-day active" title="Mon 2026-10-05 · done">5</span><span class="cal-day missed" title="Tue 2026-10-06 · nothing done">6</span><span class="cal-day active" title="Wed 2026-10-07 · done">7</span><span class="cal-day active" title="Thu 2026-10-08 · done">8</span><span class="cal-day active" title="Fri 2026-10-09 · done">9</span><span class="cal-day weekend" title="Sat 2026-10-10 · weekend">10</span><span class="cal-day weekend" title="Sun 2026-10-11 · weekend">11</span><span class="cal-day missed" title="Mon 2026-10-12 · nothing done">12</span><span class="cal-day missed" title="Tue 2026-10-13 · nothing done">13</span><span class="cal-day missed" title="Wed 2026-10-14 · nothing done">14</span><span class="cal-day missed" title="Thu 2026-10-15 · nothing done">15</span><span class="cal-day missed" title="Fri 2026-10-16 · nothing done">16</span><span class="cal-day weekend" title="Sat 2026-10-17 · weekend">17</span><span class="cal-day weekend" title="Sun 2026-10-18 · weekend">18</span><span class="cal-day missed" title="Mon 2026-10-19 · nothing done">19</span><span class="cal-day missed" title="Tue 2026-10-20 · nothing done">20</span><span class="cal-day missed" title="Wed 2026-10-21 · nothing done">21</span><span class="cal-day active" title="Thu 2026-10-22 · done">22</span><span class="cal-day active is-today" title="Fri 2026-10-23 · done">23</span><span class="cal-day untracked" title="Sat 2026-10-24 · upcoming">24</span><span class="cal-day untracked" title="Sun 2026-10-25 · upcoming">25</span><span class="cal-day untracked" title="Mon 2026-10-26 · upcoming">26</span><span class="cal-day untracked" title="Tue 2026-10-27 · upcoming">27</span><span class="cal-day untracked" title="Wed 2026-10-28 · upcoming">28</span><span class="cal-day untracked" title="Thu 2026-10-29 · upcoming">29</span><span class="cal-day untracked" title="Fri 2026-10-30 · upcoming">30</span><span class="cal-day untracked" title="Sat 2026-10-31 · upcoming">31</span></div>
+        </div>
+      </div>
+    </section>
+  </aside>
+
   <footer>
     <div>Source: <span class="mono">Roadmap.md</span> master index &amp; per-day <span class="mono">Planned date</span> lines, cross-checked against <span class="mono">git log</span>.</div>
-    <div class="mono">Snapshot generated 2026-10-09 by src/scripts/generate_progress_snapshot.py</div>
+    <div class="mono">Snapshot generated 2026-10-23 by src/scripts/generate_progress_snapshot.py</div>
   </footer>
 </div>

@@ -3,13 +3,11 @@ package org.jfl.controller;
 import lombok.AllArgsConstructor;
 import org.jfl.domain.Payment;
 import org.jfl.domain.PaymentMethod;
+import org.jfl.dto.PaymentRequest;
 import org.jfl.dto.PaymentResponse;
 import org.jfl.mapper.PaymentMapper;
 import org.jfl.service.PaymentService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -45,6 +43,12 @@ public class PaymentController {
 
         Payment payment = service.findPaymentById(id);
 
+        return mapper.toResponse(payment);
+    }
+
+    @PostMapping("/preview")
+    public PaymentResponse preview(@RequestBody PaymentRequest paymentRequest){
+        Payment payment = mapper.toDomain(paymentRequest);
         return mapper.toResponse(payment);
     }
 

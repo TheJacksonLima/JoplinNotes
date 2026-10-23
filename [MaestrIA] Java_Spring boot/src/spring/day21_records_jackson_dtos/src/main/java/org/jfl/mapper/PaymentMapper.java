@@ -2,6 +2,7 @@ package org.jfl.mapper;
 
 import org.jfl.domain.Payment;
 import org.jfl.domain.PaymentMethod;
+import org.jfl.dto.PaymentRequest;
 import org.jfl.dto.PaymentResponse;
 import org.springframework.stereotype.Component;
 
@@ -27,5 +28,9 @@ public class PaymentMapper {
         return payments.stream()
                 .map(this::toResponse)
                 .toList();
+    }
+
+    public Payment toDomain(PaymentRequest paymentRequest){
+       return new Payment(paymentRequest.amount(),paymentRequest.method());
     }
 }
