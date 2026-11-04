@@ -24,7 +24,9 @@ The original Month 1 plan was strong on Collections, Generics, exceptions, funct
 
 ## Calendar rule
 
-Day 11 is anchored to **2026-09-22** (completed; slipped from its original 2026-09-17 target). Days 13–14 were completed on **2026-09-28** (planned 2026-09-24/25). Day 15 slipped from 2026-09-29 and was completed on **2026-09-30**. Day 16 slipped from its 2026-10-01 slot (no sessions Oct 1–3) and again from its rescheduled 2026-10-05 slot; it was completed on **2026-10-07**. Day 17 was completed the same day, one day ahead of its 2026-10-08 slot, so Days 18–90 moved back one study day: Day 18 is now **2026-10-08** and Day 90 is **2026-12-31**. Days 18 and 19 were completed on schedule (**2026-10-08** and **2026-10-09**). Study days run Monday–Saturday; Sundays are rest days and are not numbered. If a session slips, move the sequence forward instead of cramming two sessions into one day.
+Day 11 is anchored to **2026-09-22** (completed; slipped from its original 2026-09-17 target). Days 13–14 were completed on **2026-09-28** (planned 2026-09-24/25). Day 15 slipped from 2026-09-29 and was completed on **2026-09-30**. Day 16 slipped from its 2026-10-01 slot (no sessions Oct 1–3) and again from its rescheduled 2026-10-05 slot; it was completed on **2026-10-07**. Day 17 was completed the same day, one day ahead of its 2026-10-08 slot, so Days 18–90 moved back one study day: Day 18 is now **2026-10-08** and Day 90 is **2026-12-31**. Days 18 and 19 were completed on schedule (**2026-10-08** and **2026-10-09**). Study days run Monday–Saturday; Sundays are rest days and are not numbered.
+
+**From Day 20 onward, planned dates are fixed.** When a session slips, the remaining dates are no longer moved; instead each finished day records its actual date as `**Planned date:** <plan> (completed <actual>)`, and its index row notes the delay, so the gap between plan and reality stays visible. Day 20 (planned 2026-10-10) was completed on **2026-10-22**, 10 study days late. Day 21 (planned 2026-10-12) was completed on **2026-10-23**, also 10 study days late. Day 22 and later keep their original planned dates. Still don't cram two sessions into one day to catch up.
 
 ## Codebase continuity rule
 
@@ -59,8 +61,8 @@ From Day 17 onward, the hands-on work evolves **one codebase built around the Pa
 | 17 | ✅ Done | completed | Stream pipeline, lazy intermediate operations, terminal operations | @RestController returning a typed collection | Java: Functional Programming → Stream API; Spring: Spring MVC | [Java Stream Pipelines & Spring REST Controllers](./%5BDay%2017%5D%20Java%20Stream%20Pipelines%20%26%20Spring%20REST%20Controllers.md) |
 | 18 | ✅ Done | completed | flatMap, reduce, groupingBy, toMap | Map domain objects to API DTOs | Java: Functional Programming → Stream API; Spring: Spring MVC → Components | [Advanced Streams & API DTO Mapping](./%5BDay%2018%5D%20Advanced%20Streams%20%26%20API%20DTO%20Mapping.md) |
 | 19 | ✅ Done | completed | Optional creation, map/flatMap/orElse/orElseGet/orElseThrow | Service/repository not-found handling | Java: Optionals; Spring: Spring Data / Spring MVC | [Java Optional & Spring Not-Found Flow](./%5BDay%2019%5D%20Java%20Optional%20%26%20Spring%20Not-Found%20Flow.md) |
-| 20 | ⬜ Upcoming | 2026-10-10 | Method references, andThen/compose | Mapper/service composition | Java: Functional Programming → Functional Composition; Spring: Spring MVC → Components | — |
-| 21 | ⬜ Upcoming | 2026-10-12 | Records as immutable data carriers | Request/response DTO serialization with Jackson | Java: Object Oriented Programming → Record; Spring: Spring MVC | — |
+| 20 | ✅ Done (+10 study days) | completed | Method references, andThen/compose | Mapper/service composition | Java: Functional Programming → Functional Composition; Spring: Spring MVC → Components | [Method References and Functional Composition](./%5BDay%2020%5D%20Method%20References%20and%20Functional%20Composition.md) |
+| 21 | ✅ Done (+10 study days) | completed | Records as immutable data carriers | Request/response DTO serialization with Jackson | Java: Object Oriented Programming → Record; Spring: Spring MVC | [Java Records and Jackson DTOs](./%5BDay%2021%5D%20Java%20Records%20and%20Jackson%20DTOs.md) |
 | 22 | ⬜ Upcoming | 2026-10-13 | Sealed classes/interfaces and pattern matching | @ControllerAdvice and @ExceptionHandler | Java: Object Oriented Programming → Sealed Types / Pattern Matching; Spring: Spring MVC | — |
 | 23 | ⬜ Upcoming | 2026-10-14 | Instant, LocalDate, LocalDateTime, ZonedDateTime, Duration | Jackson date/time serialization and API contracts | Java: Date and Time; Spring: Spring MVC | — |
 | 24 | ⬜ Upcoming | 2026-10-15 | Pattern/Matcher and regex boundaries | @Valid, @Pattern, validation errors | Java: Regular Expressions; Spring: Spring MVC | — |
@@ -584,12 +586,15 @@ Run it; then implement `repository.findById(id).orElseThrow(PropertyNotFoundExce
 - [ ] Answer 3–5 interview questions or review a short code sample.
 - [ ] Generate the detailed Joplin note, manual-note version, and Anki TSV.
 
-## Day 20 — Method References and Functional Composition ⬜
+## Day 20 — Method References and Functional Composition ✅
 
-**Planned date:** 2026-10-10  
+**Planned date:** 2026-10-10 (completed 2026-10-22)  
 **Java track:** Method references, andThen/compose  
 **Spring track:** Mapper/service composition  
 **roadmap.sh mapping:** Java — Functional Programming → Functional Composition; Spring Boot — Spring MVC → Components
+**Delay:** completed 10 study days after the planned date (2026-10-10 → 2026-10-22). Later planned dates were intentionally **not** shifted.  
+**Note:** [Method References and Functional Composition](./%5BDay%2020%5D%20Method%20References%20and%20Functional%20Composition.md)  
+**Code:** `src/spring/day20_method_references_composition` — Day 19 module extended: `Main` runs the method-reference and `andThen`/`compose` exercises (amount extraction, +10% fee, formatting, use inside `Stream.map`); `PaymentMapper` builds the method name with `extractMethod.andThen(methodName)`; `PaymentService.processById(Long)` composes `findPaymentById` and `process` into `Function<Long, PaymentStatus>`, keeping the Day 19 not-found behavior
 
 ### Tutorial
 
@@ -616,16 +621,19 @@ Run it, then extract a Spring DTO mapper and use method references in a stream.
 ### Done when
 
 - [ ] Explain the concept in English without notes.
-- [ ] Run/implement the mini-lab and intentionally change or break one thing.
+- [x] Run/implement the mini-lab and intentionally change or break one thing.
 - [ ] Answer 3–5 interview questions or review a short code sample.
 - [ ] Generate the detailed Joplin note, manual-note version, and Anki TSV.
 
-## Day 21 — Records + Jackson DTOs ⬜
+## Day 21 — Records + Jackson DTOs ✅
 
-**Planned date:** 2026-10-12  
+**Planned date:** 2026-10-12 (completed 2026-10-23)  
 **Java track:** Records as immutable data carriers  
 **Spring track:** Request/response DTO serialization with Jackson  
 **roadmap.sh mapping:** Java — Object Oriented Programming → Record; Spring Boot — Spring MVC
+**Delay:** completed 10 study days after the planned date (2026-10-12 → 2026-10-23). Later planned dates were intentionally **not** shifted.  
+**Note:** [Java Records and Jackson DTOs](./%5BDay%2021%5D%20Java%20Records%20and%20Jackson%20DTOs.md)  
+**Code:** `src/spring/day21_records_jackson_dtos` — Day 20 module extended: `PaymentResponse` converted to a record (API contract unchanged); new `PaymentRequest` record; `PaymentMapper.toDomain(PaymentRequest)`; new `POST /payments/preview` (`@RequestBody` → `PaymentRequest` → `Payment` → `PaymentResponse`, nothing persisted); `Main` practices records with `PaymentSummary` (equality, compact-constructor validation) and `PaymentBatch` (shallow immutability, `List.copyOf` defensive copy)
 
 ### Tutorial
 
@@ -651,7 +659,7 @@ Run it, then return `PropertyResponse` from a controller and inspect the JSON wi
 ### Done when
 
 - [ ] Explain the concept in English without notes.
-- [ ] Run/implement the mini-lab and intentionally change or break one thing.
+- [x] Run/implement the mini-lab and intentionally change or break one thing.
 - [ ] Answer 3–5 interview questions or review a short code sample.
 - [ ] Generate the detailed Joplin note, manual-note version, and Anki TSV.
 

@@ -34,6 +34,7 @@ Only the standard library is used, so no pip install is needed.
 from __future__ import annotations
 
 import argparse
+import calendar
 import html
 import re
 import subprocess
@@ -189,6 +190,33 @@ def git_day_dates(repo_root: Path) -> dict[int, date]:
             continue
         if day_num not in result or d < result[day_num]:
             result[day_num] = d
+    return result
+
+
+def git_activity_dates(repo_root: Path) -> set[date]:
+    """Every date with at least one commit whose subject mentions "Day N"."""
+    try:
+        proc = subprocess.run(
+            ["git", "log", "--all", "--date=short", "--pretty=format:%ad|%s"],
+            cwd=repo_root,
+            capture_output=True,
+            text=True,
+            check=True,
+        )
+    except (subprocess.CalledProcessError, FileNotFoundError):
+        return set()
+
+    result: set[date] = set()
+    for line in proc.stdout.splitlines():
+        if "|" not in line:
+            continue
+        date_s, subject = line.split("|", 1)
+        if not GIT_DAY_RE.search(subject):
+            continue
+        try:
+            result.add(parse_date(date_s))
+        except ValueError:
+            continue
     return result
 
 
@@ -502,6 +530,59 @@ def render_up_next(roadmap: Roadmap, limit: int = 3) -> str:
     return "\n        ".join(out)
 
 
+def render_activity_calendar(roadmap: Roadmap, activity: set[date], today: date) -> str:
+    """Month grids from the first tracked date to today.
+
+    green  = something was done that day (a roadmap day completed, or a "Day N" commit)
+    red    = weekday (Mon-Fri) with nothing done
+    black  = weekend (Sat/Sun) with nothing done
+    Days before tracking started, today without activity, and future days stay neutral.
+    """
+    tracked = sorted(d for d in activity if d <= today)
+    if not tracked:
+        return '<p class="cal-empty">No dated activity yet.</p>', 0, 0
+    start = tracked[0]
+
+    active_count = 0
+    missed_count = 0
+    months = []
+    y, m = start.year, start.month
+    while (y, m) <= (today.year, today.month):
+        cells = []
+        first_weekday, days_in_month = calendar.monthrange(y, m)  # Monday = 0
+        cells.extend('<span class="cal-day blank"></span>' for _ in range(first_weekday))
+        for day in range(1, days_in_month + 1):
+            d = date(y, m, day)
+            weekend = d.weekday() >= 5
+            if d < start or d > today:
+                cls, label = "untracked", "not tracked" if d < start else "upcoming"
+            elif d in activity:
+                cls, label = "active", "done"
+                active_count += 1
+            elif d == today:
+                cls, label = "today", "today"
+            elif weekend:
+                cls, label = "weekend", "weekend"
+            else:
+                cls, label = "missed", "nothing done"
+                missed_count += 1
+            if d == today:
+                cls += " is-today"
+            cells.append(
+                f'<span class="cal-day {cls}" title="{d.strftime("%a %Y-%m-%d")} · {label}">{day}</span>'
+            )
+        head = "".join(f'<span class="cal-dow">{n}</span>' for n in ("M", "T", "W", "T", "F", "S", "S"))
+        months.append(
+            f"""<div class="cal-month">
+          <div class="cal-title">{date(y, m, 1).strftime("%B %Y")}</div>
+          <div class="cal-grid">{head}{"".join(cells)}</div>
+        </div>"""
+        )
+        y, m = (y + 1, 1) if m == 12 else (y, m + 1)
+
+    return "\n        ".join(months), active_count, missed_count
+
+
 TEMPLATE = Template(r"""<!doctype html>
 <meta charset="utf-8">
 <title>Reflection Point</title>
@@ -522,6 +603,7 @@ TEMPLATE = Template(r"""<!doctype html>
     --accent-strong: #7A5609;
     --good: #00806B;
     --warning: #C1531F;
+    --cal-active: #1E9C5A; --cal-missed: #D23F3F; --cal-weekend: #111418; --cal-weekend-ink: #8B96A3;
     --shadow: 0 1px 2px rgba(19, 26, 34, 0.04), 0 8px 24px -12px rgba(19, 26, 34, 0.12);
     padding-top: env(safe-area-inset-top, 0px);
     padding-bottom: env(safe-area-inset-bottom, 0px);
@@ -547,7 +629,19 @@ TEMPLATE = Template(r"""<!doctype html>
     padding-inline: 20px; padding-block: 40px 64px;
   }
   [hidden] { display: none !important; }
-  .page { max-width: 760px; margin: 0 auto; display: flex; flex-direction: column; gap: 28px; }
+  .layout {
+    max-width: 1148px; margin: 0 auto; display: grid; gap: 28px;
+    grid-template-columns: minmax(0, 760px) 360px; justify-content: center;
+    grid-template-areas: "head head" "main side" "foot foot";
+  }
+  .layout > header { grid-area: head; }
+  .page { grid-area: main; min-width: 0; display: flex; flex-direction: column; gap: 28px; }
+  .side { grid-area: side; align-self: start; position: sticky; top: 24px; }
+  .layout > footer { grid-area: foot; }
+  @media (max-width: 1200px) {
+    .layout { max-width: 760px; grid-template-columns: minmax(0, 1fr); grid-template-areas: "head" "main" "side" "foot"; }
+    .side { position: static; }
+  }
   .mono { font-family: "JetBrains Mono", ui-monospace, "SF Mono", monospace; }
   .tnum { font-variant-numeric: tabular-nums; }
   .eyebrow {
@@ -606,11 +700,32 @@ TEMPLATE = Template(r"""<!doctype html>
   .upnext-body { display: flex; flex-direction: column; gap: 2px; }
   .upnext-title { font-size: 13.5px; color: var(--ink-primary); line-height: 1.4; }
   .upnext-date { font-family: "JetBrains Mono", monospace; font-size: 11.5px; color: var(--ink-muted); }
+  .cal-head { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+  .cal-summary { font-family: "JetBrains Mono", monospace; font-size: 12px; color: var(--ink-secondary); }
+  .cal-legend { margin-top: 12px; display: flex; gap: 8px 16px; flex-wrap: wrap; font-size: 12px; color: var(--ink-secondary); }
+  .cal-legend span { display: inline-flex; align-items: center; gap: 6px; }
+  .cal-legend i { width: 12px; height: 12px; border-radius: 3px; display: inline-block; border: 1px solid var(--border); }
+  .cal-months { margin-top: 18px; display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 22px; }
+  .cal-title { font-size: 13px; font-weight: 700; margin-bottom: 8px; }
+  .cal-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 4px; }
+  .cal-dow { font-family: "JetBrains Mono", monospace; font-size: 10px; color: var(--ink-muted); text-align: center; padding-bottom: 2px; }
+  .cal-day { aspect-ratio: 1; border-radius: 5px; display: flex; align-items: center; justify-content: center; font-family: "JetBrains Mono", monospace; font-size: 10.5px; font-weight: 600; border: 1px solid transparent; }
+  .cal-day.blank { visibility: hidden; }
+  .cal-day.active { background: var(--cal-active); color: #fff; }
+  .cal-day.missed { background: var(--cal-missed); color: #fff; }
+  .cal-day.weekend { background: var(--cal-weekend); color: var(--cal-weekend-ink); border-color: var(--border); }
+  .cal-day.untracked { background: var(--surface-2); color: var(--ink-muted); opacity: .55; }
+  .cal-day.today { background: var(--surface-2); color: var(--ink-primary); }
+  .cal-day.is-today { outline: 2px solid var(--accent-strong); outline-offset: 1px; }
+  .cal-legend i.active { background: var(--cal-active); }
+  .cal-legend i.missed { background: var(--cal-missed); }
+  .cal-legend i.weekend { background: var(--cal-weekend); }
+  .cal-empty { margin: 12px 0 0; color: var(--ink-muted); font-size: 13px; }
   footer { text-align: center; font-size: 12px; color: var(--ink-muted); padding-top: 4px; }
   footer .mono { font-size: 11.5px; }
 </style>
 
-<div class="page">
+<div class="layout">
   <header>
     <div class="eyebrow">Java + Spring Boot &middot; $TOTAL_DAYS-Day Roadmap</div>
     <h1>Reflection Point</h1>
@@ -620,6 +735,7 @@ TEMPLATE = Template(r"""<!doctype html>
     </p>
   </header>
 
+  <div class="page">
   <section class="card">
     <div class="hero-top">
       <div>
@@ -643,6 +759,7 @@ TEMPLATE = Template(r"""<!doctype html>
 
     <div class="stat-row">$STAT_ROW</div>
   </section>
+
 
   <section class="card">
     <div class="pace-head">
@@ -678,6 +795,25 @@ TEMPLATE = Template(r"""<!doctype html>
     </section>
   </div>
 
+  </div>
+
+  <aside class="side">
+  <section class="card">
+      <div class="cal-head">
+        <div class="card-title">Activity calendar</div>
+        <div class="cal-summary tnum">$CAL_ACTIVE active &middot; $CAL_MISSED missed weekdays</div>
+      </div>
+      <div class="cal-legend">
+        <span><i class="active"></i>Did something</span>
+        <span><i class="missed"></i>Weekday, nothing done</span>
+        <span><i class="weekend"></i>Weekend, nothing done</span>
+      </div>
+      <div class="cal-months">
+          $CAL_MONTHS
+      </div>
+    </section>
+  </aside>
+
   <footer>
     <div>Source: <span class="mono">Roadmap.md</span> master index &amp; per-day <span class="mono">Planned date</span> lines, cross-checked against <span class="mono">git log</span>.</div>
     <div class="mono">Snapshot generated $TODAY by src/scripts/generate_progress_snapshot.py</div>
@@ -686,7 +822,7 @@ TEMPLATE = Template(r"""<!doctype html>
 """)
 
 
-def build_html(roadmap: Roadmap, pace: PaceProjection, today: date) -> str:
+def build_html(roadmap: Roadmap, pace: PaceProjection, today: date, activity: set[date] | None = None) -> str:
     total = roadmap.total
     completed_count = len(roadmap.completed_numbers)
     pct = completed_count / total * 100 if total else 0
@@ -701,7 +837,14 @@ def build_html(roadmap: Roadmap, pace: PaceProjection, today: date) -> str:
             "counted as pace samples &mdash; only days with a known actual date are."
         )
 
+    if activity is None:
+        activity = {d.actual_date for d in roadmap.days.values() if d.actual_date}
+    cal_months, cal_active, cal_missed = render_activity_calendar(roadmap, activity, today)
+
     return TEMPLATE.substitute(
+        CAL_MONTHS=cal_months,
+        CAL_ACTIVE=cal_active,
+        CAL_MISSED=cal_missed,
         TODAY=today.isoformat(),
         TOTAL_DAYS=total,
         TOTAL_WEEKS=total_weeks,
@@ -755,7 +898,11 @@ def main() -> None:
     roadmap = Roadmap(days=days)
     pace = compute_pace(roadmap, today)
 
-    out_html = build_html(roadmap, pace, today)
+    # "Did something" = a roadmap day completed that date, or a commit mentioning "Day N".
+    activity = {d.actual_date for d in days.values() if d.actual_date}
+    activity |= git_activity_dates(repo_root)
+
+    out_html = build_html(roadmap, pace, today, activity)
     args.out.write_text(out_html, encoding="utf-8")
 
     completed = len(roadmap.completed_numbers)
