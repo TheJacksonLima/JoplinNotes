@@ -26,7 +26,7 @@ The original Month 1 plan was strong on Collections, Generics, exceptions, funct
 
 Day 11 is anchored to **2026-09-22** (completed; slipped from its original 2026-09-17 target). Days 13–14 were completed on **2026-09-28** (planned 2026-09-24/25). Day 15 slipped from 2026-09-29 and was completed on **2026-09-30**. Day 16 slipped from its 2026-10-01 slot (no sessions Oct 1–3) and again from its rescheduled 2026-10-05 slot; it was completed on **2026-10-07**. Day 17 was completed the same day, one day ahead of its 2026-10-08 slot, so Days 18–90 moved back one study day: Day 18 is now **2026-10-08** and Day 90 is **2026-12-31**. Days 18 and 19 were completed on schedule (**2026-10-08** and **2026-10-09**). Study days run Monday–Saturday; Sundays are rest days and are not numbered.
 
-**From Day 20 onward, planned dates are fixed.** When a session slips, the remaining dates are no longer moved; instead each finished day records its actual date as `**Planned date:** <plan> (completed <actual>)`, and its index row notes the delay, so the gap between plan and reality stays visible. Day 20 (planned 2026-10-10) was completed on **2026-10-22**, 10 study days late. Day 21 (planned 2026-10-12) was completed on **2026-10-23**, also 10 study days late. Day 22 and later keep their original planned dates. Still don't cram two sessions into one day to catch up.
+**From Day 20 onward, planned dates are fixed.** When a session slips, the remaining dates are no longer moved; instead each finished day records its actual date as `**Planned date:** <plan> (completed <actual>)`, and its index row notes the delay, so the gap between plan and reality stays visible. Day 20 (planned 2026-10-10) was completed on **2026-10-22**, 10 study days late. Day 21 (planned 2026-10-12) was completed on **2026-10-23**, also 10 study days late. Day 22 (planned 2026-10-13) was completed on **2026-11-09**, 23 study days late. Day 23 and later keep their original planned dates. Still don't cram two sessions into one day to catch up.
 
 ## Codebase continuity rule
 
@@ -63,7 +63,7 @@ From Day 17 onward, the hands-on work evolves **one codebase built around the Pa
 | 19 | ✅ Done | completed | Optional creation, map/flatMap/orElse/orElseGet/orElseThrow | Service/repository not-found handling | Java: Optionals; Spring: Spring Data / Spring MVC | [Java Optional & Spring Not-Found Flow](./%5BDay%2019%5D%20Java%20Optional%20%26%20Spring%20Not-Found%20Flow.md) |
 | 20 | ✅ Done (+10 study days) | completed | Method references, andThen/compose | Mapper/service composition | Java: Functional Programming → Functional Composition; Spring: Spring MVC → Components | [Method References and Functional Composition](./%5BDay%2020%5D%20Method%20References%20and%20Functional%20Composition.md) |
 | 21 | ✅ Done (+10 study days) | completed | Records as immutable data carriers | Request/response DTO serialization with Jackson | Java: Object Oriented Programming → Record; Spring: Spring MVC | [Java Records and Jackson DTOs](./%5BDay%2021%5D%20Java%20Records%20and%20Jackson%20DTOs.md) |
-| 22 | ⬜ Upcoming | 2026-10-13 | Sealed classes/interfaces and pattern matching | @ControllerAdvice and @ExceptionHandler | Java: Object Oriented Programming → Sealed Types / Pattern Matching; Spring: Spring MVC | — |
+| 22 | ✅ Done (+23 study days) | completed | Sealed classes/interfaces and pattern matching | @ControllerAdvice and @ExceptionHandler | Java: Object Oriented Programming → Sealed Types / Pattern Matching; Spring: Spring MVC | [Sealed Types and Global Exception Handling](./%5BDay%2022%5D%20Sealed%20Types%20and%20Global%20Exception%20Handling.md) |
 | 23 | ⬜ Upcoming | 2026-10-14 | Instant, LocalDate, LocalDateTime, ZonedDateTime, Duration | Jackson date/time serialization and API contracts | Java: Date and Time; Spring: Spring MVC | — |
 | 24 | ⬜ Upcoming | 2026-10-15 | Pattern/Matcher and regex boundaries | @Valid, @Pattern, validation errors | Java: Regular Expressions; Spring: Spring MVC | — |
 | 25 | ⬜ Upcoming | 2026-10-16 | Path, Files, buffered I/O, try-with-resources | Multipart upload/download endpoint | Java: I/O Operations / File Operations; Spring: Spring MVC | — |
@@ -663,12 +663,15 @@ Run it, then return `PropertyResponse` from a controller and inspect the JSON wi
 - [ ] Answer 3–5 interview questions or review a short code sample.
 - [ ] Generate the detailed Joplin note, manual-note version, and Anki TSV.
 
-## Day 22 — Sealed Types + Global Exception Handling ⬜
+## Day 22 — Sealed Types + Global Exception Handling ✅
 
-**Planned date:** 2026-10-13  
+**Planned date:** 2026-10-13 (completed 2026-11-09)  
 **Java track:** Sealed classes/interfaces and pattern matching  
 **Spring track:** @ControllerAdvice and @ExceptionHandler  
 **roadmap.sh mapping:** Java — Object Oriented Programming → Sealed Types / Pattern Matching; Spring Boot — Spring MVC
+**Delay:** completed 23 study days after the planned date (2026-10-13 → 2026-11-09). Later planned dates were intentionally **not** shifted.  
+**Note:** [Sealed Types and Global Exception Handling](./%5BDay%2022%5D%20Sealed%20Types%20and%20Global%20Exception%20Handling.md)  
+**Code:** `src/spring/day22_sealed_types_exception_handling` — Day 21 module extended: sealed hierarchies with record subtypes (`PaymentResults` → `Approved`/`Declined`, `PaymentFailure` → `PaymentMissing`/`InvalidPayment`) mapped with exhaustive pattern-matching `switch` in `PaymentResultMapper`/`PaymentStatusMapper`; new `ApiError` record and `@RestControllerAdvice GlobalExceptionHandler` mapping `PaymentNotFoundException` → 404 and `IllegalArgumentException` → 400, so the Day 19 not-found flow now returns a real 404
 
 ### Tutorial
 
@@ -696,7 +699,7 @@ Run it, then create a `@RestControllerAdvice` mapping your two exception types t
 ### Done when
 
 - [ ] Explain the concept in English without notes.
-- [ ] Run/implement the mini-lab and intentionally change or break one thing.
+- [x] Run/implement the mini-lab and intentionally change or break one thing.
 - [ ] Answer 3–5 interview questions or review a short code sample.
 - [ ] Generate the detailed Joplin note, manual-note version, and Anki TSV.
 
