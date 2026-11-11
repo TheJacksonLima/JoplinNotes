@@ -1,2775 +1,2434 @@
-# Oracle SQL + PL/SQL — 90-Day Master Roadmap
+# Oracle SQL + PL/SQL — 65-Session Senior Developer & Interview Roadmap
 
-> **Developer-focused Oracle mastery track.** This roadmap is designed to run alongside the Java/Spring roadmap while React is paused. It emphasizes hands-on Oracle SQL, PL/SQL, performance, high-volume processing, and production troubleshooting rather than DBA administration.
+> **Interview-focused Oracle track.** This replaces the previous 90-session plan while preserving its strongest material. The goal is to review Oracle deeply enough to perform well in **Senior Oracle Developer, Java + Oracle, and PL/SQL technical interviews** without spending weeks re-learning fundamentals you already know.
 
-**Cadence:** ~45–75 min per study day • 6 days/week • Sunday off  
-**SQL sharpening rule:** most days include at least **20–30 minutes of actual SQL writing**.  
-**Completion rule:** a topic is done only when you can **explain + implement + diagnose/review** it without relying on memorized snippets.  
-**Session outputs:** detailed Joplin note + concise manual notes + Anki TSV (`Front`, `Back`, `Tags`) + saved SQL/PLSQL lab script.
+**Start date:** **2026-11-11**  
+**Projected finish:** **2027-01-25** if no sessions slip  
+**Cadence:** 60–90 min per study session • 6 sessions/week • Sunday off  
+**Primary objective:** interview performance through **explain + implement + tune/review + production reasoning**  
+**SQL sharpening rule:** write SQL in almost every session; do not replace practice with passive reading.  
+**Notes rule:** save the lab script every session; consolidate detailed Joplin/manual notes + Anki every 2–3 sessions instead of turning every session into documentation work.
 
-## Roadmap sources
+## Why this version is shorter
 
-- Your existing Java/Spring roadmap structure: `TheJacksonLima/JoplinNotes/[MaestrIA] Java_Spring boot/Roadmap.md`
-- Oracle Database SQL Language Reference
-- Oracle Database PL/SQL Language Reference
-- Oracle Database Performance Tuning Guide
-- Oracle Database VLDB and Partitioning Guide
-- *Oracle SQL by Example* — Alice Rischert (exercise-driven SQL companion)
-- *Oracle PL/SQL Programming* — Steven Feuerstein & Bill Pribyl (reference)
-- *Expert Oracle Database Architecture* — Thomas Kyte / Darl Kuhn lineage (architecture/performance reference)
+The original 90-session roadmap had excellent coverage, but it dedicated full sessions to several topics that are already familiar. This version compresses the refresher material and preserves depth where it matters most for senior Oracle interviews:
 
-## Why this roadmap is structured this way
-
-This plan deliberately starts with **exercise-driven SQL sharpening**, then moves through PL/SQL, optimizer/indexing, partitioning/high-volume loading, and production engineering. It also gives extra weight to the exact advanced topics that surfaced as improvement areas in recent Oracle/ODI technical feedback:
-
-- Global Temporary Tables (GTTs)
-- `WITH` / CTEs
-- Partitioning types
-- Partition pruning
-- Partition exchange
-- B-tree / bitmap / composite / function-based / local-global indexing
-- `PARALLEL` and `APPEND`
-- Collection types
-- `BULK COLLECT`, `FORALL`, `LIMIT`, bulk exceptions
-- REF CURSOR / `SYS_REFCURSOR`
-- High-volume batch design, restartability, idempotency and tuning
+- WITH / CTE, MERGE, analytics, duplicates and GTTs
+- Procedures, functions, packages, exceptions and cursors
+- REF CURSOR / SYS_REFCURSOR
+- Associative arrays, nested tables and VARRAYs
+- BULK COLLECT, LIMIT, FORALL, SAVE EXCEPTIONS
+- Execution plans, cardinality, statistics, histograms and join methods
+- B-tree, composite, function-based, bitmap, local/global indexes
+- Bind variables, hard/soft parse, skew and tuning anti-patterns
+- Hints, PARALLEL, APPEND
+- Range, interval, list, hash and composite partitioning
+- Partition pruning and partition exchange
+- Transactions, locks, blocking, deadlocks and SELECT FOR UPDATE
+- Restartability, idempotency and production recovery
+- Repeated mock interviews and timed coding
 
 ## Scope
 
-### Hands-on / mastery target
+### Mastery target
 
-- Oracle SQL query solving
-- Advanced SQL / analytics
-- PL/SQL packages and APIs
-- Collections and bulk processing
-- Execution plans and optimizer reasoning
-- Index design
-- Partitioning and partition maintenance
-- High-volume loading
-- Transactions, locking and recovery
-- Production troubleshooting
+- Oracle SQL problem solving
+- PL/SQL implementation and code review
+- Performance/tuning reasoning
+- Index and partition design
+- High-volume processing
+- Transaction/concurrency behavior
+- Production incident recovery
+- Technical interview communication
 
-### Recognition-only for this cycle
+### Recognition-only in this cycle
 
 - RAC administration
 - Data Guard administration
 - RMAN / backup administration
 - ASM
-- Database installation/patching administration
-- Deep CBO internals
-- Deep storage-engine internals
+- Database installation/patching
+- Deep DBA-only CBO internals
 
-The target is **Senior Oracle Developer + Java Backend Engineer**, not Oracle DBA.
+ODI remains a separate track. This roadmap is specifically Oracle SQL + PL/SQL + database-development interview preparation.
+
+## Completion rule
+
+A session is complete only when you can:
+
+~~~text
+Explain
+   ↓
+Implement / solve
+   ↓
+Break or inspect
+   ↓
+Tune / review
+   ↓
+Answer interview follow-ups
+   ↓
+COMPLETE
+~~~
+
+For oral interview practice, answer in English when possible.
 
 ## Calendar rule
 
-Day 1 is anchored to **2026-10-06**. Study days run Monday–Saturday; Sundays are rest days and are not numbered. Day 90 lands on **2027-01-18** if no sessions slip. If a session slips, move the sequence forward rather than cramming multiple mastery sessions into one day.
-
-## Practice environment
-
-Keep one permanent local Oracle practice database and one version-controlled lab repository. Recommended schema families:
-
-```text
-DEPARTMENT / EMPLOYEE
-CUSTOMER / ACCOUNT
-ORDERS / ORDER_ITEM
-TRANSACTION_STAGE / TRANSACTION / TRANSACTION_ERROR / BATCH_RUN
-```
-
-The lab must grow with the roadmap: start tiny for correctness, then generate hundreds of thousands or millions of rows so execution plans, indexing, partitioning and load strategies become meaningful.
-
-## Master index — Day 01 to Day 90
-
-| Day | Status | Date | Phase | SQL track | Oracle / PL/SQL track | Note |
-|---:|---|---|---|---|---|---|
-| 01 | ⬜ Upcoming | 2026-10-06 | P1 — SQL Sharpness & Advanced Querying | Oracle Free local environment; SQL Developer/CLI | Schema design and repeatable practice dataset | — |
-| 02 | ⬜ Upcoming | 2026-10-07 | P1 — SQL Sharpness & Advanced Querying | SELECT, WHERE, ORDER BY, NULL semantics | Oracle comparison and null behavior | — |
-| 03 | ⬜ Upcoming | 2026-10-08 | P1 — SQL Sharpness & Advanced Querying | INNER, LEFT, RIGHT, FULL, self join | Join correctness before performance | — |
-| 04 | ⬜ Upcoming | 2026-10-09 | P1 — SQL Sharpness & Advanced Querying | GROUP BY, HAVING, COUNT/SUM/AVG, CASE aggregates | Aggregate correctness | — |
-| 05 | ⬜ Upcoming | 2026-10-10 | P1 — SQL Sharpness & Advanced Querying | Scalar, multi-row, correlated subqueries | Query decomposition | — |
-| 06 | ⬜ Upcoming | 2026-10-12 | P1 — SQL Sharpness & Advanced Querying | EXISTS/NOT EXISTS, UNION, UNION ALL, INTERSECT, MINUS | Existence and set logic | — |
-| 07 | ⬜ Upcoming | 2026-10-13 | P1 — SQL Sharpness & Advanced Querying | Subquery factoring with WITH | Readable multi-step SQL | — |
-| 08 | ⬜ Upcoming | 2026-10-14 | P1 — SQL Sharpness & Advanced Querying | INSERT, UPDATE, DELETE, MERGE | Atomic changes and safe testing | — |
-| 09 | ⬜ Upcoming | 2026-10-15 | P1 — SQL Sharpness & Advanced Querying | Ranking analytics | Partitioned ranking | — |
-| 10 | ⬜ Upcoming | 2026-10-16 | P1 — SQL Sharpness & Advanced Querying | Previous/next-row analytics | Sequence comparison | — |
-| 11 | ⬜ Upcoming | 2026-10-17 | P1 — SQL Sharpness & Advanced Querying | SUM/AVG/COUNT OVER; frames | Running and moving calculations | — |
-| 12 | ⬜ Upcoming | 2026-10-19 | P1 — SQL Sharpness & Advanced Querying | ROW_NUMBER, ROWID, sequence grouping | Oracle duplicate handling | — |
-| 13 | ⬜ Upcoming | 2026-10-20 | P1 — SQL Sharpness & Advanced Querying | DATE/TIMESTAMP, TRUNC, ADD_MONTHS, string functions | Oracle expression fluency | — |
-| 14 | ⬜ Upcoming | 2026-10-21 | P1 — SQL Sharpness & Advanced Querying | PIVOT/UNPIVOT, conditional aggregation | Report reshaping | — |
-| 15 | ⬜ Upcoming | 2026-10-22 | P1 — SQL Sharpness & Advanced Querying | CONNECT BY, LEVEL, START WITH; recursive-style thinking | Tree traversal | — |
-| 16 | ⬜ Upcoming | 2026-10-23 | P1 — SQL Sharpness & Advanced Querying | GTT creation and use | Transaction vs session temporary data | — |
-| 17 | ⬜ Upcoming | 2026-10-24 | P1 — SQL Sharpness & Advanced Querying | Mixed advanced SQL | Timed query problem solving | — |
-| 18 | ⬜ Upcoming | 2026-10-26 | P1 — SQL Sharpness & Advanced Querying | SQL design and reasoning | Review and refactor | — |
-| 19 | ⬜ Upcoming | 2026-10-27 | P2 — PL/SQL Programming & Bulk Processing | SQL vs PL/SQL engines | SGA, PGA, shared pool, buffer cache | — |
-| 20 | ⬜ Upcoming | 2026-10-28 | P2 — PL/SQL Programming & Bulk Processing | DECLARE/BEGIN/EXCEPTION/END | %TYPE, %ROWTYPE, records | — |
-| 21 | ⬜ Upcoming | 2026-10-29 | P2 — PL/SQL Programming & Bulk Processing | IF/CASE, LOOP/WHILE/FOR | Procedural logic discipline | — |
-| 22 | ⬜ Upcoming | 2026-10-30 | P2 — PL/SQL Programming & Bulk Processing | CREATE PROCEDURE; IN/OUT/IN OUT | API contracts | — |
-| 23 | ⬜ Upcoming | 2026-10-31 | P2 — PL/SQL Programming & Bulk Processing | Functions in PL/SQL/SQL | Deterministic behavior and caching | — |
-| 24 | ⬜ Upcoming | 2026-11-02 | P2 — PL/SQL Programming & Bulk Processing | Package spec/body | Public API, private implementation, state | — |
-| 25 | ⬜ Upcoming | 2026-11-03 | P2 — PL/SQL Programming & Bulk Processing | Predefined, user-defined, propagation | RAISE, RAISE_APPLICATION_ERROR | — |
-| 26 | ⬜ Upcoming | 2026-11-04 | P2 — PL/SQL Programming & Bulk Processing | OPEN/FETCH/CLOSE; cursor FOR loop | Row iteration | — |
-| 27 | ⬜ Upcoming | 2026-11-05 | P2 — PL/SQL Programming & Bulk Processing | Parameterized cursor design | %FOUND/%NOTFOUND/%ROWCOUNT/%ISOPEN | — |
-| 28 | ⬜ Upcoming | 2026-11-06 | P2 — PL/SQL Programming & Bulk Processing | Weak/strong REF CURSOR | Returning result sets to clients | — |
-| 29 | ⬜ Upcoming | 2026-11-07 | P2 — PL/SQL Programming & Bulk Processing | Associative array, nested table, VARRAY | In-memory data structures | — |
-| 30 | ⬜ Upcoming | 2026-11-09 | P2 — PL/SQL Programming & Bulk Processing | Index-by collections | Fast PL/SQL lookup structures | — |
-| 31 | ⬜ Upcoming | 2026-11-10 | P2 — PL/SQL Programming & Bulk Processing | SQL-capable collection concepts | Unbounded vs bounded collections | — |
-| 32 | ⬜ Upcoming | 2026-11-11 | P2 — PL/SQL Programming & Bulk Processing | Bulk fetching | Context switching and PGA | — |
-| 33 | ⬜ Upcoming | 2026-11-12 | P2 — PL/SQL Programming & Bulk Processing | Controlled batch fetching | PGA-safe batching | — |
-| 34 | ⬜ Upcoming | 2026-11-13 | P2 — PL/SQL Programming & Bulk Processing | Bulk DML | Reducing PL/SQL-to-SQL switches | — |
-| 35 | ⬜ Upcoming | 2026-11-14 | P2 — PL/SQL Programming & Bulk Processing | FORALL SAVE EXCEPTIONS | SQL%BULK_EXCEPTIONS | — |
-| 36 | ⬜ Upcoming | 2026-11-16 | P2 — PL/SQL Programming & Bulk Processing | EXECUTE IMMEDIATE; binds | Dynamic structure vs data values | — |
-| 37 | ⬜ Upcoming | 2026-11-17 | P3 — Optimizer, Execution Plans & Indexing | Cost-based optimizer | Parsing, optimization, execution | — |
-| 38 | ⬜ Upcoming | 2026-11-18 | P3 — Optimizer, Execution Plans & Indexing | Plan reading basics | Access paths and predicates | — |
-| 39 | ⬜ Upcoming | 2026-11-19 | P3 — Optimizer, Execution Plans & Indexing | DISPLAY_CURSOR concepts | Estimated vs actual rows | — |
-| 40 | ⬜ Upcoming | 2026-11-20 | P3 — Optimizer, Execution Plans & Indexing | Optimizer estimates | DBMS_STATS concepts | — |
-| 41 | ⬜ Upcoming | 2026-11-21 | P3 — Optimizer, Execution Plans & Indexing | Column distribution awareness | Skew-sensitive optimization | — |
-| 42 | ⬜ Upcoming | 2026-11-23 | P3 — Optimizer, Execution Plans & Indexing | Core Oracle indexing | Range and equality access | — |
-| 43 | ⬜ Upcoming | 2026-11-24 | P3 — Optimizer, Execution Plans & Indexing | Multi-column indexes | Predicate order and access paths | — |
-| 44 | ⬜ Upcoming | 2026-11-25 | P3 — Optimizer, Execution Plans & Indexing | Indexed expressions | Sargability and expression matching | — |
-| 45 | ⬜ Upcoming | 2026-11-26 | P3 — Optimizer, Execution Plans & Indexing | Bitmap index concepts | Read-heavy low-cardinality workloads | — |
-| 46 | ⬜ Upcoming | 2026-11-27 | P3 — Optimizer, Execution Plans & Indexing | Nested loop joins | Small driving set + indexed lookup | — |
-| 47 | ⬜ Upcoming | 2026-11-28 | P3 — Optimizer, Execution Plans & Indexing | Hash joins, merge joins | Large-set join strategies | — |
-| 48 | ⬜ Upcoming | 2026-11-30 | P3 — Optimizer, Execution Plans & Indexing | Hard parse vs soft parse | Shared pool pressure | — |
-| 49 | ⬜ Upcoming | 2026-12-01 | P3 — Optimizer, Execution Plans & Indexing | Bind-sensitive plan concepts | Adaptive cursor awareness | — |
-| 50 | ⬜ Upcoming | 2026-12-02 | P3 — Optimizer, Execution Plans & Indexing | Optimizer hints | When hints help and when they hide problems | — |
-| 51 | ⬜ Upcoming | 2026-12-03 | P3 — Optimizer, Execution Plans & Indexing | Parallel query concepts | Resource trade-offs | — |
-| 52 | ⬜ Upcoming | 2026-12-04 | P3 — Optimizer, Execution Plans & Indexing | INSERT /*+ APPEND */ | High-volume load concepts | — |
-| 53 | ⬜ Upcoming | 2026-12-05 | P3 — Optimizer, Execution Plans & Indexing | Implicit conversions, functions, OR patterns | Plan-unfriendly SQL | — |
-| 54 | ⬜ Upcoming | 2026-12-07 | P3 — Optimizer, Execution Plans & Indexing | Plan reading and index decisions | Evidence-based tuning | — |
-| 55 | ⬜ Upcoming | 2026-12-08 | P4 — Partitioning & High-Volume Data Loading | Why partition; partition keys | Large-table manageability and pruning | — |
-| 56 | ⬜ Upcoming | 2026-12-09 | P4 — Partitioning & High-Volume Data Loading | RANGE partitions | Date/time data | — |
-| 57 | ⬜ Upcoming | 2026-12-10 | P4 — Partitioning & High-Volume Data Loading | Automatic range extension | Rolling time-series tables | — |
-| 58 | ⬜ Upcoming | 2026-12-11 | P4 — Partitioning & High-Volume Data Loading | LIST partitions | Discrete business categories | — |
-| 59 | ⬜ Upcoming | 2026-12-12 | P4 — Partitioning & High-Volume Data Loading | HASH partitions | Even distribution | — |
-| 60 | ⬜ Upcoming | 2026-12-14 | P4 — Partitioning & High-Volume Data Loading | Range-Hash / Range-List concepts | Two-dimensional organization | — |
-| 61 | ⬜ Upcoming | 2026-12-15 | P4 — Partitioning & High-Volume Data Loading | Partition elimination | Predicate design | — |
-| 62 | ⬜ Upcoming | 2026-12-16 | P4 — Partitioning & High-Volume Data Loading | Partition-aware indexes | Maintenance trade-offs | — |
-| 63 | ⬜ Upcoming | 2026-12-17 | P4 — Partitioning & High-Volume Data Loading | EXCHANGE PARTITION | Metadata-oriented high-volume loading | — |
-| 64 | ⬜ Upcoming | 2026-12-18 | P4 — Partitioning & High-Volume Data Loading | ADD/SPLIT/MERGE/TRUNCATE/DROP concepts | Lifecycle management | — |
-| 65 | ⬜ Upcoming | 2026-12-19 | P4 — Partitioning & High-Volume Data Loading | CREATE TABLE AS SELECT | Fast intermediate data creation | — |
-| 66 | ⬜ Upcoming | 2026-12-21 | P4 — Partitioning & High-Volume Data Loading | MERGE at scale | Staging-to-target synchronization | — |
-| 67 | ⬜ Upcoming | 2026-12-22 | P4 — Partitioning & High-Volume Data Loading | Parallel INSERT/UPDATE/MERGE concepts | Controlled resource use | — |
-| 68 | ⬜ Upcoming | 2026-12-23 | P4 — Partitioning & High-Volume Data Loading | DELETE vs partition operations | Undo/redo and batch strategy | — |
-| 69 | ⬜ Upcoming | 2026-12-24 | P4 — Partitioning & High-Volume Data Loading | Intermediate-data architecture | Memory, persistence, restartability | — |
-| 70 | ⬜ Upcoming | 2026-12-25 | P4 — Partitioning & High-Volume Data Loading | High-volume architecture | Explain + implement | — |
-| 71 | ⬜ Upcoming | 2026-12-26 | P5 — Transactions, Concurrency & Production Engineering | MVCC/read consistency concepts | Undo and statement consistency | — |
-| 72 | ⬜ Upcoming | 2026-12-28 | P5 — Transactions, Concurrency & Production Engineering | DML locks | Wait chains | — |
-| 73 | ⬜ Upcoming | 2026-12-29 | P5 — Transactions, Concurrency & Production Engineering | Circular lock dependency | ORA-00060 reasoning | — |
-| 74 | ⬜ Upcoming | 2026-12-30 | P5 — Transactions, Concurrency & Production Engineering | Pessimistic locking | NOWAIT/SKIP LOCKED concepts | — |
-| 75 | ⬜ Upcoming | 2026-12-31 | P5 — Transactions, Concurrency & Production Engineering | COMMIT/ROLLBACK/SAVEPOINT | Business transaction design | — |
-| 76 | ⬜ Upcoming | 2027-01-01 | P5 — Transactions, Concurrency & Production Engineering | Safe batch reruns | Checkpoint design | — |
-| 77 | ⬜ Upcoming | 2027-01-02 | P5 — Transactions, Concurrency & Production Engineering | DBMS_APPLICATION_INFO concepts; structured logs | Operational visibility | — |
-| 78 | ⬜ Upcoming | 2027-01-04 | P5 — Transactions, Concurrency & Production Engineering | AUTHID DEFINER/CURRENT_USER | Privilege model | — |
-| 79 | ⬜ Upcoming | 2027-01-05 | P5 — Transactions, Concurrency & Production Engineering | EXECUTE IMMEDIATE + validation | SQL injection prevention | — |
-| 80 | ⬜ Upcoming | 2027-01-06 | P5 — Transactions, Concurrency & Production Engineering | Sequence behavior | Surrogate-key generation | — |
-| 81 | ⬜ Upcoming | 2027-01-07 | P5 — Transactions, Concurrency & Production Engineering | Job scheduling concepts | Operational batch execution | — |
-| 82 | ⬜ Upcoming | 2027-01-08 | P5 — Transactions, Concurrency & Production Engineering | Concurrency, security, recovery | Incident reasoning | — |
-| 83 | ⬜ Upcoming | 2027-01-09 | P6 — Capstone, Tuning & Final Evaluation | Schema/API design | Requirements and workload assumptions | — |
-| 84 | ⬜ Upcoming | 2027-01-11 | P6 — Capstone, Tuning & Final Evaluation | Exercise dataset | Volume for real plans | — |
-| 85 | ⬜ Upcoming | 2027-01-12 | P6 — Capstone, Tuning & Final Evaluation | PL/SQL bulk processing | Validation and error capture | — |
-| 86 | ⬜ Upcoming | 2027-01-13 | P6 — Capstone, Tuning & Final Evaluation | Partitioning and indexes | Monthly transaction storage | — |
-| 87 | ⬜ Upcoming | 2027-01-14 | P6 — Capstone, Tuning & Final Evaluation | Partition exchange / APPEND | Batch load path | — |
-| 88 | ⬜ Upcoming | 2027-01-15 | P6 — Capstone, Tuning & Final Evaluation | Execution plans | Measure before optimize | — |
-| 89 | ⬜ Upcoming | 2027-01-16 | P6 — Capstone, Tuning & Final Evaluation | Idempotency and restart | Production incident simulation | — |
-| 90 | ⬜ Upcoming | 2027-01-18 | P6 — Capstone, Tuning & Final Evaluation | SQL + PL/SQL + performance | Explain, implement, tune, recover | — |
-
+Day 1 starts on **2026-11-11**. Sundays are rest days and are not numbered. If a session slips, move the sequence forward instead of doubling sessions the next day.
 
 ## Phase map
 
-```text
-Days 01–18
-SQL Sharpness & Advanced Querying
+~~~text
+Days 01–10  SQL Interview Sharpness
+Days 11–22  PL/SQL Core, Collections & Bulk Processing
+Days 23–36  Optimizer, Execution Plans & Indexing
+Days 37–48  Partitioning & High-Volume Loading
+Days 49–55  Transactions & Production Engineering
+Days 56–65  Oracle Interview Bootcamp
+~~~
 
-Days 19–36
-PL/SQL Programming & Bulk Processing
+## Master index — Day 01 to Day 65
 
-Days 37–54
-Optimizer, Execution Plans & Indexing
-
-Days 55–70
-Partitioning & High-Volume Data Loading
-
-Days 71–82
-Transactions, Concurrency & Production Engineering
-
-Days 83–90
-Capstone, Tuning & Final Evaluation
-```
+| Day | Status | Date | Phase | SQL track | Oracle / PL/SQL track |
+|---:|---|---|---|---|---|
+| 01 | 🟡 Current | 2026-11-11 | P1 — SQL Interview Sharpness | Oracle Free lab; SQL client; practice schema | Repeatable environment + baseline assessment |
+| 02 | ⬜ Upcoming | 2026-11-12 | P1 — SQL Interview Sharpness | INNER/OUTER/self joins; NULL; UNION/MINUS | Correct relational reasoning |
+| 03 | ⬜ Upcoming | 2026-11-13 | P1 — SQL Interview Sharpness | GROUP BY; HAVING; scalar/correlated subqueries | Query decomposition |
+| 04 | ⬜ Upcoming | 2026-11-14 | P1 — SQL Interview Sharpness | WITH; inline views; EXISTS/NOT EXISTS | Readable multi-step SQL |
+| 05 | ⬜ Upcoming | 2026-11-16 | P1 — SQL Interview Sharpness | ROW_NUMBER; RANK; DENSE_RANK | Partitioned ranking |
+| 06 | ⬜ Upcoming | 2026-11-17 | P1 — SQL Interview Sharpness | LAG/LEAD; SUM/AVG/COUNT OVER | Sequence and running calculations |
+| 07 | ⬜ Upcoming | 2026-11-18 | P1 — SQL Interview Sharpness | INSERT/UPDATE/DELETE/MERGE; ROWID | Safe data modification |
+| 08 | ⬜ Upcoming | 2026-11-19 | P1 — SQL Interview Sharpness | Dates; strings; NVL/COALESCE; PIVOT; hierarchy | Oracle-specific fluency |
+| 09 | ⬜ Upcoming | 2026-11-20 | P1 — SQL Interview Sharpness | Global Temporary Tables; staging | Transaction/session temporary data |
+| 10 | ⬜ Upcoming | 2026-11-21 | P1 — SQL Interview Sharpness | Timed mixed SQL | Interview retrieval under pressure |
+| 11 | ⬜ Upcoming | 2026-11-23 | P2 — PL/SQL Core, Collections & Bulk Processing | Blocks; variables; %TYPE; %ROWTYPE; records | Procedural foundations |
+| 12 | ⬜ Upcoming | 2026-11-24 | P2 — PL/SQL Core, Collections & Bulk Processing | IN/OUT/IN OUT; RETURN | Database API design |
+| 13 | ⬜ Upcoming | 2026-11-25 | P2 — PL/SQL Core, Collections & Bulk Processing | Package spec/body; private/public; overloads | Maintainable PL/SQL APIs |
+| 14 | ⬜ Upcoming | 2026-11-26 | P2 — PL/SQL Core, Collections & Bulk Processing | Predefined/custom exceptions; propagation | RAISE; RAISE_APPLICATION_ERROR |
+| 15 | ⬜ Upcoming | 2026-11-27 | P2 — PL/SQL Core, Collections & Bulk Processing | OPEN/FETCH/CLOSE; cursor FOR loop | Controlled row iteration |
+| 16 | ⬜ Upcoming | 2026-11-28 | P2 — PL/SQL Core, Collections & Bulk Processing | Weak and strong cursor variables | Returning result sets |
+| 17 | ⬜ Upcoming | 2026-11-30 | P2 — PL/SQL Core, Collections & Bulk Processing | Associative array; nested table; VARRAY | Collection trade-offs |
+| 18 | ⬜ Upcoming | 2026-12-01 | P2 — PL/SQL Core, Collections & Bulk Processing | Index-by lookup; SQL collection interaction | Choosing the right collection |
+| 19 | ⬜ Upcoming | 2026-12-02 | P2 — PL/SQL Core, Collections & Bulk Processing | Bulk fetching | Context switching + PGA control |
+| 20 | ⬜ Upcoming | 2026-12-03 | P2 — PL/SQL Core, Collections & Bulk Processing | Core PL/SQL + cursors + collections | Oral interview checkpoint |
+| 21 | ⬜ Upcoming | 2026-12-04 | P2 — PL/SQL Core, Collections & Bulk Processing | Bulk DML | SQL%BULK_EXCEPTIONS |
+| 22 | ⬜ Upcoming | 2026-12-05 | P2 — PL/SQL Core, Collections & Bulk Processing | EXECUTE IMMEDIATE; binds | Safe dynamic structure |
+| 23 | ⬜ Upcoming | 2026-12-07 | P3 — Optimizer, Execution Plans & Indexing | Cost-based optimizer | Parse → optimize → execute |
+| 24 | ⬜ Upcoming | 2026-12-08 | P3 — Optimizer, Execution Plans & Indexing | Plan reading | Access paths; predicates |
+| 25 | ⬜ Upcoming | 2026-12-09 | P3 — Optimizer, Execution Plans & Indexing | DISPLAY_CURSOR concepts | Estimated vs actual rows |
+| 26 | ⬜ Upcoming | 2026-12-10 | P3 — Optimizer, Execution Plans & Indexing | Optimizer estimates; DBMS_STATS | Data distribution |
+| 27 | ⬜ Upcoming | 2026-12-11 | P3 — Optimizer, Execution Plans & Indexing | Skewed distributions | Value-sensitive plans |
+| 28 | ⬜ Upcoming | 2026-12-12 | P3 — Optimizer, Execution Plans & Indexing | B-tree; unique; range scan | General-purpose indexing |
+| 29 | ⬜ Upcoming | 2026-12-14 | P3 — Optimizer, Execution Plans & Indexing | Leading columns; indexed expressions | Predicate alignment |
+| 30 | ⬜ Upcoming | 2026-12-15 | P3 — Optimizer, Execution Plans & Indexing | Bitmap; partition-aware indexes | Workload trade-offs |
+| 31 | ⬜ Upcoming | 2026-12-16 | P3 — Optimizer, Execution Plans & Indexing | Nested loops; hash; merge | Choosing by row volume and access |
+| 32 | ⬜ Upcoming | 2026-12-17 | P3 — Optimizer, Execution Plans & Indexing | Bind reuse; shared pool | Parse efficiency |
+| 33 | ⬜ Upcoming | 2026-12-18 | P3 — Optimizer, Execution Plans & Indexing | Bind-sensitive plans | Skew + reuse tension |
+| 34 | ⬜ Upcoming | 2026-12-19 | P3 — Optimizer, Execution Plans & Indexing | Implicit conversions; non-sargable predicates; DISTINCT | Plan-unfriendly SQL |
+| 35 | ⬜ Upcoming | 2026-12-21 | P3 — Optimizer, Execution Plans & Indexing | INDEX/FULL/join hints; PARALLEL; APPEND | Controlled optimizer/load influence |
+| 36 | ⬜ Upcoming | 2026-12-22 | P3 — Optimizer, Execution Plans & Indexing | Plans; indexes; optimizer | Evidence-based tuning |
+| 37 | ⬜ Upcoming | 2026-12-23 | P4 — Partitioning & High-Volume Loading | Partition keys; RANGE | Large-table manageability |
+| 38 | ⬜ Upcoming | 2026-12-24 | P4 — Partitioning & High-Volume Loading | INTERVAL; LIST; HASH | Partition strategy selection |
+| 39 | ⬜ Upcoming | 2026-12-25 | P4 — Partitioning & High-Volume Loading | Range-hash; range-list | Two-dimensional organization |
+| 40 | ⬜ Upcoming | 2026-12-26 | P4 — Partitioning & High-Volume Loading | Partition type selection | Rapid-fire architecture questions |
+| 41 | ⬜ Upcoming | 2026-12-28 | P4 — Partitioning & High-Volume Loading | Static/dynamic pruning concepts | Predicate design |
+| 42 | ⬜ Upcoming | 2026-12-29 | P4 — Partitioning & High-Volume Loading | LOCAL/GLOBAL | Maintenance vs access needs |
+| 43 | ⬜ Upcoming | 2026-12-30 | P4 — Partitioning & High-Volume Loading | EXCHANGE PARTITION | Fast batch loading |
+| 44 | ⬜ Upcoming | 2026-12-31 | P4 — Partitioning & High-Volume Loading | ADD/SPLIT/MERGE/TRUNCATE/DROP | Data lifecycle |
+| 45 | ⬜ Upcoming | 2027-01-01 | P4 — Partitioning & High-Volume Loading | CTAS; staging; APPEND | High-throughput data movement |
+| 46 | ⬜ Upcoming | 2027-01-02 | P4 — Partitioning & High-Volume Loading | Large MERGE; parallel DML | Controlled batch throughput |
+| 47 | ⬜ Upcoming | 2027-01-04 | P4 — Partitioning & High-Volume Loading | GTT vs collection vs permanent staging | Restartability + memory + SQL visibility |
+| 48 | ⬜ Upcoming | 2027-01-05 | P4 — Partitioning & High-Volume Loading | Partition exchange; pruning; APPEND; MERGE | End-to-end load design |
+| 49 | ⬜ Upcoming | 2027-01-06 | P5 — Transactions & Production Engineering | Undo; statement consistency | Oracle transaction model |
+| 50 | ⬜ Upcoming | 2027-01-07 | P5 — Transactions & Production Engineering | Row locking; NOWAIT/SKIP LOCKED | Pessimistic coordination |
+| 51 | ⬜ Upcoming | 2027-01-08 | P5 — Transactions & Production Engineering | Circular dependencies | ORA-00060 reasoning |
+| 52 | ⬜ Upcoming | 2027-01-09 | P5 — Transactions & Production Engineering | COMMIT/ROLLBACK/SAVEPOINT | Business atomicity |
+| 53 | ⬜ Upcoming | 2027-01-11 | P5 — Transactions & Production Engineering | Batch keys; checkpoints | Safe reruns |
+| 54 | ⬜ Upcoming | 2027-01-12 | P5 — Transactions & Production Engineering | Instrumentation; dynamic SQL safety; AUTHID | Production hygiene |
+| 55 | ⬜ Upcoming | 2027-01-13 | P5 — Transactions & Production Engineering | Concurrency; recovery; security | Incident reasoning |
+| 56 | ⬜ Upcoming | 2027-01-14 | P6 — Oracle Interview Bootcamp | Timed SQL coding | Fast solution selection |
+| 57 | ⬜ Upcoming | 2027-01-15 | P6 — Oracle Interview Bootcamp | Timed PL/SQL coding | Packages/cursors/collections/bulk |
+| 58 | ⬜ Upcoming | 2027-01-16 | P6 — Oracle Interview Bootcamp | Plans; stats; access paths | Performance explanation |
+| 59 | ⬜ Upcoming | 2027-01-18 | P6 — Oracle Interview Bootcamp | Index selection; sargability | Senior code review |
+| 60 | ⬜ Upcoming | 2027-01-19 | P6 — Oracle Interview Bootcamp | Partitioning; pruning; indexes | Architecture explanation |
+| 61 | ⬜ Upcoming | 2027-01-20 | P6 — Oracle Interview Bootcamp | GTT; staging; bulk; APPEND; PARALLEL | Design trade-offs |
+| 62 | ⬜ Upcoming | 2027-01-21 | P6 — Oracle Interview Bootcamp | Locks; commits; recovery | Production judgment |
+| 63 | ⬜ Upcoming | 2027-01-22 | P6 — Oracle Interview Bootcamp | JDBC binds; result sets; transactions | Backend integration recognition |
+| 64 | ⬜ Upcoming | 2027-01-23 | P6 — Oracle Interview Bootcamp | All covered areas | 90-minute simulation |
+| 65 | ⬜ Upcoming | 2027-01-25 | P6 — Oracle Interview Bootcamp | SQL + PL/SQL + performance + production | Explain, code, tune, recover |
 
 ---
 
-# Phase 1 — SQL Sharpness & Advanced Querying
+# Phase 1 — SQL Interview Sharpness
 
-## Day 01 — Local Oracle Lab + Practice Schema ⬜
+## Day 01 — Local Oracle Lab + Baseline 🟡
 
-**Planned date:** 2026-10-06  
-**SQL track:** Oracle Free local environment; SQL Developer/CLI  
-**Oracle / PL/SQL track:** Schema design and repeatable practice dataset
+**Planned date:** 2026-11-11  
+**SQL track:** Oracle Free lab; SQL client; practice schema  
+**Oracle / PL/SQL track:** Repeatable environment + baseline assessment
 
 ### Tutorial
 
-Set up a permanent Oracle playground. The goal is to have one database you can break, rebuild, index, partition, and tune repeatedly. Create a dedicated schema and keep every exercise in Git so the lab becomes part of your long-term Oracle toolkit.
+Set up or verify the local Oracle database and practice schema. Run a short baseline covering joins, aggregation, analytics and one PL/SQL block so later progress is measurable.
 
 ### Runnable mini-lab
 
-Start Oracle locally, connect as your practice user, and create `DEPARTMENT`, `EMPLOYEE`, `CUSTOMER`, `ACCOUNT`, `ORDERS`, `ORDER_ITEM`, and `TRANSACTION_STAGE`. Insert at least 20 hand-written rows so you can immediately query them.
+Create/verify DEPARTMENT, EMPLOYEE, CUSTOMER, ACCOUNT, ORDERS, ORDER_ITEM, TRANSACTION_STAGE and TRANSACTION tables. Solve 5 baseline queries without notes.
 
 ### Verify
 
-Reconnect from a fresh client session, list your tables, run one join, and prove you can drop/recreate the schema without touching SYSTEM-owned objects.
+You can reconnect from a fresh session, rebuild the lab safely, and list your current SQL/PLSQL weak spots.
+
+### Interview drill
+
+- Explain the topic aloud in 60–90 seconds.
+- Answer 3–5 follow-up questions without notes.
+- For coding/tuning sessions, narrate your reasoning while solving.
 
 ### Done when
 
 - [ ] Explain the concept in English without notes.
-- [ ] Complete the mini-lab and intentionally change or break one thing.
-- [ ] Solve at least 2–3 SQL/PLSQL exercises or review one production-style code/query sample.
-- [ ] Save the working SQL/PLSQL script in the lab repository.
-- [ ] Generate the detailed Joplin note, manual-note version, and Anki TSV.
+- [ ] Complete the mini-lab or timed exercise.
+- [ ] Intentionally change/break/inspect at least one thing where applicable.
+- [ ] Save the SQL/PLSQL script or interview notes.
+- [ ] Record any weak point as Green / Yellow / Red.
 
 ---
 
-## Day 02 — SELECT, Filtering, NULL & Ordering ⬜
+## Day 02 — JOINs, NULLs & Set Logic ⬜
 
-**Planned date:** 2026-10-07  
-**SQL track:** SELECT, WHERE, ORDER BY, NULL semantics  
-**Oracle / PL/SQL track:** Oracle comparison and null behavior
+**Planned date:** 2026-11-12  
+**SQL track:** INNER/OUTER/self joins; NULL; UNION/MINUS  
+**Oracle / PL/SQL track:** Correct relational reasoning
 
 ### Tutorial
 
-Refresh the query pipeline before moving into advanced SQL. Pay particular attention to three-valued logic: `NULL` is not equal to anything, including another `NULL`, and predicates involving nulls can become UNKNOWN.
+Refresh the SQL mechanics that interviewers assume are automatic. Focus on row preservation, accidental row multiplication and three-valued NULL logic.
 
 ### Runnable mini-lab
 
-Solve five queries on your lab tables: range filters, multiple predicates, `IS NULL`, `IN`, and sorted output. Include one intentionally wrong query using `= NULL`, explain why it fails, then fix it.
+Solve employees/departments, customers with/without orders, a self-join hierarchy, NOT EXISTS vs NOT IN, and UNION vs UNION ALL.
 
 ### Verify
 
-You can explain logical query processing at a high level and correctly predict how NULL affects `=`, `<>`, `NOT IN`, and boolean predicates.
+You can choose the join/set operator from the requirement and explain the NOT IN + NULL trap.
+
+### Interview drill
+
+- Explain the topic aloud in 60–90 seconds.
+- Answer 3–5 follow-up questions without notes.
+- For coding/tuning sessions, narrate your reasoning while solving.
 
 ### Done when
 
 - [ ] Explain the concept in English without notes.
-- [ ] Complete the mini-lab and intentionally change or break one thing.
-- [ ] Solve at least 2–3 SQL/PLSQL exercises or review one production-style code/query sample.
-- [ ] Save the working SQL/PLSQL script in the lab repository.
-- [ ] Generate the detailed Joplin note, manual-note version, and Anki TSV.
+- [ ] Complete the mini-lab or timed exercise.
+- [ ] Intentionally change/break/inspect at least one thing where applicable.
+- [ ] Save the SQL/PLSQL script or interview notes.
+- [ ] Record any weak point as Green / Yellow / Red.
 
 ---
 
-## Day 03 — JOIN Mastery ⬜
+## Day 03 — Aggregation, HAVING & Subqueries ⬜
 
-**Planned date:** 2026-10-08  
-**SQL track:** INNER, LEFT, RIGHT, FULL, self join  
-**Oracle / PL/SQL track:** Join correctness before performance
-
-### Tutorial
-
-A senior Oracle developer should be able to read joins as relationships, not syntax. Refresh matching vs preserving rows, then practice identifying accidental row multiplication caused by incomplete join predicates.
-
-### Runnable mini-lab
-
-Write: employees with departments, all departments including empty ones, customers with and without orders, and a self-join showing employee/manager pairs. Create one bad join that multiplies rows and diagnose it.
-
-### Verify
-
-You can choose the join type from the business requirement and explain why a query duplicates rows.
-
-### Done when
-
-- [ ] Explain the concept in English without notes.
-- [ ] Complete the mini-lab and intentionally change or break one thing.
-- [ ] Solve at least 2–3 SQL/PLSQL exercises or review one production-style code/query sample.
-- [ ] Save the working SQL/PLSQL script in the lab repository.
-- [ ] Generate the detailed Joplin note, manual-note version, and Anki TSV.
-
----
-
-## Day 04 — GROUP BY, HAVING & Conditional Aggregation ⬜
-
-**Planned date:** 2026-10-09  
-**SQL track:** GROUP BY, HAVING, COUNT/SUM/AVG, CASE aggregates  
-**Oracle / PL/SQL track:** Aggregate correctness
-
-### Tutorial
-
-Aggregation collapses rows into groups. Keep the distinction sharp: `WHERE` filters rows before grouping, while `HAVING` filters groups after aggregation.
-
-### Runnable mini-lab
-
-Write reports for employee count and average salary per department, departments above a threshold, order totals per customer, and conditional counts such as approved vs rejected transactions using `SUM(CASE...)`.
-
-### Verify
-
-You can explain why every selected non-aggregate expression must be compatible with the grouping and when HAVING is necessary.
-
-### Done when
-
-- [ ] Explain the concept in English without notes.
-- [ ] Complete the mini-lab and intentionally change or break one thing.
-- [ ] Solve at least 2–3 SQL/PLSQL exercises or review one production-style code/query sample.
-- [ ] Save the working SQL/PLSQL script in the lab repository.
-- [ ] Generate the detailed Joplin note, manual-note version, and Anki TSV.
-
----
-
-## Day 05 — Subqueries & Correlated Subqueries ⬜
-
-**Planned date:** 2026-10-10  
-**SQL track:** Scalar, multi-row, correlated subqueries  
+**Planned date:** 2026-11-13  
+**SQL track:** GROUP BY; HAVING; scalar/correlated subqueries  
 **Oracle / PL/SQL track:** Query decomposition
 
 ### Tutorial
 
-Use subqueries when the result of one query becomes a condition or value for another. Correlated subqueries are evaluated in relation to the outer row and are common in interview problems and legacy Oracle SQL.
+Practice collapsing rows correctly and using subqueries only where they improve the solution. Keep WHERE vs HAVING and correlated vs non-correlated subqueries precise.
 
 ### Runnable mini-lab
 
-Solve: employees above company average, employees above department average, customers whose latest order exceeds a threshold, and departments containing the highest-paid employee.
+Solve department salary summaries, employees above company average, employees above department average, and departments above a threshold.
 
 ### Verify
 
-You can identify whether a subquery is correlated and rewrite at least one correlated solution using a join or analytic function.
+You can rewrite at least one correlated solution using a join or analytic function and explain the trade-off.
+
+### Interview drill
+
+- Explain the topic aloud in 60–90 seconds.
+- Answer 3–5 follow-up questions without notes.
+- For coding/tuning sessions, narrate your reasoning while solving.
 
 ### Done when
 
 - [ ] Explain the concept in English without notes.
-- [ ] Complete the mini-lab and intentionally change or break one thing.
-- [ ] Solve at least 2–3 SQL/PLSQL exercises or review one production-style code/query sample.
-- [ ] Save the working SQL/PLSQL script in the lab repository.
-- [ ] Generate the detailed Joplin note, manual-note version, and Anki TSV.
+- [ ] Complete the mini-lab or timed exercise.
+- [ ] Intentionally change/break/inspect at least one thing where applicable.
+- [ ] Save the SQL/PLSQL script or interview notes.
+- [ ] Record any weak point as Green / Yellow / Red.
 
 ---
 
-## Day 06 — EXISTS, NOT EXISTS & Set Operators ⬜
+## Day 04 — WITH / CTE, Inline Views & EXISTS ⬜
 
-**Planned date:** 2026-10-12  
-**SQL track:** EXISTS/NOT EXISTS, UNION, UNION ALL, INTERSECT, MINUS  
-**Oracle / PL/SQL track:** Existence and set logic
-
-### Tutorial
-
-`EXISTS` asks whether a matching row exists; it does not need the returned value. Learn the `NOT IN` + NULL trap and practice Oracle's `MINUS` operator.
-
-### Runnable mini-lab
-
-Find customers with orders, customers without orders, employees present in one dataset but not another, and compare `UNION` vs `UNION ALL` row counts.
-
-### Verify
-
-You can explain why `NOT EXISTS` is often safer than `NOT IN` when nulls are possible.
-
-### Done when
-
-- [ ] Explain the concept in English without notes.
-- [ ] Complete the mini-lab and intentionally change or break one thing.
-- [ ] Solve at least 2–3 SQL/PLSQL exercises or review one production-style code/query sample.
-- [ ] Save the working SQL/PLSQL script in the lab repository.
-- [ ] Generate the detailed Joplin note, manual-note version, and Anki TSV.
-
----
-
-## Day 07 — WITH Clause / CTEs ⬜
-
-**Planned date:** 2026-10-13  
-**SQL track:** Subquery factoring with WITH  
+**Planned date:** 2026-11-14  
+**SQL track:** WITH; inline views; EXISTS/NOT EXISTS  
 **Oracle / PL/SQL track:** Readable multi-step SQL
 
 ### Tutorial
 
-A CTE names an intermediate query and can make complex SQL easier to reason about. Treat it primarily as a query-structure tool; do not assume it always materializes.
+Use subquery factoring to make complex queries easier to reason about, without assuming a CTE is always materialized or faster.
 
 ### Runnable mini-lab
 
-Refactor a three-level nested query into two CTEs. Build a CTE that calculates customer totals and a second that ranks customers. Compare the final query with the equivalent inline-view version.
+Refactor a nested report into two CTEs, then write equivalent inline-view and EXISTS versions where appropriate.
 
 ### Verify
 
-You can explain CTE vs inline view and avoid claiming that a CTE is automatically a temporary table.
+You can explain CTE vs inline view vs EXISTS and when each improves clarity.
+
+### Interview drill
+
+- Explain the topic aloud in 60–90 seconds.
+- Answer 3–5 follow-up questions without notes.
+- For coding/tuning sessions, narrate your reasoning while solving.
 
 ### Done when
 
 - [ ] Explain the concept in English without notes.
-- [ ] Complete the mini-lab and intentionally change or break one thing.
-- [ ] Solve at least 2–3 SQL/PLSQL exercises or review one production-style code/query sample.
-- [ ] Save the working SQL/PLSQL script in the lab repository.
-- [ ] Generate the detailed Joplin note, manual-note version, and Anki TSV.
+- [ ] Complete the mini-lab or timed exercise.
+- [ ] Intentionally change/break/inspect at least one thing where applicable.
+- [ ] Save the SQL/PLSQL script or interview notes.
+- [ ] Record any weak point as Green / Yellow / Red.
 
 ---
 
-## Day 08 — DML, MERGE & Transaction Basics ⬜
+## Day 05 — Analytic Functions — Ranking ⬜
 
-**Planned date:** 2026-10-14  
-**SQL track:** INSERT, UPDATE, DELETE, MERGE  
-**Oracle / PL/SQL track:** Atomic changes and safe testing
-
-### Tutorial
-
-Refresh DML with a production mindset. `MERGE` is especially important for staging-to-target synchronization because it can combine matched updates and not-matched inserts.
-
-### Runnable mini-lab
-
-Create a small staging table and `MERGE` it into a target. Test update-only, insert-only, and mixed batches. Roll back once, then commit once.
-
-### Verify
-
-You can explain what MERGE does and verify exactly which rows changed before committing.
-
-### Done when
-
-- [ ] Explain the concept in English without notes.
-- [ ] Complete the mini-lab and intentionally change or break one thing.
-- [ ] Solve at least 2–3 SQL/PLSQL exercises or review one production-style code/query sample.
-- [ ] Save the working SQL/PLSQL script in the lab repository.
-- [ ] Generate the detailed Joplin note, manual-note version, and Anki TSV.
-
----
-
-## Day 09 — Analytic Functions I — ROW_NUMBER, RANK, DENSE_RANK ⬜
-
-**Planned date:** 2026-10-15  
-**SQL track:** Ranking analytics  
+**Planned date:** 2026-11-16  
+**SQL track:** ROW_NUMBER; RANK; DENSE_RANK  
 **Oracle / PL/SQL track:** Partitioned ranking
 
 ### Tutorial
 
-Analytic functions compute across related rows without collapsing them. `ROW_NUMBER` is unique, `RANK` leaves gaps after ties, and `DENSE_RANK` does not.
+Analytics are interview staples because they preserve detail rows while calculating across related rows.
 
 ### Runnable mini-lab
 
-Solve: global score ranking, highest salary per department, top three distinct salaries per department, and exactly one latest row per customer.
+Solve highest salary per department, top 3 distinct salaries, latest row per customer, and duplicate numbering.
 
 ### Verify
 
-Without notes, explain `PARTITION BY` and correctly choose among the three ranking functions.
+Without notes, explain PARTITION BY and choose ROW_NUMBER vs RANK vs DENSE_RANK correctly.
+
+### Interview drill
+
+- Explain the topic aloud in 60–90 seconds.
+- Answer 3–5 follow-up questions without notes.
+- For coding/tuning sessions, narrate your reasoning while solving.
 
 ### Done when
 
 - [ ] Explain the concept in English without notes.
-- [ ] Complete the mini-lab and intentionally change or break one thing.
-- [ ] Solve at least 2–3 SQL/PLSQL exercises or review one production-style code/query sample.
-- [ ] Save the working SQL/PLSQL script in the lab repository.
-- [ ] Generate the detailed Joplin note, manual-note version, and Anki TSV.
+- [ ] Complete the mini-lab or timed exercise.
+- [ ] Intentionally change/break/inspect at least one thing where applicable.
+- [ ] Save the SQL/PLSQL script or interview notes.
+- [ ] Record any weak point as Green / Yellow / Red.
 
 ---
 
-## Day 10 — Analytic Functions II — LAG & LEAD ⬜
+## Day 06 — Analytic Functions — LAG, LEAD & Windows ⬜
 
-**Planned date:** 2026-10-16  
-**SQL track:** Previous/next-row analytics  
-**Oracle / PL/SQL track:** Sequence comparison
+**Planned date:** 2026-11-17  
+**SQL track:** LAG/LEAD; SUM/AVG/COUNT OVER  
+**Oracle / PL/SQL track:** Sequence and running calculations
 
 ### Tutorial
 
-`LAG` and `LEAD` let you compare a row with prior or following rows according to a defined order, avoiding many self-joins.
+Practice previous/next-row comparisons and running metrics without self-joins.
 
 ### Runnable mini-lab
 
-Solve: previous transaction amount, day-over-day balance change, consecutive values, and time gap between customer transactions.
+Solve previous transaction amount, running balance, moving average, consecutive values, and percentage of department payroll.
 
 ### Verify
 
-You can explain why the analytic `ORDER BY` defines what 'previous' and 'next' mean.
+You can explain how analytic ORDER BY and window frames change the result.
+
+### Interview drill
+
+- Explain the topic aloud in 60–90 seconds.
+- Answer 3–5 follow-up questions without notes.
+- For coding/tuning sessions, narrate your reasoning while solving.
 
 ### Done when
 
 - [ ] Explain the concept in English without notes.
-- [ ] Complete the mini-lab and intentionally change or break one thing.
-- [ ] Solve at least 2–3 SQL/PLSQL exercises or review one production-style code/query sample.
-- [ ] Save the working SQL/PLSQL script in the lab repository.
-- [ ] Generate the detailed Joplin note, manual-note version, and Anki TSV.
+- [ ] Complete the mini-lab or timed exercise.
+- [ ] Intentionally change/break/inspect at least one thing where applicable.
+- [ ] Save the SQL/PLSQL script or interview notes.
+- [ ] Record any weak point as Green / Yellow / Red.
 
 ---
 
-## Day 11 — Analytic Functions III — Window Aggregates ⬜
+## Day 07 — MERGE, DML & Duplicate Cleanup ⬜
 
-**Planned date:** 2026-10-17  
-**SQL track:** SUM/AVG/COUNT OVER; frames  
-**Oracle / PL/SQL track:** Running and moving calculations
+**Planned date:** 2026-11-18  
+**SQL track:** INSERT/UPDATE/DELETE/MERGE; ROWID  
+**Oracle / PL/SQL track:** Safe data modification
 
 ### Tutorial
 
-Window aggregates preserve detail rows while adding group or running metrics. Learn the difference between partition totals and ordered window frames.
+Review production-style DML, especially staging-to-target MERGE and deliberate duplicate removal.
 
 ### Runnable mini-lab
 
-Build running account balance, cumulative monthly revenue, moving three-transaction average, and percentage of department payroll.
+MERGE a staging table into target, roll back once, commit once, then remove duplicate employee rows using ROWID and ROW_NUMBER approaches.
 
 ### Verify
 
-You can explain `ROWS BETWEEN` at a practical level and distinguish a partition total from a running total.
+You can state exactly which rows changed and why your duplicate strategy preserves one intended row.
+
+### Interview drill
+
+- Explain the topic aloud in 60–90 seconds.
+- Answer 3–5 follow-up questions without notes.
+- For coding/tuning sessions, narrate your reasoning while solving.
 
 ### Done when
 
 - [ ] Explain the concept in English without notes.
-- [ ] Complete the mini-lab and intentionally change or break one thing.
-- [ ] Solve at least 2–3 SQL/PLSQL exercises or review one production-style code/query sample.
-- [ ] Save the working SQL/PLSQL script in the lab repository.
-- [ ] Generate the detailed Joplin note, manual-note version, and Anki TSV.
+- [ ] Complete the mini-lab or timed exercise.
+- [ ] Intentionally change/break/inspect at least one thing where applicable.
+- [ ] Save the SQL/PLSQL script or interview notes.
+- [ ] Record any weak point as Green / Yellow / Red.
 
 ---
 
-## Day 12 — Duplicates, ROWID & Gaps-and-Islands ⬜
+## Day 08 — Oracle SQL Functions & Reporting Patterns ⬜
 
-**Planned date:** 2026-10-19  
-**SQL track:** ROW_NUMBER, ROWID, sequence grouping  
-**Oracle / PL/SQL track:** Oracle duplicate handling
+**Planned date:** 2026-11-19  
+**SQL track:** Dates; strings; NVL/COALESCE; PIVOT; hierarchy  
+**Oracle / PL/SQL track:** Oracle-specific fluency
 
 ### Tutorial
 
-Oracle `ROWID` identifies a physical row location and is useful for controlled duplicate cleanup. Pair it with analytics when the business key is duplicated.
+Sharpen Oracle-specific syntax that often appears in technical screens and legacy enterprise code.
 
 ### Runnable mini-lab
 
-Using duplicated `(empid, empname)` rows, write two delete strategies: one based on `ROWID`/`MIN(ROWID)` and another using `ROW_NUMBER()`. Also solve one gaps-and-islands sequence problem.
+Write sargable date filters, month-end calculations, normalized text, conditional aggregation/PIVOT, and one CONNECT BY hierarchy.
 
 ### Verify
 
-You can delete duplicates while deliberately preserving one row and explain why a business key alone cannot identify which physical duplicate to remove.
+You avoid wrapping indexed date columns unnecessarily and can explain CONNECT BY at a practical level.
+
+### Interview drill
+
+- Explain the topic aloud in 60–90 seconds.
+- Answer 3–5 follow-up questions without notes.
+- For coding/tuning sessions, narrate your reasoning while solving.
 
 ### Done when
 
 - [ ] Explain the concept in English without notes.
-- [ ] Complete the mini-lab and intentionally change or break one thing.
-- [ ] Solve at least 2–3 SQL/PLSQL exercises or review one production-style code/query sample.
-- [ ] Save the working SQL/PLSQL script in the lab repository.
-- [ ] Generate the detailed Joplin note, manual-note version, and Anki TSV.
+- [ ] Complete the mini-lab or timed exercise.
+- [ ] Intentionally change/break/inspect at least one thing where applicable.
+- [ ] Save the SQL/PLSQL script or interview notes.
+- [ ] Record any weak point as Green / Yellow / Red.
 
 ---
 
-## Day 13 — Oracle Date, String & NULL Functions ⬜
+## Day 09 — GTTs & Intermediate Data Choices ⬜
 
-**Planned date:** 2026-10-20  
-**SQL track:** DATE/TIMESTAMP, TRUNC, ADD_MONTHS, string functions  
-**Oracle / PL/SQL track:** Oracle expression fluency
+**Planned date:** 2026-11-20  
+**SQL track:** Global Temporary Tables; staging  
+**Oracle / PL/SQL track:** Transaction/session temporary data
 
 ### Tutorial
 
-Refresh the functions that appear constantly in production reporting and ETL SQL. Practice date ranges without wrapping indexed columns unnecessarily.
+GTTs were a real interview gap, so this session is hands-on. Remember: the definition persists; rows are temporary and session-private.
 
 ### Runnable mini-lab
 
-Write month filters, age calculations, month-end dates, normalized names, substring extraction, `NVL`, `COALESCE`, and a sargable date-range query.
+Create ON COMMIT DELETE ROWS and PRESERVE ROWS GTTs. Compare GTT vs CTE vs PL/SQL collection vs permanent staging for 3 scenarios.
 
 ### Verify
 
-You avoid `TO_CHAR(date_column,...)` when a direct date range expresses the same filter and preserves better access options.
+You can answer when to use each intermediate-data mechanism and explain commit behavior.
+
+### Interview drill
+
+- Explain the topic aloud in 60–90 seconds.
+- Answer 3–5 follow-up questions without notes.
+- For coding/tuning sessions, narrate your reasoning while solving.
 
 ### Done when
 
 - [ ] Explain the concept in English without notes.
-- [ ] Complete the mini-lab and intentionally change or break one thing.
-- [ ] Solve at least 2–3 SQL/PLSQL exercises or review one production-style code/query sample.
-- [ ] Save the working SQL/PLSQL script in the lab repository.
-- [ ] Generate the detailed Joplin note, manual-note version, and Anki TSV.
+- [ ] Complete the mini-lab or timed exercise.
+- [ ] Intentionally change/break/inspect at least one thing where applicable.
+- [ ] Save the SQL/PLSQL script or interview notes.
+- [ ] Record any weak point as Green / Yellow / Red.
 
 ---
 
-## Day 14 — PIVOT, UNPIVOT & Reporting SQL ⬜
+## Day 10 — SQL Mock Interview #1 ⬜
 
-**Planned date:** 2026-10-21  
-**SQL track:** PIVOT/UNPIVOT, conditional aggregation  
-**Oracle / PL/SQL track:** Report reshaping
+**Planned date:** 2026-11-21  
+**SQL track:** Timed mixed SQL  
+**Oracle / PL/SQL track:** Interview retrieval under pressure
 
 ### Tutorial
 
-Oracle supports native PIVOT/UNPIVOT, but conditional aggregation is often more portable and flexible. Know both.
+No new theory. Prove that core and advanced SQL are available from memory.
 
 ### Runnable mini-lab
 
-Produce monthly order totals as columns using PIVOT, then rewrite using `SUM(CASE...)`. Unpivot a small quarterly table into rows.
+60 minutes: 6 SQL problems + 10 rapid-fire questions covering joins, EXISTS, CTE, analytics, MERGE, duplicates and GTTs.
 
 ### Verify
 
-You can choose between PIVOT and conditional aggregation without treating either as universally better.
+Score each area Green/Yellow/Red. Any Red topic becomes a review item in later sessions.
+
+### Interview drill
+
+- Explain the topic aloud in 60–90 seconds.
+- Answer 3–5 follow-up questions without notes.
+- For coding/tuning sessions, narrate your reasoning while solving.
 
 ### Done when
 
 - [ ] Explain the concept in English without notes.
-- [ ] Complete the mini-lab and intentionally change or break one thing.
-- [ ] Solve at least 2–3 SQL/PLSQL exercises or review one production-style code/query sample.
-- [ ] Save the working SQL/PLSQL script in the lab repository.
-- [ ] Generate the detailed Joplin note, manual-note version, and Anki TSV.
+- [ ] Complete the mini-lab or timed exercise.
+- [ ] Intentionally change/break/inspect at least one thing where applicable.
+- [ ] Save the SQL/PLSQL script or interview notes.
+- [ ] Record any weak point as Green / Yellow / Red.
 
 ---
 
-## Day 15 — Hierarchical SQL ⬜
+# Phase 2 — PL/SQL Core, Collections & Bulk Processing
 
-**Planned date:** 2026-10-22  
-**SQL track:** CONNECT BY, LEVEL, START WITH; recursive-style thinking  
-**Oracle / PL/SQL track:** Tree traversal
+## Day 11 — PL/SQL Core Refresher ⬜
+
+**Planned date:** 2026-11-23  
+**SQL track:** Blocks; variables; %TYPE; %ROWTYPE; records  
+**Oracle / PL/SQL track:** Procedural foundations
 
 ### Tutorial
 
-Oracle's hierarchical querying is common in organization trees, bill-of-materials, and legacy systems. Learn `START WITH`, `CONNECT BY`, and `LEVEL`.
+Compress the basics into one session. The goal is fluency, not relearning syntax.
 
 ### Runnable mini-lab
 
-Build a manager hierarchy from `EMPLOYEE(manager_id)`, show depth with `LEVEL`, and return the path from CEO to employee.
+Write one anonymous block using anchored types, a record, IF/CASE and a small loop; then replace one unnecessary loop with set-based SQL.
 
 ### Verify
 
-You can explain parent-child traversal and detect where a cycle would be dangerous.
+You can explain SQL vs PL/SQL and when procedural logic is justified.
+
+### Interview drill
+
+- Explain the topic aloud in 60–90 seconds.
+- Answer 3–5 follow-up questions without notes.
+- For coding/tuning sessions, narrate your reasoning while solving.
 
 ### Done when
 
 - [ ] Explain the concept in English without notes.
-- [ ] Complete the mini-lab and intentionally change or break one thing.
-- [ ] Solve at least 2–3 SQL/PLSQL exercises or review one production-style code/query sample.
-- [ ] Save the working SQL/PLSQL script in the lab repository.
-- [ ] Generate the detailed Joplin note, manual-note version, and Anki TSV.
+- [ ] Complete the mini-lab or timed exercise.
+- [ ] Intentionally change/break/inspect at least one thing where applicable.
+- [ ] Save the SQL/PLSQL script or interview notes.
+- [ ] Record any weak point as Green / Yellow / Red.
 
 ---
 
-## Day 16 — Global Temporary Tables (GTTs) ⬜
+## Day 12 — Procedures & Functions ⬜
 
-**Planned date:** 2026-10-23  
-**SQL track:** GTT creation and use  
-**Oracle / PL/SQL track:** Transaction vs session temporary data
+**Planned date:** 2026-11-24  
+**SQL track:** IN/OUT/IN OUT; RETURN  
+**Oracle / PL/SQL track:** Database API design
 
 ### Tutorial
 
-A Global Temporary Table has a persistent definition while its rows are temporary to the session. `ON COMMIT DELETE ROWS` gives transaction-duration rows; `ON COMMIT PRESERVE ROWS` keeps them for the session.
+Review callable program units with emphasis on clean contracts and transaction ownership.
 
 ### Runnable mini-lab
 
-Create both GTT variants. Insert rows, commit, and observe behavior. Compare using a GTT with using a CTE and a PL/SQL collection for multi-step processing.
+Create transfer_funds plus a lookup function. Do not commit inside the reusable transfer routine.
 
 ### Verify
 
-You can answer: 'When would you use a GTT instead of a CTE, collection, or permanent staging table?'
+You can explain procedure vs function and why callers often own the transaction boundary.
+
+### Interview drill
+
+- Explain the topic aloud in 60–90 seconds.
+- Answer 3–5 follow-up questions without notes.
+- For coding/tuning sessions, narrate your reasoning while solving.
 
 ### Done when
 
 - [ ] Explain the concept in English without notes.
-- [ ] Complete the mini-lab and intentionally change or break one thing.
-- [ ] Solve at least 2–3 SQL/PLSQL exercises or review one production-style code/query sample.
-- [ ] Save the working SQL/PLSQL script in the lab repository.
-- [ ] Generate the detailed Joplin note, manual-note version, and Anki TSV.
+- [ ] Complete the mini-lab or timed exercise.
+- [ ] Intentionally change/break/inspect at least one thing where applicable.
+- [ ] Save the SQL/PLSQL script or interview notes.
+- [ ] Record any weak point as Green / Yellow / Red.
 
 ---
 
-## Day 17 — SQL Workout — Mixed Set I ⬜
+## Day 13 — Packages & Encapsulation ⬜
 
-**Planned date:** 2026-10-24  
-**SQL track:** Mixed advanced SQL  
-**Oracle / PL/SQL track:** Timed query problem solving
+**Planned date:** 2026-11-25  
+**SQL track:** Package spec/body; private/public; overloads  
+**Oracle / PL/SQL track:** Maintainable PL/SQL APIs
 
 ### Tutorial
 
-Consolidate the first sixteen days. This is a retrieval day, not a new-content day.
+Packages are central to serious PL/SQL design and common in interviews.
 
 ### Runnable mini-lab
 
-Solve eight timed problems: two joins, one aggregation, one correlated subquery, one CTE, one ranking problem, one LAG/LEAD problem, and one duplicate cleanup. Do not use notes for the first attempt.
+Build ACCOUNT_PKG with public deposit/withdraw/get_balance and private validation helpers. Add one overload.
 
 ### Verify
 
-Score each problem Green/Yellow/Red and write one sentence explaining every mistake.
+You can explain specification vs body and package state at interview level.
+
+### Interview drill
+
+- Explain the topic aloud in 60–90 seconds.
+- Answer 3–5 follow-up questions without notes.
+- For coding/tuning sessions, narrate your reasoning while solving.
 
 ### Done when
 
 - [ ] Explain the concept in English without notes.
-- [ ] Complete the mini-lab and intentionally change or break one thing.
-- [ ] Solve at least 2–3 SQL/PLSQL exercises or review one production-style code/query sample.
-- [ ] Save the working SQL/PLSQL script in the lab repository.
-- [ ] Generate the detailed Joplin note, manual-note version, and Anki TSV.
+- [ ] Complete the mini-lab or timed exercise.
+- [ ] Intentionally change/break/inspect at least one thing where applicable.
+- [ ] Save the SQL/PLSQL script or interview notes.
+- [ ] Record any weak point as Green / Yellow / Red.
 
 ---
 
-## Day 18 — SQL Phase Assessment ⬜
+## Day 14 — Exception Handling ⬜
 
-**Planned date:** 2026-10-26  
-**SQL track:** SQL design and reasoning  
-**Oracle / PL/SQL track:** Review and refactor
+**Planned date:** 2026-11-26  
+**SQL track:** Predefined/custom exceptions; propagation  
+**Oracle / PL/SQL track:** RAISE; RAISE_APPLICATION_ERROR
 
 ### Tutorial
 
-Close Phase 1 by proving you can write and explain SQL without pattern matching blindly.
+Production PL/SQL should make failures visible and meaningful, not swallow them.
 
 ### Runnable mini-lab
 
-Take a 60-minute assessment: five SQL problems plus one code-review query containing a bad join, non-sargable predicate, and incorrect NOT IN. Refactor it.
+Handle NO_DATA_FOUND, DUP_VAL_ON_INDEX and a custom business exception. Add logging context and re-raise unexpected errors.
 
 ### Verify
 
-At least 80% correct without notes; anything Red becomes a scheduled review item in Phase 2.
+You can explain why WHEN OTHERS THEN NULL is dangerous and when to translate/re-raise.
+
+### Interview drill
+
+- Explain the topic aloud in 60–90 seconds.
+- Answer 3–5 follow-up questions without notes.
+- For coding/tuning sessions, narrate your reasoning while solving.
 
 ### Done when
 
 - [ ] Explain the concept in English without notes.
-- [ ] Complete the mini-lab and intentionally change or break one thing.
-- [ ] Solve at least 2–3 SQL/PLSQL exercises or review one production-style code/query sample.
-- [ ] Save the working SQL/PLSQL script in the lab repository.
-- [ ] Generate the detailed Joplin note, manual-note version, and Anki TSV.
+- [ ] Complete the mini-lab or timed exercise.
+- [ ] Intentionally change/break/inspect at least one thing where applicable.
+- [ ] Save the SQL/PLSQL script or interview notes.
+- [ ] Record any weak point as Green / Yellow / Red.
 
 ---
 
-# Phase 2 — PL/SQL Programming & Bulk Processing
+## Day 15 — Explicit & Parameterized Cursors ⬜
 
-## Day 19 — Oracle Process & Memory Model for Developers ⬜
-
-**Planned date:** 2026-10-27  
-**SQL track:** SQL vs PL/SQL engines  
-**Oracle / PL/SQL track:** SGA, PGA, shared pool, buffer cache
-
-### Tutorial
-
-Learn enough Oracle architecture to reason about PL/SQL performance. SGA is shared instance memory; PGA is private process work memory. SQL and PL/SQL execution can cross engine boundaries.
-
-### Runnable mini-lab
-
-Run a few SQL statements and inspect basic session information available to your account. Write a short diagram connecting shared pool, buffer cache, PGA, SQL engine, and PL/SQL engine.
-
-### Verify
-
-You can explain why a huge PL/SQL collection pressures PGA and why repeated hard parsing affects shared structures.
-
-### Done when
-
-- [ ] Explain the concept in English without notes.
-- [ ] Complete the mini-lab and intentionally change or break one thing.
-- [ ] Solve at least 2–3 SQL/PLSQL exercises or review one production-style code/query sample.
-- [ ] Save the working SQL/PLSQL script in the lab repository.
-- [ ] Generate the detailed Joplin note, manual-note version, and Anki TSV.
-
----
-
-## Day 20 — PL/SQL Blocks, Variables & Anchored Types ⬜
-
-**Planned date:** 2026-10-28  
-**SQL track:** DECLARE/BEGIN/EXCEPTION/END  
-**Oracle / PL/SQL track:** %TYPE, %ROWTYPE, records
-
-### Tutorial
-
-Refresh block structure and anchored types so code follows database definitions instead of duplicating datatypes manually.
-
-### Runnable mini-lab
-
-Write an anonymous block that fetches an employee using `%ROWTYPE`, calculates a bonus, and handles no-data and too-many-row cases.
-
-### Verify
-
-You can explain `%TYPE` vs `%ROWTYPE` and compile the block without looking up syntax.
-
-### Done when
-
-- [ ] Explain the concept in English without notes.
-- [ ] Complete the mini-lab and intentionally change or break one thing.
-- [ ] Solve at least 2–3 SQL/PLSQL exercises or review one production-style code/query sample.
-- [ ] Save the working SQL/PLSQL script in the lab repository.
-- [ ] Generate the detailed Joplin note, manual-note version, and Anki TSV.
-
----
-
-## Day 21 — Control Flow & Loops ⬜
-
-**Planned date:** 2026-10-29  
-**SQL track:** IF/CASE, LOOP/WHILE/FOR  
-**Oracle / PL/SQL track:** Procedural logic discipline
-
-### Tutorial
-
-PL/SQL is strongest when procedural control wraps set-based SQL rather than replacing it. Learn control flow while resisting unnecessary row-by-row processing.
-
-### Runnable mini-lab
-
-Write examples of IF, CASE, numeric FOR, cursor FOR, and EXIT WHEN. Then rewrite one loop-based aggregate as a single SQL statement.
-
-### Verify
-
-You can identify when procedural looping is unnecessary because SQL can do the work set-wise.
-
-### Done when
-
-- [ ] Explain the concept in English without notes.
-- [ ] Complete the mini-lab and intentionally change or break one thing.
-- [ ] Solve at least 2–3 SQL/PLSQL exercises or review one production-style code/query sample.
-- [ ] Save the working SQL/PLSQL script in the lab repository.
-- [ ] Generate the detailed Joplin note, manual-note version, and Anki TSV.
-
----
-
-## Day 22 — Procedures & Parameter Modes ⬜
-
-**Planned date:** 2026-10-30  
-**SQL track:** CREATE PROCEDURE; IN/OUT/IN OUT  
-**Oracle / PL/SQL track:** API contracts
-
-### Tutorial
-
-Procedures encapsulate actions. Parameter modes are part of the contract; OUT and IN OUT should be used deliberately rather than as substitutes for clear return structures.
-
-### Runnable mini-lab
-
-Create `transfer_funds(p_from, p_to, p_amount, p_status OUT)` with validation but no internal COMMIT. Test success and failure.
-
-### Verify
-
-You can explain why transaction ownership often belongs to the caller/service boundary.
-
-### Done when
-
-- [ ] Explain the concept in English without notes.
-- [ ] Complete the mini-lab and intentionally change or break one thing.
-- [ ] Solve at least 2–3 SQL/PLSQL exercises or review one production-style code/query sample.
-- [ ] Save the working SQL/PLSQL script in the lab repository.
-- [ ] Generate the detailed Joplin note, manual-note version, and Anki TSV.
-
----
-
-## Day 23 — Functions, Determinism & Result Cache ⬜
-
-**Planned date:** 2026-10-31  
-**SQL track:** Functions in PL/SQL/SQL  
-**Oracle / PL/SQL track:** Deterministic behavior and caching
-
-### Tutorial
-
-Functions return values and may be callable from SQL subject to restrictions. Study `DETERMINISTIC` semantics and the PL/SQL function `RESULT_CACHE` at a practical level.
-
-### Runnable mini-lab
-
-Create a calculation function, call it from SQL, then create a safe result-cache example based on relatively stable lookup data. Observe repeated calls.
-
-### Verify
-
-You can explain function vs procedure and why caching mutable/high-churn data may have limited value.
-
-### Done when
-
-- [ ] Explain the concept in English without notes.
-- [ ] Complete the mini-lab and intentionally change or break one thing.
-- [ ] Solve at least 2–3 SQL/PLSQL exercises or review one production-style code/query sample.
-- [ ] Save the working SQL/PLSQL script in the lab repository.
-- [ ] Generate the detailed Joplin note, manual-note version, and Anki TSV.
-
----
-
-## Day 24 — Packages & Encapsulation ⬜
-
-**Planned date:** 2026-11-02  
-**SQL track:** Package spec/body  
-**Oracle / PL/SQL track:** Public API, private implementation, state
-
-### Tutorial
-
-Packages are a major unit of PL/SQL design. Separate public contracts in the specification from implementation details in the body.
-
-### Runnable mini-lab
-
-Create `ACCOUNT_PKG` with public `deposit`, `withdraw`, and `get_balance`; keep validation helpers private. Add one overloaded operation.
-
-### Verify
-
-You can explain package spec vs body and identify what callers can access.
-
-### Done when
-
-- [ ] Explain the concept in English without notes.
-- [ ] Complete the mini-lab and intentionally change or break one thing.
-- [ ] Solve at least 2–3 SQL/PLSQL exercises or review one production-style code/query sample.
-- [ ] Save the working SQL/PLSQL script in the lab repository.
-- [ ] Generate the detailed Joplin note, manual-note version, and Anki TSV.
-
----
-
-## Day 25 — Exception Handling ⬜
-
-**Planned date:** 2026-11-03  
-**SQL track:** Predefined, user-defined, propagation  
-**Oracle / PL/SQL track:** RAISE, RAISE_APPLICATION_ERROR
-
-### Tutorial
-
-Handle expected exceptions intentionally and let unexpected failures remain visible. `WHEN OTHERS THEN NULL` is usually a production defect.
-
-### Runnable mini-lab
-
-Create a procedure with `NO_DATA_FOUND`, `DUP_VAL_ON_INDEX`, a custom exception, `RAISE_APPLICATION_ERROR`, and a final handler that logs context and re-raises.
-
-### Verify
-
-You can explain when to handle, translate, or re-raise an exception.
-
-### Done when
-
-- [ ] Explain the concept in English without notes.
-- [ ] Complete the mini-lab and intentionally change or break one thing.
-- [ ] Solve at least 2–3 SQL/PLSQL exercises or review one production-style code/query sample.
-- [ ] Save the working SQL/PLSQL script in the lab repository.
-- [ ] Generate the detailed Joplin note, manual-note version, and Anki TSV.
-
----
-
-## Day 26 — Explicit Cursors ⬜
-
-**Planned date:** 2026-11-04  
+**Planned date:** 2026-11-27  
 **SQL track:** OPEN/FETCH/CLOSE; cursor FOR loop  
-**Oracle / PL/SQL track:** Row iteration
+**Oracle / PL/SQL track:** Controlled row iteration
 
 ### Tutorial
 
-Explicit cursors expose query iteration. Understand them well even though bulk or set-based processing is often better for large workloads.
+Know cursors well, while remembering that set-based or bulk processing is often better at scale.
 
 ### Runnable mini-lab
 
-Implement the same report once using OPEN/FETCH/CLOSE and once using a cursor FOR loop. Compare code and cursor attributes.
+Implement the same query using explicit cursor mechanics and a cursor FOR loop. Add a parameterized department cursor.
 
 ### Verify
 
-You can explain implicit vs explicit cursors and the convenience of cursor FOR loops.
+You can explain implicit vs explicit vs parameterized cursors and cursor attributes.
+
+### Interview drill
+
+- Explain the topic aloud in 60–90 seconds.
+- Answer 3–5 follow-up questions without notes.
+- For coding/tuning sessions, narrate your reasoning while solving.
 
 ### Done when
 
 - [ ] Explain the concept in English without notes.
-- [ ] Complete the mini-lab and intentionally change or break one thing.
-- [ ] Solve at least 2–3 SQL/PLSQL exercises or review one production-style code/query sample.
-- [ ] Save the working SQL/PLSQL script in the lab repository.
-- [ ] Generate the detailed Joplin note, manual-note version, and Anki TSV.
+- [ ] Complete the mini-lab or timed exercise.
+- [ ] Intentionally change/break/inspect at least one thing where applicable.
+- [ ] Save the SQL/PLSQL script or interview notes.
+- [ ] Record any weak point as Green / Yellow / Red.
 
 ---
 
-## Day 27 — Parameterized Cursors & Cursor Attributes ⬜
+## Day 16 — REF CURSOR / SYS_REFCURSOR ⬜
 
-**Planned date:** 2026-11-05  
-**SQL track:** Parameterized cursor design  
-**Oracle / PL/SQL track:** %FOUND/%NOTFOUND/%ROWCOUNT/%ISOPEN
-
-### Tutorial
-
-Parameterized cursors make reusable query iteration possible while keeping the query static and bind-friendly.
-
-### Runnable mini-lab
-
-Create a parameterized cursor by department and print employees. Track `%ROWCOUNT`, and intentionally demonstrate `%NOTFOUND` correctly.
-
-### Verify
-
-You can explain each cursor attribute and avoid fetching after end-of-data.
-
-### Done when
-
-- [ ] Explain the concept in English without notes.
-- [ ] Complete the mini-lab and intentionally change or break one thing.
-- [ ] Solve at least 2–3 SQL/PLSQL exercises or review one production-style code/query sample.
-- [ ] Save the working SQL/PLSQL script in the lab repository.
-- [ ] Generate the detailed Joplin note, manual-note version, and Anki TSV.
-
----
-
-## Day 28 — REF CURSOR & SYS_REFCURSOR ⬜
-
-**Planned date:** 2026-11-06  
-**SQL track:** Weak/strong REF CURSOR  
-**Oracle / PL/SQL track:** Returning result sets to clients
+**Planned date:** 2026-11-28  
+**SQL track:** Weak and strong cursor variables  
+**Oracle / PL/SQL track:** Returning result sets
 
 ### Tutorial
 
-REF CURSORs provide handles to query result sets. `SYS_REFCURSOR` is the common weak cursor type used to return data to Java/.NET clients and APIs.
+REF CURSOR was another interview gap. Focus on how a caller receives a dynamic result set.
 
 ### Runnable mini-lab
 
-Create `get_transactions(p_account_id, p_rc OUT SYS_REFCURSOR)`. Consume it from a PL/SQL block or SQL client. Sketch how JDBC would receive the cursor.
+Create get_transactions(account_id, OUT SYS_REFCURSOR) and consume it from your client. Sketch JDBC CallableStatement usage conceptually.
 
 ### Verify
 
 You can explain regular cursor vs REF CURSOR and weak vs strong typing.
 
+### Interview drill
+
+- Explain the topic aloud in 60–90 seconds.
+- Answer 3–5 follow-up questions without notes.
+- For coding/tuning sessions, narrate your reasoning while solving.
+
 ### Done when
 
 - [ ] Explain the concept in English without notes.
-- [ ] Complete the mini-lab and intentionally change or break one thing.
-- [ ] Solve at least 2–3 SQL/PLSQL exercises or review one production-style code/query sample.
-- [ ] Save the working SQL/PLSQL script in the lab repository.
-- [ ] Generate the detailed Joplin note, manual-note version, and Anki TSV.
+- [ ] Complete the mini-lab or timed exercise.
+- [ ] Intentionally change/break/inspect at least one thing where applicable.
+- [ ] Save the SQL/PLSQL script or interview notes.
+- [ ] Record any weak point as Green / Yellow / Red.
 
 ---
 
-## Day 29 — Collections Overview ⬜
+## Day 17 — Collections — Mental Model ⬜
 
-**Planned date:** 2026-11-07  
-**SQL track:** Associative array, nested table, VARRAY  
-**Oracle / PL/SQL track:** In-memory data structures
+**Planned date:** 2026-11-30  
+**SQL track:** Associative array; nested table; VARRAY  
+**Oracle / PL/SQL track:** Collection trade-offs
 
 ### Tutorial
 
-Know the three collection families and their trade-offs instead of memorizing syntax only.
+Know the three collection families by behavior, not memorized definitions.
 
 ### Runnable mini-lab
 
-Declare one of each collection type, populate values, iterate them, and test collection methods such as COUNT, FIRST, LAST, EXISTS, EXTEND, DELETE where applicable.
+Declare and populate each type, use collection methods, and write a comparison table for indexing, size, SQL visibility and ordering.
 
 ### Verify
 
-You can compare associative array, nested table, and VARRAY from memory.
+You can compare all three in 60–90 seconds without notes.
+
+### Interview drill
+
+- Explain the topic aloud in 60–90 seconds.
+- Answer 3–5 follow-up questions without notes.
+- For coding/tuning sessions, narrate your reasoning while solving.
 
 ### Done when
 
 - [ ] Explain the concept in English without notes.
-- [ ] Complete the mini-lab and intentionally change or break one thing.
-- [ ] Solve at least 2–3 SQL/PLSQL exercises or review one production-style code/query sample.
-- [ ] Save the working SQL/PLSQL script in the lab repository.
-- [ ] Generate the detailed Joplin note, manual-note version, and Anki TSV.
+- [ ] Complete the mini-lab or timed exercise.
+- [ ] Intentionally change/break/inspect at least one thing where applicable.
+- [ ] Save the SQL/PLSQL script or interview notes.
+- [ ] Record any weak point as Green / Yellow / Red.
 
 ---
 
-## Day 30 — Associative Arrays ⬜
+## Day 18 — Associative Arrays + Nested Tables/VARRAYs ⬜
 
-**Planned date:** 2026-11-09  
-**SQL track:** Index-by collections  
-**Oracle / PL/SQL track:** Fast PL/SQL lookup structures
+**Planned date:** 2026-12-01  
+**SQL track:** Index-by lookup; SQL collection interaction  
+**Oracle / PL/SQL track:** Choosing the right collection
 
 ### Tutorial
 
-Associative arrays are flexible PL/SQL collections indexed by integer or string keys and are excellent for in-memory lookup and batch processing.
+Go deeper on the differences that interviewers probe after the definition question.
 
 ### Runnable mini-lab
 
-Build an associative array keyed by employee ID and another keyed by code. Use EXISTS before access and delete selected entries.
+Build an employee lookup with associative arrays, query a nested-table SQL type using TABLE(...), and create one bounded VARRAY example.
 
 ### Verify
 
-You can explain why associative arrays are useful inside PL/SQL but are not simply database tables.
+Given a scenario, you can justify the collection choice.
+
+### Interview drill
+
+- Explain the topic aloud in 60–90 seconds.
+- Answer 3–5 follow-up questions without notes.
+- For coding/tuning sessions, narrate your reasoning while solving.
 
 ### Done when
 
 - [ ] Explain the concept in English without notes.
-- [ ] Complete the mini-lab and intentionally change or break one thing.
-- [ ] Solve at least 2–3 SQL/PLSQL exercises or review one production-style code/query sample.
-- [ ] Save the working SQL/PLSQL script in the lab repository.
-- [ ] Generate the detailed Joplin note, manual-note version, and Anki TSV.
+- [ ] Complete the mini-lab or timed exercise.
+- [ ] Intentionally change/break/inspect at least one thing where applicable.
+- [ ] Save the SQL/PLSQL script or interview notes.
+- [ ] Record any weak point as Green / Yellow / Red.
 
 ---
 
-## Day 31 — Nested Tables & VARRAYs ⬜
+## Day 19 — BULK COLLECT + LIMIT ⬜
 
-**Planned date:** 2026-11-10  
-**SQL track:** SQL-capable collection concepts  
-**Oracle / PL/SQL track:** Unbounded vs bounded collections
-
-### Tutorial
-
-Nested tables are variable-size collections; VARRAYs have an explicit maximum and preserve order. Understand both PL/SQL use and SQL object-type use at a high level.
-
-### Runnable mini-lab
-
-Create simple SQL collection types, cast/query a nested collection using `TABLE(...)`, and compare with a bounded VARRAY example.
-
-### Verify
-
-You can choose a collection based on bounded size, ordering, SQL interaction, and PL/SQL-only needs.
-
-### Done when
-
-- [ ] Explain the concept in English without notes.
-- [ ] Complete the mini-lab and intentionally change or break one thing.
-- [ ] Solve at least 2–3 SQL/PLSQL exercises or review one production-style code/query sample.
-- [ ] Save the working SQL/PLSQL script in the lab repository.
-- [ ] Generate the detailed Joplin note, manual-note version, and Anki TSV.
-
----
-
-## Day 32 — BULK COLLECT ⬜
-
-**Planned date:** 2026-11-11  
+**Planned date:** 2026-12-02  
 **SQL track:** Bulk fetching  
-**Oracle / PL/SQL track:** Context switching and PGA
+**Oracle / PL/SQL track:** Context switching + PGA control
 
 ### Tutorial
 
-`BULK COLLECT` reduces SQL-to-PL/SQL context switches by fetching batches into collections. The trade-off is PGA memory.
+Bulk fetching reduces SQL↔PL/SQL context switches, but collections consume PGA. LIMIT is about bounded batching, not a magic number.
 
 ### Runnable mini-lab
 
-Fetch 10,000 rows using a cursor loop and then using BULK COLLECT. Measure elapsed time roughly and inspect collection count.
+Process a large cursor using LIMIT 100, 1000 and 10000; record elapsed time and batch counts.
 
 ### Verify
 
-You can explain the performance benefit and why unbounded bulk fetches can be dangerous.
+You can explain speed vs PGA trade-offs and why loading millions of rows at once is risky.
+
+### Interview drill
+
+- Explain the topic aloud in 60–90 seconds.
+- Answer 3–5 follow-up questions without notes.
+- For coding/tuning sessions, narrate your reasoning while solving.
 
 ### Done when
 
 - [ ] Explain the concept in English without notes.
-- [ ] Complete the mini-lab and intentionally change or break one thing.
-- [ ] Solve at least 2–3 SQL/PLSQL exercises or review one production-style code/query sample.
-- [ ] Save the working SQL/PLSQL script in the lab repository.
-- [ ] Generate the detailed Joplin note, manual-note version, and Anki TSV.
+- [ ] Complete the mini-lab or timed exercise.
+- [ ] Intentionally change/break/inspect at least one thing where applicable.
+- [ ] Save the SQL/PLSQL script or interview notes.
+- [ ] Record any weak point as Green / Yellow / Red.
 
 ---
 
-## Day 33 — BULK COLLECT with LIMIT ⬜
+## Day 20 — PL/SQL Checkpoint Mock ⬜
 
-**Planned date:** 2026-11-12  
-**SQL track:** Controlled batch fetching  
-**Oracle / PL/SQL track:** PGA-safe batching
+**Planned date:** 2026-12-03  
+**SQL track:** Core PL/SQL + cursors + collections  
+**Oracle / PL/SQL track:** Oral interview checkpoint
 
 ### Tutorial
 
-`LIMIT` lets you process large result sets in manageable batches rather than loading everything into PGA.
+This is the first dedicated PL/SQL retrieval checkpoint.
 
 ### Runnable mini-lab
 
-Process a large synthetic table in batches of 100, 1,000, and 10,000. Record elapsed time and discuss memory/performance trade-offs.
+30 min rapid-fire + 30 min coding: packages, exceptions, cursors, REF CURSOR, collection differences and BULK COLLECT/LIMIT.
 
 ### Verify
 
-You can choose a batch size experimentally rather than assuming one universal number.
+Any answer requiring notes is marked Yellow even if technically correct.
+
+### Interview drill
+
+- Explain the topic aloud in 60–90 seconds.
+- Answer 3–5 follow-up questions without notes.
+- For coding/tuning sessions, narrate your reasoning while solving.
 
 ### Done when
 
 - [ ] Explain the concept in English without notes.
-- [ ] Complete the mini-lab and intentionally change or break one thing.
-- [ ] Solve at least 2–3 SQL/PLSQL exercises or review one production-style code/query sample.
-- [ ] Save the working SQL/PLSQL script in the lab repository.
-- [ ] Generate the detailed Joplin note, manual-note version, and Anki TSV.
+- [ ] Complete the mini-lab or timed exercise.
+- [ ] Intentionally change/break/inspect at least one thing where applicable.
+- [ ] Save the SQL/PLSQL script or interview notes.
+- [ ] Record any weak point as Green / Yellow / Red.
 
 ---
 
-## Day 34 — FORALL ⬜
+## Day 21 — FORALL + SAVE EXCEPTIONS ⬜
 
-**Planned date:** 2026-11-13  
+**Planned date:** 2026-12-04  
 **SQL track:** Bulk DML  
-**Oracle / PL/SQL track:** Reducing PL/SQL-to-SQL switches
-
-### Tutorial
-
-`FORALL` sends collections of DML operations to SQL more efficiently than executing one statement per loop iteration.
-
-### Runnable mini-lab
-
-Fetch keys into a collection and update them using FORALL. Compare with a row-by-row update loop. Include INSERT and DELETE variants.
-
-### Verify
-
-You can explain BULK COLLECT as bulk read and FORALL as bulk DML.
-
-### Done when
-
-- [ ] Explain the concept in English without notes.
-- [ ] Complete the mini-lab and intentionally change or break one thing.
-- [ ] Solve at least 2–3 SQL/PLSQL exercises or review one production-style code/query sample.
-- [ ] Save the working SQL/PLSQL script in the lab repository.
-- [ ] Generate the detailed Joplin note, manual-note version, and Anki TSV.
-
----
-
-## Day 35 — SAVE EXCEPTIONS & Bulk Error Handling ⬜
-
-**Planned date:** 2026-11-14  
-**SQL track:** FORALL SAVE EXCEPTIONS  
 **Oracle / PL/SQL track:** SQL%BULK_EXCEPTIONS
 
 ### Tutorial
 
-High-volume processing needs error isolation. `SAVE EXCEPTIONS` allows FORALL to continue and report individual failures afterward.
+FORALL complements BULK COLLECT by reducing PL/SQL→SQL switches for repeated DML. Production bulk code also needs row-level error handling.
 
 ### Runnable mini-lab
 
-Create a batch with deliberately invalid rows, run FORALL SAVE EXCEPTIONS, inspect `SQL%BULK_EXCEPTIONS`, and store failures in an error table.
+Compare row-by-row DML with FORALL. Inject bad rows and capture failures with SAVE EXCEPTIONS into an error table.
 
 ### Verify
 
-You can recover row-level failure details without losing the entire batch's useful work.
+You can explain BULK COLLECT vs FORALL and recover individual error details.
+
+### Interview drill
+
+- Explain the topic aloud in 60–90 seconds.
+- Answer 3–5 follow-up questions without notes.
+- For coding/tuning sessions, narrate your reasoning while solving.
 
 ### Done when
 
 - [ ] Explain the concept in English without notes.
-- [ ] Complete the mini-lab and intentionally change or break one thing.
-- [ ] Solve at least 2–3 SQL/PLSQL exercises or review one production-style code/query sample.
-- [ ] Save the working SQL/PLSQL script in the lab repository.
-- [ ] Generate the detailed Joplin note, manual-note version, and Anki TSV.
+- [ ] Complete the mini-lab or timed exercise.
+- [ ] Intentionally change/break/inspect at least one thing where applicable.
+- [ ] Save the SQL/PLSQL script or interview notes.
+- [ ] Record any weak point as Green / Yellow / Red.
 
 ---
 
-## Day 36 — Dynamic SQL + PL/SQL Phase Assessment ⬜
+## Day 22 — Dynamic SQL + PL/SQL Phase Assessment ⬜
 
-**Planned date:** 2026-11-16  
+**Planned date:** 2026-12-05  
 **SQL track:** EXECUTE IMMEDIATE; binds  
-**Oracle / PL/SQL track:** Dynamic structure vs data values
+**Oracle / PL/SQL track:** Safe dynamic structure
 
 ### Tutorial
 
-Dynamic SQL is appropriate when SQL structure is unknown until runtime, but data values should still be bound. Finish the phase by combining packages, cursors, collections, and error handling.
+Dynamic SQL belongs where structure is genuinely runtime-dependent; bind data values and validate identifiers.
 
 ### Runnable mini-lab
 
-Build a package procedure that accepts a validated table name for a maintenance operation and binds all data values. Then complete a 45-minute PL/SQL assessment covering package, REF CURSOR, collection, and bulk processing.
+Build a safe dynamic report with whitelisted object/sort identifiers and bound values. Finish with a package/collection/bulk-processing code review.
 
 ### Verify
 
-You can explain SQL-injection risk, use `USING` binds, and score at least 80% on the PL/SQL assessment.
+You can identify SQL injection risk and score at least 80% on the phase assessment.
+
+### Interview drill
+
+- Explain the topic aloud in 60–90 seconds.
+- Answer 3–5 follow-up questions without notes.
+- For coding/tuning sessions, narrate your reasoning while solving.
 
 ### Done when
 
 - [ ] Explain the concept in English without notes.
-- [ ] Complete the mini-lab and intentionally change or break one thing.
-- [ ] Solve at least 2–3 SQL/PLSQL exercises or review one production-style code/query sample.
-- [ ] Save the working SQL/PLSQL script in the lab repository.
-- [ ] Generate the detailed Joplin note, manual-note version, and Anki TSV.
+- [ ] Complete the mini-lab or timed exercise.
+- [ ] Intentionally change/break/inspect at least one thing where applicable.
+- [ ] Save the SQL/PLSQL script or interview notes.
+- [ ] Record any weak point as Green / Yellow / Red.
 
 ---
 
 # Phase 3 — Optimizer, Execution Plans & Indexing
 
-## Day 37 — Optimizer Mental Model ⬜
+## Day 23 — Optimizer Mental Model ⬜
 
-**Planned date:** 2026-11-17  
+**Planned date:** 2026-12-07  
 **SQL track:** Cost-based optimizer  
-**Oracle / PL/SQL track:** Parsing, optimization, execution
+**Oracle / PL/SQL track:** Parse → optimize → execute
 
 ### Tutorial
 
-Understand the optimizer as a cost-based decision maker using metadata and statistics to choose access paths, join order, and algorithms.
+Understand what the optimizer is deciding before trying to tune individual SQL statements.
 
 ### Runnable mini-lab
 
-Take three equivalent queries and capture their plans. Record what Oracle chose and hypothesize why before checking details.
+Capture plans for three equivalent queries and predict access path/join choices before reading the plan.
 
 ### Verify
 
-You can distinguish SQL text, parse, optimization, execution plan, and actual execution.
+You can distinguish cost from elapsed time and explain why the optimizer needs statistics.
+
+### Interview drill
+
+- Explain the topic aloud in 60–90 seconds.
+- Answer 3–5 follow-up questions without notes.
+- For coding/tuning sessions, narrate your reasoning while solving.
 
 ### Done when
 
 - [ ] Explain the concept in English without notes.
-- [ ] Complete the mini-lab and intentionally change or break one thing.
-- [ ] Solve at least 2–3 SQL/PLSQL exercises or review one production-style code/query sample.
-- [ ] Save the working SQL/PLSQL script in the lab repository.
-- [ ] Generate the detailed Joplin note, manual-note version, and Anki TSV.
+- [ ] Complete the mini-lab or timed exercise.
+- [ ] Intentionally change/break/inspect at least one thing where applicable.
+- [ ] Save the SQL/PLSQL script or interview notes.
+- [ ] Record any weak point as Green / Yellow / Red.
 
 ---
 
-## Day 38 — EXPLAIN PLAN & DBMS_XPLAN ⬜
+## Day 24 — EXPLAIN PLAN & DBMS_XPLAN ⬜
 
-**Planned date:** 2026-11-18  
-**SQL track:** Plan reading basics  
-**Oracle / PL/SQL track:** Access paths and predicates
+**Planned date:** 2026-12-08  
+**SQL track:** Plan reading  
+**Oracle / PL/SQL track:** Access paths; predicates
 
 ### Tutorial
 
-Learn to read plans from the inside out while focusing on row sources, access paths, join methods, predicates, and estimates.
+Learn a consistent plan-reading method: row sources, access paths, join methods, estimated rows and predicates.
 
 ### Runnable mini-lab
 
-Use `EXPLAIN PLAN` and `DBMS_XPLAN.DISPLAY` on five lab queries. Annotate each operation in plain English.
+Use EXPLAIN PLAN + DBMS_XPLAN.DISPLAY on 5 queries and annotate each operation in plain English.
 
 ### Verify
 
-You can describe the plan without treating COST as elapsed time.
+You can read a plan without declaring every FULL TABLE SCAN bad.
+
+### Interview drill
+
+- Explain the topic aloud in 60–90 seconds.
+- Answer 3–5 follow-up questions without notes.
+- For coding/tuning sessions, narrate your reasoning while solving.
 
 ### Done when
 
 - [ ] Explain the concept in English without notes.
-- [ ] Complete the mini-lab and intentionally change or break one thing.
-- [ ] Solve at least 2–3 SQL/PLSQL exercises or review one production-style code/query sample.
-- [ ] Save the working SQL/PLSQL script in the lab repository.
-- [ ] Generate the detailed Joplin note, manual-note version, and Anki TSV.
+- [ ] Complete the mini-lab or timed exercise.
+- [ ] Intentionally change/break/inspect at least one thing where applicable.
+- [ ] Save the SQL/PLSQL script or interview notes.
+- [ ] Record any weak point as Green / Yellow / Red.
 
 ---
 
-## Day 39 — Actual Plans & Runtime Statistics ⬜
+## Day 25 — Executed Plans & Runtime Statistics ⬜
 
-**Planned date:** 2026-11-19  
+**Planned date:** 2026-12-09  
 **SQL track:** DISPLAY_CURSOR concepts  
 **Oracle / PL/SQL track:** Estimated vs actual rows
 
 ### Tutorial
 
-Estimated plans are useful, but tuning improves when you compare estimates with what actually happened. Learn the idea behind runtime row-source statistics and `DBMS_XPLAN.DISPLAY_CURSOR`.
+Tuning improves when you compare estimates with runtime reality where your privileges/environment allow it.
 
 ### Runnable mini-lab
 
-For a query you control, capture the executed cursor plan where privileges permit. Compare E-Rows and actual rows or document the limitation if your local edition/setup hides a metric.
+Capture an executed cursor plan and compare E-Rows/A-Rows where available. Create one case with a large estimate mismatch.
 
 ### Verify
 
-You understand why a large estimate/actual mismatch often points to statistics or data-distribution issues.
+You can explain what an estimate mismatch suggests and what you would investigate next.
+
+### Interview drill
+
+- Explain the topic aloud in 60–90 seconds.
+- Answer 3–5 follow-up questions without notes.
+- For coding/tuning sessions, narrate your reasoning while solving.
 
 ### Done when
 
 - [ ] Explain the concept in English without notes.
-- [ ] Complete the mini-lab and intentionally change or break one thing.
-- [ ] Solve at least 2–3 SQL/PLSQL exercises or review one production-style code/query sample.
-- [ ] Save the working SQL/PLSQL script in the lab repository.
-- [ ] Generate the detailed Joplin note, manual-note version, and Anki TSV.
+- [ ] Complete the mini-lab or timed exercise.
+- [ ] Intentionally change/break/inspect at least one thing where applicable.
+- [ ] Save the SQL/PLSQL script or interview notes.
+- [ ] Record any weak point as Green / Yellow / Red.
 
 ---
 
-## Day 40 — Cardinality, Selectivity & Statistics ⬜
+## Day 26 — Cardinality, Selectivity & Statistics ⬜
 
-**Planned date:** 2026-11-20  
-**SQL track:** Optimizer estimates  
-**Oracle / PL/SQL track:** DBMS_STATS concepts
+**Planned date:** 2026-12-10  
+**SQL track:** Optimizer estimates; DBMS_STATS  
+**Oracle / PL/SQL track:** Data distribution
 
 ### Tutorial
 
-Cardinality estimates drive many optimizer decisions. Statistics on tables, columns, and indexes help Oracle estimate row counts and selectivity.
+Cardinality estimates drive join order, access path and join algorithm choices.
 
 ### Runnable mini-lab
 
-Create skewed data, gather statistics, and compare plans for selective vs nonselective predicates. Record estimated rows.
+Create selective/nonselective predicates, gather stats, and compare plans before/after stats refresh.
 
 ### Verify
 
-You can explain stale statistics and why selectivity matters for access-path choice.
+You can explain stale stats, selectivity and cardinality in practical terms.
+
+### Interview drill
+
+- Explain the topic aloud in 60–90 seconds.
+- Answer 3–5 follow-up questions without notes.
+- For coding/tuning sessions, narrate your reasoning while solving.
 
 ### Done when
 
 - [ ] Explain the concept in English without notes.
-- [ ] Complete the mini-lab and intentionally change or break one thing.
-- [ ] Solve at least 2–3 SQL/PLSQL exercises or review one production-style code/query sample.
-- [ ] Save the working SQL/PLSQL script in the lab repository.
-- [ ] Generate the detailed Joplin note, manual-note version, and Anki TSV.
+- [ ] Complete the mini-lab or timed exercise.
+- [ ] Intentionally change/break/inspect at least one thing where applicable.
+- [ ] Save the SQL/PLSQL script or interview notes.
+- [ ] Record any weak point as Green / Yellow / Red.
 
 ---
 
-## Day 41 — Histograms & Data Skew ⬜
+## Day 27 — Histograms & Skew ⬜
 
-**Planned date:** 2026-11-21  
-**SQL track:** Column distribution awareness  
-**Oracle / PL/SQL track:** Skew-sensitive optimization
+**Planned date:** 2026-12-11  
+**SQL track:** Skewed distributions  
+**Oracle / PL/SQL track:** Value-sensitive plans
 
 ### Tutorial
 
-Uniform assumptions can be poor when values are highly skewed. Histograms are one mechanism Oracle can use to represent distribution.
+A column can be low-cardinality yet highly skewed; distribution matters.
 
 ### Runnable mini-lab
 
-Create a status column with 99% ACTIVE and 1% BLOCKED. Gather stats using an appropriate method and compare plan estimates for each predicate.
+Create 99% ACTIVE / 1% BLOCKED data, gather statistics and compare estimates/plans for each value.
 
 ### Verify
 
-You can explain why the same column may need different access strategies for different values.
+You can explain why different values may deserve different plans.
+
+### Interview drill
+
+- Explain the topic aloud in 60–90 seconds.
+- Answer 3–5 follow-up questions without notes.
+- For coding/tuning sessions, narrate your reasoning while solving.
 
 ### Done when
 
 - [ ] Explain the concept in English without notes.
-- [ ] Complete the mini-lab and intentionally change or break one thing.
-- [ ] Solve at least 2–3 SQL/PLSQL exercises or review one production-style code/query sample.
-- [ ] Save the working SQL/PLSQL script in the lab repository.
-- [ ] Generate the detailed Joplin note, manual-note version, and Anki TSV.
+- [ ] Complete the mini-lab or timed exercise.
+- [ ] Intentionally change/break/inspect at least one thing where applicable.
+- [ ] Save the SQL/PLSQL script or interview notes.
+- [ ] Record any weak point as Green / Yellow / Red.
 
 ---
 
-## Day 42 — B-tree Indexes ⬜
+## Day 28 — B-tree Indexes & Access Paths ⬜
 
-**Planned date:** 2026-11-23  
-**SQL track:** Core Oracle indexing  
-**Oracle / PL/SQL track:** Range and equality access
+**Planned date:** 2026-12-12  
+**SQL track:** B-tree; unique; range scan  
+**Oracle / PL/SQL track:** General-purpose indexing
 
 ### Tutorial
 
-B-tree indexes are the default general-purpose index structure. Learn when they help and the write/storage cost they introduce.
+Indexes are workload structures with read benefits and DML/storage costs.
 
 ### Runnable mini-lab
 
-Create/drop a B-tree index on a selective column and compare execution plans and logical work for a selective query.
+Create/drop indexes on selective columns and compare FULL, INDEX RANGE SCAN and UNIQUE SCAN cases.
 
 ### Verify
 
-You can state why 'index = faster' is not universally true.
+You can explain why an index may be ignored and why more indexes are not automatically better.
+
+### Interview drill
+
+- Explain the topic aloud in 60–90 seconds.
+- Answer 3–5 follow-up questions without notes.
+- For coding/tuning sessions, narrate your reasoning while solving.
 
 ### Done when
 
 - [ ] Explain the concept in English without notes.
-- [ ] Complete the mini-lab and intentionally change or break one thing.
-- [ ] Solve at least 2–3 SQL/PLSQL exercises or review one production-style code/query sample.
-- [ ] Save the working SQL/PLSQL script in the lab repository.
-- [ ] Generate the detailed Joplin note, manual-note version, and Anki TSV.
+- [ ] Complete the mini-lab or timed exercise.
+- [ ] Intentionally change/break/inspect at least one thing where applicable.
+- [ ] Save the SQL/PLSQL script or interview notes.
+- [ ] Record any weak point as Green / Yellow / Red.
 
 ---
 
-## Day 43 — Composite Indexes & Leading Columns ⬜
+## Day 29 — Composite + Function-Based Indexes ⬜
 
-**Planned date:** 2026-11-24  
-**SQL track:** Multi-column indexes  
-**Oracle / PL/SQL track:** Predicate order and access paths
+**Planned date:** 2026-12-14  
+**SQL track:** Leading columns; indexed expressions  
+**Oracle / PL/SQL track:** Predicate alignment
 
 ### Tutorial
 
-Composite indexes support multi-column access, and column order shapes which predicates can efficiently drive the index.
+Index column order and query expressions directly affect usable access paths.
 
 ### Runnable mini-lab
 
-Create `(customer_id, transaction_date)` and test customer-only, date-only, and combined predicates. Record plan differences.
+Test (customer_id, transaction_date) with different predicates. Add UPPER(name) function-based index and compare.
 
 ### Verify
 
-You can explain the leading-column principle without presenting it as an absolute optimizer law.
+You can explain the leading-column principle and sargability without overclaiming absolute rules.
+
+### Interview drill
+
+- Explain the topic aloud in 60–90 seconds.
+- Answer 3–5 follow-up questions without notes.
+- For coding/tuning sessions, narrate your reasoning while solving.
 
 ### Done when
 
 - [ ] Explain the concept in English without notes.
-- [ ] Complete the mini-lab and intentionally change or break one thing.
-- [ ] Solve at least 2–3 SQL/PLSQL exercises or review one production-style code/query sample.
-- [ ] Save the working SQL/PLSQL script in the lab repository.
-- [ ] Generate the detailed Joplin note, manual-note version, and Anki TSV.
+- [ ] Complete the mini-lab or timed exercise.
+- [ ] Intentionally change/break/inspect at least one thing where applicable.
+- [ ] Save the SQL/PLSQL script or interview notes.
+- [ ] Record any weak point as Green / Yellow / Red.
 
 ---
 
-## Day 44 — Function-Based Indexes ⬜
+## Day 30 — Bitmap + Local/Global Index Concepts ⬜
 
-**Planned date:** 2026-11-25  
-**SQL track:** Indexed expressions  
-**Oracle / PL/SQL track:** Sargability and expression matching
+**Planned date:** 2026-12-15  
+**SQL track:** Bitmap; partition-aware indexes  
+**Oracle / PL/SQL track:** Workload trade-offs
 
 ### Tutorial
 
-Function-based indexes can support predicates on expressions such as `UPPER(name)`. Prefer rewriting predicates naturally when possible before adding complexity.
+Bitmap indexes fit read-heavy analytic workloads better than concurrent OLTP. Local/global indexing will matter again in partitioning.
 
 ### Runnable mini-lab
 
-Compare `UPPER(last_name)=...` before/after a function-based index. Also rewrite a date function predicate as a range and compare.
+Create a disposable bitmap example and write a B-tree vs bitmap decision table. Review local vs global terminology.
 
 ### Verify
 
-You can identify when an expression prevents a normal index from being useful.
+You can explain bitmap DML/concurrency concerns at a high level.
+
+### Interview drill
+
+- Explain the topic aloud in 60–90 seconds.
+- Answer 3–5 follow-up questions without notes.
+- For coding/tuning sessions, narrate your reasoning while solving.
 
 ### Done when
 
 - [ ] Explain the concept in English without notes.
-- [ ] Complete the mini-lab and intentionally change or break one thing.
-- [ ] Solve at least 2–3 SQL/PLSQL exercises or review one production-style code/query sample.
-- [ ] Save the working SQL/PLSQL script in the lab repository.
-- [ ] Generate the detailed Joplin note, manual-note version, and Anki TSV.
+- [ ] Complete the mini-lab or timed exercise.
+- [ ] Intentionally change/break/inspect at least one thing where applicable.
+- [ ] Save the SQL/PLSQL script or interview notes.
+- [ ] Record any weak point as Green / Yellow / Red.
 
 ---
 
-## Day 45 — Bitmap Indexes ⬜
+## Day 31 — Join Methods ⬜
 
-**Planned date:** 2026-11-26  
-**SQL track:** Bitmap index concepts  
-**Oracle / PL/SQL track:** Read-heavy low-cardinality workloads
+**Planned date:** 2026-12-16  
+**SQL track:** Nested loops; hash; merge  
+**Oracle / PL/SQL track:** Choosing by row volume and access
 
 ### Tutorial
 
-Bitmap indexes can be efficient for low-cardinality dimensions in read-heavy warehouse workloads but are usually poor choices for high-concurrency OLTP DML.
+Interviewers often ask which join algorithm fits which workload; answer with conditions, not slogans.
 
 ### Runnable mini-lab
 
-On a disposable lab table, create a low-cardinality column and inspect a bitmap-index plan. Contrast conceptually with a B-tree under frequent updates.
+Create selective and broad joins and observe nested-loop vs hash choices. Document when merge join can appear.
 
 ### Verify
 
-You can explain bitmap vs B-tree using workload characteristics, not only cardinality.
+You can compare the three major join methods and the concept of a driving row source.
+
+### Interview drill
+
+- Explain the topic aloud in 60–90 seconds.
+- Answer 3–5 follow-up questions without notes.
+- For coding/tuning sessions, narrate your reasoning while solving.
 
 ### Done when
 
 - [ ] Explain the concept in English without notes.
-- [ ] Complete the mini-lab and intentionally change or break one thing.
-- [ ] Solve at least 2–3 SQL/PLSQL exercises or review one production-style code/query sample.
-- [ ] Save the working SQL/PLSQL script in the lab repository.
-- [ ] Generate the detailed Joplin note, manual-note version, and Anki TSV.
+- [ ] Complete the mini-lab or timed exercise.
+- [ ] Intentionally change/break/inspect at least one thing where applicable.
+- [ ] Save the SQL/PLSQL script or interview notes.
+- [ ] Record any weak point as Green / Yellow / Red.
 
 ---
 
-## Day 46 — Join Methods — Nested Loops ⬜
+## Day 32 — Bind Variables, Hard/Soft Parse ⬜
 
-**Planned date:** 2026-11-27  
-**SQL track:** Nested loop joins  
-**Oracle / PL/SQL track:** Small driving set + indexed lookup
+**Planned date:** 2026-12-17  
+**SQL track:** Bind reuse; shared pool  
+**Oracle / PL/SQL track:** Parse efficiency
 
 ### Tutorial
 
-Nested loops are often effective when a small outer row set can probe an indexed inner source efficiently.
+Bind variables are primarily about reusable SQL/cursor execution and reduced hard parsing, not convenience.
 
 ### Runnable mini-lab
 
-Build a selective join and inspect whether nested loops appears. Change the predicate to return many more rows and observe optimizer changes.
+Execute literal vs bind-style repeated statements and inspect available cursor information.
 
 ### Verify
 
-You can explain the driving-row concept and why nested loops can become expensive at scale.
+You can explain hard vs soft parse and why bind reuse matters.
+
+### Interview drill
+
+- Explain the topic aloud in 60–90 seconds.
+- Answer 3–5 follow-up questions without notes.
+- For coding/tuning sessions, narrate your reasoning while solving.
 
 ### Done when
 
 - [ ] Explain the concept in English without notes.
-- [ ] Complete the mini-lab and intentionally change or break one thing.
-- [ ] Solve at least 2–3 SQL/PLSQL exercises or review one production-style code/query sample.
-- [ ] Save the working SQL/PLSQL script in the lab repository.
-- [ ] Generate the detailed Joplin note, manual-note version, and Anki TSV.
+- [ ] Complete the mini-lab or timed exercise.
+- [ ] Intentionally change/break/inspect at least one thing where applicable.
+- [ ] Save the SQL/PLSQL script or interview notes.
+- [ ] Record any weak point as Green / Yellow / Red.
 
 ---
 
-## Day 47 — Join Methods — Hash & Merge ⬜
+## Day 33 — Bind Peeking & Adaptive Cursor Concepts ⬜
 
-**Planned date:** 2026-11-28  
-**SQL track:** Hash joins, merge joins  
-**Oracle / PL/SQL track:** Large-set join strategies
+**Planned date:** 2026-12-18  
+**SQL track:** Bind-sensitive plans  
+**Oracle / PL/SQL track:** Skew + reuse tension
 
 ### Tutorial
 
-Hash joins are common for large equality joins; merge joins sort/merge compatible row sources and can fit other patterns.
+One reusable SQL statement may not have one ideal plan when bind values have radically different selectivity.
 
 ### Runnable mini-lab
 
-Create two medium/large lab tables and compare join plans under selective and broad predicates. Record hash vs nested-loop choices.
+Use skewed data to reason about ACTIVE vs BLOCKED plans and inspect behavior supported by your local version.
 
 ### Verify
 
-You can compare the three major join methods at interview level.
+You can describe the problem without claiming behavior is identical across all Oracle releases.
+
+### Interview drill
+
+- Explain the topic aloud in 60–90 seconds.
+- Answer 3–5 follow-up questions without notes.
+- For coding/tuning sessions, narrate your reasoning while solving.
 
 ### Done when
 
 - [ ] Explain the concept in English without notes.
-- [ ] Complete the mini-lab and intentionally change or break one thing.
-- [ ] Solve at least 2–3 SQL/PLSQL exercises or review one production-style code/query sample.
-- [ ] Save the working SQL/PLSQL script in the lab repository.
-- [ ] Generate the detailed Joplin note, manual-note version, and Anki TSV.
+- [ ] Complete the mini-lab or timed exercise.
+- [ ] Intentionally change/break/inspect at least one thing where applicable.
+- [ ] Save the SQL/PLSQL script or interview notes.
+- [ ] Record any weak point as Green / Yellow / Red.
 
 ---
 
-## Day 48 — Bind Variables & Cursor Reuse ⬜
+## Day 34 — SQL Tuning Anti-Patterns ⬜
 
-**Planned date:** 2026-11-30  
-**SQL track:** Hard parse vs soft parse  
-**Oracle / PL/SQL track:** Shared pool pressure
-
-### Tutorial
-
-Bind variables allow the same SQL text to be reused across different values, reducing parsing/optimization overhead and shared-pool churn.
-
-### Runnable mini-lab
-
-Execute repeated literal queries and a bind-based equivalent. Observe available cursor information or simply compare generated SQL text and explain reuse.
-
-### Verify
-
-You can explain why binds matter beyond 'making variables easier to change'.
-
-### Done when
-
-- [ ] Explain the concept in English without notes.
-- [ ] Complete the mini-lab and intentionally change or break one thing.
-- [ ] Solve at least 2–3 SQL/PLSQL exercises or review one production-style code/query sample.
-- [ ] Save the working SQL/PLSQL script in the lab repository.
-- [ ] Generate the detailed Joplin note, manual-note version, and Anki TSV.
-
----
-
-## Day 49 — Bind Peeking & Skew ⬜
-
-**Planned date:** 2026-12-01  
-**SQL track:** Bind-sensitive plan concepts  
-**Oracle / PL/SQL track:** Adaptive cursor awareness
-
-### Tutorial
-
-At parse time, bind values and skew can influence plan selection. Learn the problem without diving too deeply into optimizer internals.
-
-### Runnable mini-lab
-
-Using your skewed status table, reason about whether one plan fits ACTIVE and BLOCKED equally well. Inspect plans available in your environment.
-
-### Verify
-
-You can describe the bind-peeking problem without claiming one behavior is guaranteed in every Oracle release.
-
-### Done when
-
-- [ ] Explain the concept in English without notes.
-- [ ] Complete the mini-lab and intentionally change or break one thing.
-- [ ] Solve at least 2–3 SQL/PLSQL exercises or review one production-style code/query sample.
-- [ ] Save the working SQL/PLSQL script in the lab repository.
-- [ ] Generate the detailed Joplin note, manual-note version, and Anki TSV.
-
----
-
-## Day 50 — Hints Fundamentals ⬜
-
-**Planned date:** 2026-12-02  
-**SQL track:** Optimizer hints  
-**Oracle / PL/SQL track:** When hints help and when they hide problems
-
-### Tutorial
-
-Hints influence optimizer choices but should not replace statistics, schema design, and SQL understanding. Incorrect or inapplicable hints may be ignored.
-
-### Runnable mini-lab
-
-Use `/*+ INDEX */`, `/*+ FULL */`, and one join-method hint on disposable queries. Compare plans and note whether Oracle honored each hint.
-
-### Verify
-
-You treat hints as controlled tools, not magic comments.
-
-### Done when
-
-- [ ] Explain the concept in English without notes.
-- [ ] Complete the mini-lab and intentionally change or break one thing.
-- [ ] Solve at least 2–3 SQL/PLSQL exercises or review one production-style code/query sample.
-- [ ] Save the working SQL/PLSQL script in the lab repository.
-- [ ] Generate the detailed Joplin note, manual-note version, and Anki TSV.
-
----
-
-## Day 51 — PARALLEL Hint ⬜
-
-**Planned date:** 2026-12-03  
-**SQL track:** Parallel query concepts  
-**Oracle / PL/SQL track:** Resource trade-offs
-
-### Tutorial
-
-Parallel execution can reduce elapsed time for large operations by consuming more CPU, I/O, and process resources. It is usually inappropriate for tiny queries.
-
-### Runnable mini-lab
-
-Test `/*+ PARALLEL(t,4) */` on a sufficiently large local table if your edition/environment supports useful parallel execution. Compare plan annotations.
-
-### Verify
-
-You can explain why parallelism trades resource consumption for potential latency improvement.
-
-### Done when
-
-- [ ] Explain the concept in English without notes.
-- [ ] Complete the mini-lab and intentionally change or break one thing.
-- [ ] Solve at least 2–3 SQL/PLSQL exercises or review one production-style code/query sample.
-- [ ] Save the working SQL/PLSQL script in the lab repository.
-- [ ] Generate the detailed Joplin note, manual-note version, and Anki TSV.
-
----
-
-## Day 52 — APPEND Hint & Direct-Path Insert ⬜
-
-**Planned date:** 2026-12-04  
-**SQL track:** INSERT /*+ APPEND */  
-**Oracle / PL/SQL track:** High-volume load concepts
-
-### Tutorial
-
-Direct-path insert is important for warehouse/batch loading. APPEND can bypass conventional insert paths and has transaction/space/concurrency implications.
-
-### Runnable mini-lab
-
-Create a staging table and compare conventional `INSERT INTO ... SELECT` with `INSERT /*+ APPEND */ ... SELECT` in a disposable target. Inspect plans/behavior available locally.
-
-### Verify
-
-You can explain APPEND as a bulk-load strategy rather than a generic INSERT accelerator.
-
-### Done when
-
-- [ ] Explain the concept in English without notes.
-- [ ] Complete the mini-lab and intentionally change or break one thing.
-- [ ] Solve at least 2–3 SQL/PLSQL exercises or review one production-style code/query sample.
-- [ ] Save the working SQL/PLSQL script in the lab repository.
-- [ ] Generate the detailed Joplin note, manual-note version, and Anki TSV.
-
----
-
-## Day 53 — SQL Tuning Anti-Patterns ⬜
-
-**Planned date:** 2026-12-05  
-**SQL track:** Implicit conversions, functions, OR patterns  
+**Planned date:** 2026-12-19  
+**SQL track:** Implicit conversions; non-sargable predicates; DISTINCT  
 **Oracle / PL/SQL track:** Plan-unfriendly SQL
 
 ### Tutorial
 
-Many performance problems start in SQL formulation: implicit datatype conversions, functions on indexed columns, broad OR conditions, unnecessary DISTINCT, or fetching columns you do not need.
+Many tuning wins come from fixing SQL before adding indexes or hints.
 
 ### Runnable mini-lab
 
-Take five intentionally poor queries and rewrite them. Capture before/after plans where meaningful.
+Refactor 5 intentionally bad queries and compare before/after plans where meaningful.
 
 ### Verify
 
-You can identify at least five common SQL formulation problems before reaching for a hint.
+You can identify common plan-hostile SQL patterns quickly in code review.
+
+### Interview drill
+
+- Explain the topic aloud in 60–90 seconds.
+- Answer 3–5 follow-up questions without notes.
+- For coding/tuning sessions, narrate your reasoning while solving.
 
 ### Done when
 
 - [ ] Explain the concept in English without notes.
-- [ ] Complete the mini-lab and intentionally change or break one thing.
-- [ ] Solve at least 2–3 SQL/PLSQL exercises or review one production-style code/query sample.
-- [ ] Save the working SQL/PLSQL script in the lab repository.
-- [ ] Generate the detailed Joplin note, manual-note version, and Anki TSV.
+- [ ] Complete the mini-lab or timed exercise.
+- [ ] Intentionally change/break/inspect at least one thing where applicable.
+- [ ] Save the SQL/PLSQL script or interview notes.
+- [ ] Record any weak point as Green / Yellow / Red.
 
 ---
 
-## Day 54 — Performance Phase Assessment ⬜
+## Day 35 — Hints, PARALLEL & APPEND ⬜
 
-**Planned date:** 2026-12-07  
-**SQL track:** Plan reading and index decisions  
+**Planned date:** 2026-12-21  
+**SQL track:** INDEX/FULL/join hints; PARALLEL; APPEND  
+**Oracle / PL/SQL track:** Controlled optimizer/load influence
+
+### Tutorial
+
+Hints are tools, not magic. Learn optimizer hints and the two advanced hints already seen in interviews.
+
+### Runnable mini-lab
+
+Test INDEX/FULL and one join hint; test PARALLEL and APPEND in a disposable high-volume lab where supported.
+
+### Verify
+
+You can explain when Oracle may ignore a hint, resource trade-offs of PARALLEL, and direct-path intent of APPEND.
+
+### Interview drill
+
+- Explain the topic aloud in 60–90 seconds.
+- Answer 3–5 follow-up questions without notes.
+- For coding/tuning sessions, narrate your reasoning while solving.
+
+### Done when
+
+- [ ] Explain the concept in English without notes.
+- [ ] Complete the mini-lab or timed exercise.
+- [ ] Intentionally change/break/inspect at least one thing where applicable.
+- [ ] Save the SQL/PLSQL script or interview notes.
+- [ ] Record any weak point as Green / Yellow / Red.
+
+---
+
+## Day 36 — Performance Mock Interview #2 ⬜
+
+**Planned date:** 2026-12-22  
+**SQL track:** Plans; indexes; optimizer  
 **Oracle / PL/SQL track:** Evidence-based tuning
 
 ### Tutorial
 
-Finish Phase 3 with an evidence-first tuning exercise.
+No new theory: turn performance knowledge into concise interview answers.
 
 ### Runnable mini-lab
 
-Given three slow queries and schemas, propose changes only after reading the plans. Include one case where the correct answer is 'keep the full table scan'.
+Review 3 plans, recommend or reject indexes, explain stats/cardinality, then answer 15 rapid-fire tuning questions.
 
 ### Verify
 
-You can defend each tuning decision using cardinality, selectivity, access paths, or workload—not intuition alone.
+You can defend every recommendation with evidence rather than 'indexes are faster'.
+
+### Interview drill
+
+- Explain the topic aloud in 60–90 seconds.
+- Answer 3–5 follow-up questions without notes.
+- For coding/tuning sessions, narrate your reasoning while solving.
 
 ### Done when
 
 - [ ] Explain the concept in English without notes.
-- [ ] Complete the mini-lab and intentionally change or break one thing.
-- [ ] Solve at least 2–3 SQL/PLSQL exercises or review one production-style code/query sample.
-- [ ] Save the working SQL/PLSQL script in the lab repository.
-- [ ] Generate the detailed Joplin note, manual-note version, and Anki TSV.
+- [ ] Complete the mini-lab or timed exercise.
+- [ ] Intentionally change/break/inspect at least one thing where applicable.
+- [ ] Save the SQL/PLSQL script or interview notes.
+- [ ] Record any weak point as Green / Yellow / Red.
 
 ---
 
-# Phase 4 — Partitioning & High-Volume Data Loading
+# Phase 4 — Partitioning & High-Volume Loading
 
-## Day 55 — Partitioning Fundamentals ⬜
+## Day 37 — Partitioning Fundamentals + Range ⬜
 
-**Planned date:** 2026-12-08  
-**SQL track:** Why partition; partition keys  
-**Oracle / PL/SQL track:** Large-table manageability and pruning
+**Planned date:** 2026-12-23  
+**SQL track:** Partition keys; RANGE  
+**Oracle / PL/SQL track:** Large-table manageability
 
 ### Tutorial
 
-Partitioning divides one logical table into partitions and can improve manageability and query efficiency when predicates align with partition keys.
+Partitioning is both a manageability and pruning tool. Start from workload and retention needs.
 
 ### Runnable mini-lab
 
-Create a simple range-partitioned transaction table by date and load several months of data.
+Create monthly range partitions for transactions and query one month. Inspect partition start/stop in the plan.
 
 ### Verify
 
-You can explain partitioning vs indexing and why partitioning is not horizontal sharding.
+You can explain partitioning vs indexing and why date-based range is common.
+
+### Interview drill
+
+- Explain the topic aloud in 60–90 seconds.
+- Answer 3–5 follow-up questions without notes.
+- For coding/tuning sessions, narrate your reasoning while solving.
 
 ### Done when
 
 - [ ] Explain the concept in English without notes.
-- [ ] Complete the mini-lab and intentionally change or break one thing.
-- [ ] Solve at least 2–3 SQL/PLSQL exercises or review one production-style code/query sample.
-- [ ] Save the working SQL/PLSQL script in the lab repository.
-- [ ] Generate the detailed Joplin note, manual-note version, and Anki TSV.
+- [ ] Complete the mini-lab or timed exercise.
+- [ ] Intentionally change/break/inspect at least one thing where applicable.
+- [ ] Save the SQL/PLSQL script or interview notes.
+- [ ] Record any weak point as Green / Yellow / Red.
 
 ---
 
-## Day 56 — Range Partitioning ⬜
+## Day 38 — Interval, List & Hash Partitioning ⬜
 
-**Planned date:** 2026-12-09  
-**SQL track:** RANGE partitions  
-**Oracle / PL/SQL track:** Date/time data
+**Planned date:** 2026-12-24  
+**SQL track:** INTERVAL; LIST; HASH  
+**Oracle / PL/SQL track:** Partition strategy selection
 
 ### Tutorial
 
-Range partitioning is a natural fit for time-based transactional and warehouse data.
+Know the major Oracle partitioning types and what problem each solves.
 
 ### Runnable mini-lab
 
-Create monthly partitions, query one month, and inspect partition information and plan partition-start/stop information.
+Create small interval, list and hash examples and insert enough rows to inspect placement.
 
 ### Verify
 
-You can choose sensible boundaries and explain MAXVALUE usage.
+Given a workload, you can choose among range/interval/list/hash and justify it.
+
+### Interview drill
+
+- Explain the topic aloud in 60–90 seconds.
+- Answer 3–5 follow-up questions without notes.
+- For coding/tuning sessions, narrate your reasoning while solving.
 
 ### Done when
 
 - [ ] Explain the concept in English without notes.
-- [ ] Complete the mini-lab and intentionally change or break one thing.
-- [ ] Solve at least 2–3 SQL/PLSQL exercises or review one production-style code/query sample.
-- [ ] Save the working SQL/PLSQL script in the lab repository.
-- [ ] Generate the detailed Joplin note, manual-note version, and Anki TSV.
+- [ ] Complete the mini-lab or timed exercise.
+- [ ] Intentionally change/break/inspect at least one thing where applicable.
+- [ ] Save the SQL/PLSQL script or interview notes.
+- [ ] Record any weak point as Green / Yellow / Red.
 
 ---
 
-## Day 57 — Interval Partitioning ⬜
+## Day 39 — Composite Partitioning ⬜
 
-**Planned date:** 2026-12-10  
-**SQL track:** Automatic range extension  
-**Oracle / PL/SQL track:** Rolling time-series tables
-
-### Tutorial
-
-Interval partitioning extends range partitioning by automatically creating future interval partitions as data arrives.
-
-### Runnable mini-lab
-
-Create an interval-partitioned table by month, insert data for a new month, and inspect the automatically created partition.
-
-### Verify
-
-You can explain range vs interval partitioning.
-
-### Done when
-
-- [ ] Explain the concept in English without notes.
-- [ ] Complete the mini-lab and intentionally change or break one thing.
-- [ ] Solve at least 2–3 SQL/PLSQL exercises or review one production-style code/query sample.
-- [ ] Save the working SQL/PLSQL script in the lab repository.
-- [ ] Generate the detailed Joplin note, manual-note version, and Anki TSV.
-
----
-
-## Day 58 — List Partitioning ⬜
-
-**Planned date:** 2026-12-11  
-**SQL track:** LIST partitions  
-**Oracle / PL/SQL track:** Discrete business categories
-
-### Tutorial
-
-List partitioning groups explicit values such as region, channel, or business line.
-
-### Runnable mini-lab
-
-Partition a small table by region codes and test pruning using an equality predicate.
-
-### Verify
-
-You can identify when list partitioning is more natural than range.
-
-### Done when
-
-- [ ] Explain the concept in English without notes.
-- [ ] Complete the mini-lab and intentionally change or break one thing.
-- [ ] Solve at least 2–3 SQL/PLSQL exercises or review one production-style code/query sample.
-- [ ] Save the working SQL/PLSQL script in the lab repository.
-- [ ] Generate the detailed Joplin note, manual-note version, and Anki TSV.
-
----
-
-## Day 59 — Hash Partitioning ⬜
-
-**Planned date:** 2026-12-12  
-**SQL track:** HASH partitions  
-**Oracle / PL/SQL track:** Even distribution
-
-### Tutorial
-
-Hash partitioning distributes rows across a fixed number of partitions using a hash key, useful when there is no meaningful range/list split but distribution matters.
-
-### Runnable mini-lab
-
-Create a hash-partitioned account-events table and inspect row distribution by partition.
-
-### Verify
-
-You can explain hash partitioning without confusing it with application-level sharding.
-
-### Done when
-
-- [ ] Explain the concept in English without notes.
-- [ ] Complete the mini-lab and intentionally change or break one thing.
-- [ ] Solve at least 2–3 SQL/PLSQL exercises or review one production-style code/query sample.
-- [ ] Save the working SQL/PLSQL script in the lab repository.
-- [ ] Generate the detailed Joplin note, manual-note version, and Anki TSV.
-
----
-
-## Day 60 — Composite Partitioning ⬜
-
-**Planned date:** 2026-12-14  
-**SQL track:** Range-Hash / Range-List concepts  
+**Planned date:** 2026-12-25  
+**SQL track:** Range-hash; range-list  
 **Oracle / PL/SQL track:** Two-dimensional organization
 
 ### Tutorial
 
-Composite partitioning first partitions by one strategy and subpartitions by another, combining manageability and distribution goals.
+Composite partitioning combines lifecycle/query boundaries with secondary distribution or categories.
 
 ### Runnable mini-lab
 
-Create a range-hash table for monthly transactions distributed by account ID. Query one month/account combination and inspect pruning.
+Create a range-hash transaction table by month/account and inspect pruning/distribution.
 
 ### Verify
 
-You can state a real reason to choose composite partitioning instead of doing it for complexity's sake.
+You can name a real reason to use composite partitioning instead of adding complexity by default.
+
+### Interview drill
+
+- Explain the topic aloud in 60–90 seconds.
+- Answer 3–5 follow-up questions without notes.
+- For coding/tuning sessions, narrate your reasoning while solving.
 
 ### Done when
 
 - [ ] Explain the concept in English without notes.
-- [ ] Complete the mini-lab and intentionally change or break one thing.
-- [ ] Solve at least 2–3 SQL/PLSQL exercises or review one production-style code/query sample.
-- [ ] Save the working SQL/PLSQL script in the lab repository.
-- [ ] Generate the detailed Joplin note, manual-note version, and Anki TSV.
+- [ ] Complete the mini-lab or timed exercise.
+- [ ] Intentionally change/break/inspect at least one thing where applicable.
+- [ ] Save the SQL/PLSQL script or interview notes.
+- [ ] Record any weak point as Green / Yellow / Red.
 
 ---
 
-## Day 61 — Partition Pruning ⬜
+## Day 40 — Partitioning Checkpoint Mock ⬜
 
-**Planned date:** 2026-12-15  
-**SQL track:** Partition elimination  
+**Planned date:** 2026-12-26  
+**SQL track:** Partition type selection  
+**Oracle / PL/SQL track:** Rapid-fire architecture questions
+
+### Tutorial
+
+Pause early in this phase because partitioning was a known gap.
+
+### Runnable mini-lab
+
+Answer 20 short scenarios selecting partition type/key and explaining trade-offs. Include time series, region and evenly distributed IDs.
+
+### Verify
+
+You can answer core partitioning questions without notes in under 90 seconds each.
+
+### Interview drill
+
+- Explain the topic aloud in 60–90 seconds.
+- Answer 3–5 follow-up questions without notes.
+- For coding/tuning sessions, narrate your reasoning while solving.
+
+### Done when
+
+- [ ] Explain the concept in English without notes.
+- [ ] Complete the mini-lab or timed exercise.
+- [ ] Intentionally change/break/inspect at least one thing where applicable.
+- [ ] Save the SQL/PLSQL script or interview notes.
+- [ ] Record any weak point as Green / Yellow / Red.
+
+---
+
+## Day 41 — Partition Pruning ⬜
+
+**Planned date:** 2026-12-28  
+**SQL track:** Static/dynamic pruning concepts  
 **Oracle / PL/SQL track:** Predicate design
 
 ### Tutorial
 
-Partition pruning allows Oracle to avoid partitions that cannot contain qualifying rows. It is one of the main performance reasons to align partition keys with common filters.
+Pruning matters only if Oracle can exclude irrelevant partitions based on predicates and plan structure.
 
 ### Runnable mini-lab
 
-Write pruning-friendly date predicates and intentionally non-friendly variants. Compare plan partition ranges.
+Compare pruning-friendly date predicates with intentionally awkward variants and inspect PSTART/PSTOP.
 
 ### Verify
 
-You can identify whether a plan prunes and explain how the predicate enabled or prevented it.
+You can identify pruning in a plan and explain why a predicate enables or hinders it.
+
+### Interview drill
+
+- Explain the topic aloud in 60–90 seconds.
+- Answer 3–5 follow-up questions without notes.
+- For coding/tuning sessions, narrate your reasoning while solving.
 
 ### Done when
 
 - [ ] Explain the concept in English without notes.
-- [ ] Complete the mini-lab and intentionally change or break one thing.
-- [ ] Solve at least 2–3 SQL/PLSQL exercises or review one production-style code/query sample.
-- [ ] Save the working SQL/PLSQL script in the lab repository.
-- [ ] Generate the detailed Joplin note, manual-note version, and Anki TSV.
+- [ ] Complete the mini-lab or timed exercise.
+- [ ] Intentionally change/break/inspect at least one thing where applicable.
+- [ ] Save the SQL/PLSQL script or interview notes.
+- [ ] Record any weak point as Green / Yellow / Red.
 
 ---
 
-## Day 62 — Local vs Global Partitioned Indexes ⬜
-
-**Planned date:** 2026-12-16  
-**SQL track:** Partition-aware indexes  
-**Oracle / PL/SQL track:** Maintenance trade-offs
-
-### Tutorial
-
-Local indexes align index partitions with table partitions and simplify many maintenance operations; global indexes span table partitions and support other access needs.
-
-### Runnable mini-lab
-
-Create one local and one global index on disposable partitioned tables. Perform a partition maintenance operation and inspect index state/structure.
-
-### Verify
-
-You can explain local vs global index trade-offs at developer level.
-
-### Done when
-
-- [ ] Explain the concept in English without notes.
-- [ ] Complete the mini-lab and intentionally change or break one thing.
-- [ ] Solve at least 2–3 SQL/PLSQL exercises or review one production-style code/query sample.
-- [ ] Save the working SQL/PLSQL script in the lab repository.
-- [ ] Generate the detailed Joplin note, manual-note version, and Anki TSV.
-
----
-
-## Day 63 — Partition Exchange ⬜
-
-**Planned date:** 2026-12-17  
-**SQL track:** EXCHANGE PARTITION  
-**Oracle / PL/SQL track:** Metadata-oriented high-volume loading
-
-### Tutorial
-
-Partition exchange swaps a compatible standalone table with a target partition, enabling extremely fast batch-loading patterns because conventional row-by-row movement is avoided.
-
-### Runnable mini-lab
-
-Create a staging table compatible with one target partition, load it, validate row ranges, and perform `ALTER TABLE ... EXCHANGE PARTITION ...`. Verify where the rows are afterward.
-
-### Verify
-
-You can explain why compatibility, constraints, and validation matter before exchange.
-
-### Done when
-
-- [ ] Explain the concept in English without notes.
-- [ ] Complete the mini-lab and intentionally change or break one thing.
-- [ ] Solve at least 2–3 SQL/PLSQL exercises or review one production-style code/query sample.
-- [ ] Save the working SQL/PLSQL script in the lab repository.
-- [ ] Generate the detailed Joplin note, manual-note version, and Anki TSV.
-
----
-
-## Day 64 — Partition Maintenance ⬜
-
-**Planned date:** 2026-12-18  
-**SQL track:** ADD/SPLIT/MERGE/TRUNCATE/DROP concepts  
-**Oracle / PL/SQL track:** Lifecycle management
-
-### Tutorial
-
-Partitioning is also a data-lifecycle tool. Learn the maintenance operations commonly used in rolling-window systems.
-
-### Runnable mini-lab
-
-On a disposable table, add a future partition and truncate/drop an old one. If supported in your setup, experiment with split/merge.
-
-### Verify
-
-You can describe how partition maintenance can replace massive DELETE operations in some designs.
-
-### Done when
-
-- [ ] Explain the concept in English without notes.
-- [ ] Complete the mini-lab and intentionally change or break one thing.
-- [ ] Solve at least 2–3 SQL/PLSQL exercises or review one production-style code/query sample.
-- [ ] Save the working SQL/PLSQL script in the lab repository.
-- [ ] Generate the detailed Joplin note, manual-note version, and Anki TSV.
-
----
-
-## Day 65 — CTAS & Staging Patterns ⬜
-
-**Planned date:** 2026-12-19  
-**SQL track:** CREATE TABLE AS SELECT  
-**Oracle / PL/SQL track:** Fast intermediate data creation
-
-### Tutorial
-
-CTAS is a powerful set-based way to materialize transformed data, often useful in ETL and migration workflows.
-
-### Runnable mini-lab
-
-Build a transformed staging table with CTAS, gather stats, index it, and compare with inserting row-by-row.
-
-### Verify
-
-You can explain when CTAS is appropriate and why it is not always a permanent-data design.
-
-### Done when
-
-- [ ] Explain the concept in English without notes.
-- [ ] Complete the mini-lab and intentionally change or break one thing.
-- [ ] Solve at least 2–3 SQL/PLSQL exercises or review one production-style code/query sample.
-- [ ] Save the working SQL/PLSQL script in the lab repository.
-- [ ] Generate the detailed Joplin note, manual-note version, and Anki TSV.
-
----
-
-## Day 66 — High-Volume MERGE ⬜
-
-**Planned date:** 2026-12-21  
-**SQL track:** MERGE at scale  
-**Oracle / PL/SQL track:** Staging-to-target synchronization
-
-### Tutorial
-
-MERGE is common in batch integration but can become expensive when source/target matching is poorly indexed or the change set is huge.
-
-### Runnable mini-lab
-
-Load a staging delta, index join keys, run MERGE, inspect the plan, and compare with a case missing the supporting index.
-
-### Verify
-
-You can identify the join condition as a key performance driver.
-
-### Done when
-
-- [ ] Explain the concept in English without notes.
-- [ ] Complete the mini-lab and intentionally change or break one thing.
-- [ ] Solve at least 2–3 SQL/PLSQL exercises or review one production-style code/query sample.
-- [ ] Save the working SQL/PLSQL script in the lab repository.
-- [ ] Generate the detailed Joplin note, manual-note version, and Anki TSV.
-
----
-
-## Day 67 — Parallel DML ⬜
-
-**Planned date:** 2026-12-22  
-**SQL track:** Parallel INSERT/UPDATE/MERGE concepts  
-**Oracle / PL/SQL track:** Controlled resource use
-
-### Tutorial
-
-Parallel DML can accelerate large changes but requires intentional session/statement configuration and increases system resource consumption.
-
-### Runnable mini-lab
-
-In a disposable lab and only if supported, enable parallel DML, run a large insert/update with parallel hints, then disable it. Record behavior.
-
-### Verify
-
-You can explain why parallel DML belongs in controlled batch windows rather than ordinary OLTP requests.
-
-### Done when
-
-- [ ] Explain the concept in English without notes.
-- [ ] Complete the mini-lab and intentionally change or break one thing.
-- [ ] Solve at least 2–3 SQL/PLSQL exercises or review one production-style code/query sample.
-- [ ] Save the working SQL/PLSQL script in the lab repository.
-- [ ] Generate the detailed Joplin note, manual-note version, and Anki TSV.
-
----
-
-## Day 68 — Large Deletes & Data Lifecycle ⬜
-
-**Planned date:** 2026-12-23  
-**SQL track:** DELETE vs partition operations  
-**Oracle / PL/SQL track:** Undo/redo and batch strategy
-
-### Tutorial
-
-Deleting millions of rows can generate substantial undo/redo and lock work. Sometimes partition lifecycle operations or chunking are safer designs.
-
-### Runnable mini-lab
-
-Compare deleting old rows from an unpartitioned table with truncating/dropping an old partition in a partitioned copy. Do this only on lab data.
-
-### Verify
-
-You can choose between DML cleanup and partition maintenance based on retention design.
-
-### Done when
-
-- [ ] Explain the concept in English without notes.
-- [ ] Complete the mini-lab and intentionally change or break one thing.
-- [ ] Solve at least 2–3 SQL/PLSQL exercises or review one production-style code/query sample.
-- [ ] Save the working SQL/PLSQL script in the lab repository.
-- [ ] Generate the detailed Joplin note, manual-note version, and Anki TSV.
-
----
-
-## Day 69 — GTT vs Staging vs Collection — Revisited ⬜
-
-**Planned date:** 2026-12-24  
-**SQL track:** Intermediate-data architecture  
-**Oracle / PL/SQL track:** Memory, persistence, restartability
-
-### Tutorial
-
-Revisit temporary-data choices now that you understand bulk PL/SQL and high-volume SQL. The right tool depends on row volume, cross-statement reuse, SQL visibility, restart requirements, and memory.
-
-### Runnable mini-lab
-
-For three scenarios—10k lookup values, 5M intermediate rows, restartable overnight batch—choose collection, GTT, or permanent staging and justify each.
-
-### Verify
-
-You can make the choice from requirements rather than habit.
-
-### Done when
-
-- [ ] Explain the concept in English without notes.
-- [ ] Complete the mini-lab and intentionally change or break one thing.
-- [ ] Solve at least 2–3 SQL/PLSQL exercises or review one production-style code/query sample.
-- [ ] Save the working SQL/PLSQL script in the lab repository.
-- [ ] Generate the detailed Joplin note, manual-note version, and Anki TSV.
-
----
-
-## Day 70 — Partitioning & Load Phase Assessment ⬜
-
-**Planned date:** 2026-12-25  
-**SQL track:** High-volume architecture  
-**Oracle / PL/SQL track:** Explain + implement
-
-### Tutorial
-
-Close Phase 4 by designing a realistic monthly transaction load.
-
-### Runnable mini-lab
-
-Design: stage 5M rows, validate, load a monthly partition, index appropriately, and make it queryable. Use partition exchange or direct-path insert where appropriate and explain the choice.
-
-### Verify
-
-Your design includes pruning, index implications, statistics, and recovery considerations.
-
-### Done when
-
-- [ ] Explain the concept in English without notes.
-- [ ] Complete the mini-lab and intentionally change or break one thing.
-- [ ] Solve at least 2–3 SQL/PLSQL exercises or review one production-style code/query sample.
-- [ ] Save the working SQL/PLSQL script in the lab repository.
-- [ ] Generate the detailed Joplin note, manual-note version, and Anki TSV.
-
----
-
-# Phase 5 — Transactions, Concurrency & Production Engineering
-
-## Day 71 — Oracle Read Consistency & Transactions ⬜
-
-**Planned date:** 2026-12-26  
-**SQL track:** MVCC/read consistency concepts  
-**Oracle / PL/SQL track:** Undo and statement consistency
-
-### Tutorial
-
-Oracle readers generally do not block writers in the same way as simplistic lock models suggest; read consistency relies heavily on undo and SCNs.
-
-### Runnable mini-lab
-
-Open two sessions. Update rows without committing in one and query them from the other. Observe what the second session sees.
-
-### Verify
-
-You can explain consistent reads at a developer level without claiming uncommitted changes are visible.
-
-### Done when
-
-- [ ] Explain the concept in English without notes.
-- [ ] Complete the mini-lab and intentionally change or break one thing.
-- [ ] Solve at least 2–3 SQL/PLSQL exercises or review one production-style code/query sample.
-- [ ] Save the working SQL/PLSQL script in the lab repository.
-- [ ] Generate the detailed Joplin note, manual-note version, and Anki TSV.
-
----
-
-## Day 72 — Row Locking & Blocking ⬜
-
-**Planned date:** 2026-12-28  
-**SQL track:** DML locks  
-**Oracle / PL/SQL track:** Wait chains
-
-### Tutorial
-
-DML locks protect modified rows until transaction completion. Blocking is normal coordination; the problem is prolonged or unexpected blocking.
-
-### Runnable mini-lab
-
-Use two sessions to update the same row and observe the wait. Commit/rollback the blocker and observe release.
-
-### Verify
-
-You can distinguish blocker vs blocked session and explain why premature commits are not the universal fix.
-
-### Done when
-
-- [ ] Explain the concept in English without notes.
-- [ ] Complete the mini-lab and intentionally change or break one thing.
-- [ ] Solve at least 2–3 SQL/PLSQL exercises or review one production-style code/query sample.
-- [ ] Save the working SQL/PLSQL script in the lab repository.
-- [ ] Generate the detailed Joplin note, manual-note version, and Anki TSV.
-
----
-
-## Day 73 — Deadlocks ⬜
+## Day 42 — Local vs Global Partitioned Indexes ⬜
 
 **Planned date:** 2026-12-29  
-**SQL track:** Circular lock dependency  
+**SQL track:** LOCAL/GLOBAL  
+**Oracle / PL/SQL track:** Maintenance vs access needs
+
+### Tutorial
+
+Partition-aware index design is a common follow-up to partitioning questions.
+
+### Runnable mini-lab
+
+Create local and global indexes on disposable partitioned tables, then perform a maintenance operation and inspect consequences.
+
+### Verify
+
+You can explain why local indexes simplify partition maintenance and when global access may still be needed.
+
+### Interview drill
+
+- Explain the topic aloud in 60–90 seconds.
+- Answer 3–5 follow-up questions without notes.
+- For coding/tuning sessions, narrate your reasoning while solving.
+
+### Done when
+
+- [ ] Explain the concept in English without notes.
+- [ ] Complete the mini-lab or timed exercise.
+- [ ] Intentionally change/break/inspect at least one thing where applicable.
+- [ ] Save the SQL/PLSQL script or interview notes.
+- [ ] Record any weak point as Green / Yellow / Red.
+
+---
+
+## Day 43 — Partition Exchange ⬜
+
+**Planned date:** 2026-12-30  
+**SQL track:** EXCHANGE PARTITION  
+**Oracle / PL/SQL track:** Fast batch loading
+
+### Tutorial
+
+Partition exchange is one of the highest-value advanced Oracle/ETL interview topics from your feedback.
+
+### Runnable mini-lab
+
+Build a compatible standalone staging table, load/validate it, exchange it with a target partition and verify row locations afterward.
+
+### Verify
+
+You can explain 'metadata-oriented swap' plus compatibility/validation requirements.
+
+### Interview drill
+
+- Explain the topic aloud in 60–90 seconds.
+- Answer 3–5 follow-up questions without notes.
+- For coding/tuning sessions, narrate your reasoning while solving.
+
+### Done when
+
+- [ ] Explain the concept in English without notes.
+- [ ] Complete the mini-lab or timed exercise.
+- [ ] Intentionally change/break/inspect at least one thing where applicable.
+- [ ] Save the SQL/PLSQL script or interview notes.
+- [ ] Record any weak point as Green / Yellow / Red.
+
+---
+
+## Day 44 — Partition Maintenance ⬜
+
+**Planned date:** 2026-12-31  
+**SQL track:** ADD/SPLIT/MERGE/TRUNCATE/DROP  
+**Oracle / PL/SQL track:** Data lifecycle
+
+### Tutorial
+
+Partitioning can turn massive row-level retention work into partition-level maintenance.
+
+### Runnable mini-lab
+
+Add a future partition and truncate/drop an old one on lab data; review split/merge concepts.
+
+### Verify
+
+You can explain when partition maintenance is preferable to millions of DELETEs.
+
+### Interview drill
+
+- Explain the topic aloud in 60–90 seconds.
+- Answer 3–5 follow-up questions without notes.
+- For coding/tuning sessions, narrate your reasoning while solving.
+
+### Done when
+
+- [ ] Explain the concept in English without notes.
+- [ ] Complete the mini-lab or timed exercise.
+- [ ] Intentionally change/break/inspect at least one thing where applicable.
+- [ ] Save the SQL/PLSQL script or interview notes.
+- [ ] Record any weak point as Green / Yellow / Red.
+
+---
+
+## Day 45 — CTAS, Staging & Direct-Path Loads ⬜
+
+**Planned date:** 2027-01-01  
+**SQL track:** CTAS; staging; APPEND  
+**Oracle / PL/SQL track:** High-throughput data movement
+
+### Tutorial
+
+High-volume Oracle development often combines staging, CTAS, direct-path insert, statistics and partition operations.
+
+### Runnable mini-lab
+
+Create transformed staging data with CTAS, gather stats, then load a target with conventional vs APPEND insert.
+
+### Verify
+
+You can describe the load path and recovery implications rather than just quoting syntax.
+
+### Interview drill
+
+- Explain the topic aloud in 60–90 seconds.
+- Answer 3–5 follow-up questions without notes.
+- For coding/tuning sessions, narrate your reasoning while solving.
+
+### Done when
+
+- [ ] Explain the concept in English without notes.
+- [ ] Complete the mini-lab or timed exercise.
+- [ ] Intentionally change/break/inspect at least one thing where applicable.
+- [ ] Save the SQL/PLSQL script or interview notes.
+- [ ] Record any weak point as Green / Yellow / Red.
+
+---
+
+## Day 46 — MERGE at Scale + Parallel DML ⬜
+
+**Planned date:** 2027-01-02  
+**SQL track:** Large MERGE; parallel DML  
+**Oracle / PL/SQL track:** Controlled batch throughput
+
+### Tutorial
+
+Scale changes the trade-offs of MERGE and DML. Matching indexes, data volume and resource windows matter.
+
+### Runnable mini-lab
+
+Load a delta table, MERGE with/without supporting key index, and experiment with parallel DML only in the disposable lab.
+
+### Verify
+
+You can explain why parallel DML belongs in controlled batch workloads.
+
+### Interview drill
+
+- Explain the topic aloud in 60–90 seconds.
+- Answer 3–5 follow-up questions without notes.
+- For coding/tuning sessions, narrate your reasoning while solving.
+
+### Done when
+
+- [ ] Explain the concept in English without notes.
+- [ ] Complete the mini-lab or timed exercise.
+- [ ] Intentionally change/break/inspect at least one thing where applicable.
+- [ ] Save the SQL/PLSQL script or interview notes.
+- [ ] Record any weak point as Green / Yellow / Red.
+
+---
+
+## Day 47 — Intermediate Data Architecture ⬜
+
+**Planned date:** 2027-01-04  
+**SQL track:** GTT vs collection vs permanent staging  
+**Oracle / PL/SQL track:** Restartability + memory + SQL visibility
+
+### Tutorial
+
+Revisit intermediate-data choices now that you understand bulk PL/SQL and high-volume SQL.
+
+### Runnable mini-lab
+
+Choose a design for 10k lookup values, 5M intermediate rows, and a restartable overnight batch. Implement one.
+
+### Verify
+
+You can justify the choice using volume, PGA, SQL visibility, cross-statement reuse and restart needs.
+
+### Interview drill
+
+- Explain the topic aloud in 60–90 seconds.
+- Answer 3–5 follow-up questions without notes.
+- For coding/tuning sessions, narrate your reasoning while solving.
+
+### Done when
+
+- [ ] Explain the concept in English without notes.
+- [ ] Complete the mini-lab or timed exercise.
+- [ ] Intentionally change/break/inspect at least one thing where applicable.
+- [ ] Save the SQL/PLSQL script or interview notes.
+- [ ] Record any weak point as Green / Yellow / Red.
+
+---
+
+## Day 48 — High-Volume Load Assessment ⬜
+
+**Planned date:** 2027-01-05  
+**SQL track:** Partition exchange; pruning; APPEND; MERGE  
+**Oracle / PL/SQL track:** End-to-end load design
+
+### Tutorial
+
+Design a realistic batch rather than discussing each feature in isolation.
+
+### Runnable mini-lab
+
+Design a 5M-row monthly load: stage, validate, transform, load/exchange, index/stats, recover and validate. Explain alternatives.
+
+### Verify
+
+Your design covers performance, correctness, observability and safe restart.
+
+### Interview drill
+
+- Explain the topic aloud in 60–90 seconds.
+- Answer 3–5 follow-up questions without notes.
+- For coding/tuning sessions, narrate your reasoning while solving.
+
+### Done when
+
+- [ ] Explain the concept in English without notes.
+- [ ] Complete the mini-lab or timed exercise.
+- [ ] Intentionally change/break/inspect at least one thing where applicable.
+- [ ] Save the SQL/PLSQL script or interview notes.
+- [ ] Record any weak point as Green / Yellow / Red.
+
+---
+
+# Phase 5 — Transactions & Production Engineering
+
+## Day 49 — Read Consistency & MVCC ⬜
+
+**Planned date:** 2027-01-06  
+**SQL track:** Undo; statement consistency  
+**Oracle / PL/SQL track:** Oracle transaction model
+
+### Tutorial
+
+Oracle read consistency is a core production concept and differentiates good Oracle answers from generic database answers.
+
+### Runnable mini-lab
+
+Use two sessions: update without commit in A, query in B, then commit/rollback and observe visibility.
+
+### Verify
+
+You can explain why readers generally see a consistent committed view rather than another session's uncommitted changes.
+
+### Interview drill
+
+- Explain the topic aloud in 60–90 seconds.
+- Answer 3–5 follow-up questions without notes.
+- For coding/tuning sessions, narrate your reasoning while solving.
+
+### Done when
+
+- [ ] Explain the concept in English without notes.
+- [ ] Complete the mini-lab or timed exercise.
+- [ ] Intentionally change/break/inspect at least one thing where applicable.
+- [ ] Save the SQL/PLSQL script or interview notes.
+- [ ] Record any weak point as Green / Yellow / Red.
+
+---
+
+## Day 50 — Locks, Blocking & SELECT FOR UPDATE ⬜
+
+**Planned date:** 2027-01-07  
+**SQL track:** Row locking; NOWAIT/SKIP LOCKED  
+**Oracle / PL/SQL track:** Pessimistic coordination
+
+### Tutorial
+
+Blocking is normal coordination; prolonged blocking is the problem. SELECT FOR UPDATE is intentional pessimistic locking.
+
+### Runnable mini-lab
+
+Use two sessions to block on one row, then test NOWAIT or SKIP LOCKED on a job-claim example.
+
+### Verify
+
+You can distinguish normal blocking from a design/performance problem.
+
+### Interview drill
+
+- Explain the topic aloud in 60–90 seconds.
+- Answer 3–5 follow-up questions without notes.
+- For coding/tuning sessions, narrate your reasoning while solving.
+
+### Done when
+
+- [ ] Explain the concept in English without notes.
+- [ ] Complete the mini-lab or timed exercise.
+- [ ] Intentionally change/break/inspect at least one thing where applicable.
+- [ ] Save the SQL/PLSQL script or interview notes.
+- [ ] Record any weak point as Green / Yellow / Red.
+
+---
+
+## Day 51 — Deadlocks ⬜
+
+**Planned date:** 2027-01-08  
+**SQL track:** Circular dependencies  
 **Oracle / PL/SQL track:** ORA-00060 reasoning
 
 ### Tutorial
 
-A deadlock is a cycle: session A needs something held by B while B needs something held by A. Oracle detects the cycle and raises an error for one statement.
+Deadlock is not simply 'a long lock'. It is a cycle of dependencies.
 
 ### Runnable mini-lab
 
-Create a controlled two-row deadlock in two lab sessions. Capture the error and then rewrite operation ordering to avoid it.
+Create a controlled two-row/two-session deadlock, capture the error, then fix it by consistent lock ordering.
 
 ### Verify
 
 You can explain blocking vs deadlock in one sentence each.
 
-### Done when
+### Interview drill
 
-- [ ] Explain the concept in English without notes.
-- [ ] Complete the mini-lab and intentionally change or break one thing.
-- [ ] Solve at least 2–3 SQL/PLSQL exercises or review one production-style code/query sample.
-- [ ] Save the working SQL/PLSQL script in the lab repository.
-- [ ] Generate the detailed Joplin note, manual-note version, and Anki TSV.
-
----
-
-## Day 74 — SELECT FOR UPDATE ⬜
-
-**Planned date:** 2026-12-30  
-**SQL track:** Pessimistic locking  
-**Oracle / PL/SQL track:** NOWAIT/SKIP LOCKED concepts
-
-### Tutorial
-
-`SELECT ... FOR UPDATE` reserves selected rows for later modification. Variants such as NOWAIT or SKIP LOCKED support different concurrency workflows.
-
-### Runnable mini-lab
-
-Build a simple job-claim table. Claim rows with `FOR UPDATE`, then test NOWAIT or SKIP LOCKED in another session.
-
-### Verify
-
-You can explain when pessimistic locking is appropriate and its concurrency cost.
+- Explain the topic aloud in 60–90 seconds.
+- Answer 3–5 follow-up questions without notes.
+- For coding/tuning sessions, narrate your reasoning while solving.
 
 ### Done when
 
 - [ ] Explain the concept in English without notes.
-- [ ] Complete the mini-lab and intentionally change or break one thing.
-- [ ] Solve at least 2–3 SQL/PLSQL exercises or review one production-style code/query sample.
-- [ ] Save the working SQL/PLSQL script in the lab repository.
-- [ ] Generate the detailed Joplin note, manual-note version, and Anki TSV.
+- [ ] Complete the mini-lab or timed exercise.
+- [ ] Intentionally change/break/inspect at least one thing where applicable.
+- [ ] Save the SQL/PLSQL script or interview notes.
+- [ ] Record any weak point as Green / Yellow / Red.
 
 ---
 
-## Day 75 — Commit Boundaries & Savepoints ⬜
+## Day 52 — Commit Boundaries & Savepoints ⬜
 
-**Planned date:** 2026-12-31  
+**Planned date:** 2027-01-09  
 **SQL track:** COMMIT/ROLLBACK/SAVEPOINT  
-**Oracle / PL/SQL track:** Business transaction design
+**Oracle / PL/SQL track:** Business atomicity
 
 ### Tutorial
 
-Commit boundaries should model business atomicity and recovery, not simply reduce lock time. Savepoints offer partial rollback inside a transaction.
+Commit strategy should model the business transaction and recovery plan rather than arbitrary row counts.
 
 ### Runnable mini-lab
 
-Write a three-step transfer workflow with a savepoint before an optional operation. Test full rollback and rollback-to-savepoint.
+Build a transfer workflow with a savepoint and test full rollback vs rollback-to-savepoint.
 
 ### Verify
 
-You can explain why 'commit every N rows' needs workload/recovery justification.
+You can defend the transaction boundary and explain why 'commit every N rows' is not automatically correct.
+
+### Interview drill
+
+- Explain the topic aloud in 60–90 seconds.
+- Answer 3–5 follow-up questions without notes.
+- For coding/tuning sessions, narrate your reasoning while solving.
 
 ### Done when
 
 - [ ] Explain the concept in English without notes.
-- [ ] Complete the mini-lab and intentionally change or break one thing.
-- [ ] Solve at least 2–3 SQL/PLSQL exercises or review one production-style code/query sample.
-- [ ] Save the working SQL/PLSQL script in the lab repository.
-- [ ] Generate the detailed Joplin note, manual-note version, and Anki TSV.
+- [ ] Complete the mini-lab or timed exercise.
+- [ ] Intentionally change/break/inspect at least one thing where applicable.
+- [ ] Save the SQL/PLSQL script or interview notes.
+- [ ] Record any weak point as Green / Yellow / Red.
 
 ---
 
-## Day 76 — Restartability & Idempotency ⬜
+## Day 53 — Restartability & Idempotency ⬜
 
-**Planned date:** 2027-01-01  
-**SQL track:** Safe batch reruns  
-**Oracle / PL/SQL track:** Checkpoint design
+**Planned date:** 2027-01-11  
+**SQL track:** Batch keys; checkpoints  
+**Oracle / PL/SQL track:** Safe reruns
 
 ### Tutorial
 
-Production batch design must answer what happens after partial success. Idempotency, batch keys, staging status, and checkpoints are core tools.
+Interviewers value production judgment: what happens after 60% of a batch committed and the process failed?
 
 ### Runnable mini-lab
 
-Create a batch-run table and load process with a unique business/batch key. Force failure halfway, rerun, and prove no duplicate target rows appear.
+Build a batch-run/checkpoint table, force a mid-batch failure, rerun and prove no duplicates occur.
 
 ### Verify
 
-You can describe exactly how your process decides what is safe to reprocess.
+Your recovery answer starts with what committed, restart point, idempotency and validation.
+
+### Interview drill
+
+- Explain the topic aloud in 60–90 seconds.
+- Answer 3–5 follow-up questions without notes.
+- For coding/tuning sessions, narrate your reasoning while solving.
 
 ### Done when
 
 - [ ] Explain the concept in English without notes.
-- [ ] Complete the mini-lab and intentionally change or break one thing.
-- [ ] Solve at least 2–3 SQL/PLSQL exercises or review one production-style code/query sample.
-- [ ] Save the working SQL/PLSQL script in the lab repository.
-- [ ] Generate the detailed Joplin note, manual-note version, and Anki TSV.
+- [ ] Complete the mini-lab or timed exercise.
+- [ ] Intentionally change/break/inspect at least one thing where applicable.
+- [ ] Save the SQL/PLSQL script or interview notes.
+- [ ] Record any weak point as Green / Yellow / Red.
 
 ---
 
-## Day 77 — Logging & Instrumentation ⬜
+## Day 54 — Logging, Security & Rights ⬜
 
-**Planned date:** 2027-01-02  
-**SQL track:** DBMS_APPLICATION_INFO concepts; structured logs  
-**Oracle / PL/SQL track:** Operational visibility
+**Planned date:** 2027-01-12  
+**SQL track:** Instrumentation; dynamic SQL safety; AUTHID  
+**Oracle / PL/SQL track:** Production hygiene
 
 ### Tutorial
 
-Production PL/SQL should expose enough context to diagnose failures without dumping sensitive data. Instrument batch/module/action and capture meaningful error context.
+Combine the production concerns that need recognition but not a full DBA track.
 
 ### Runnable mini-lab
 
-Add a batch log table and module/action instrumentation where available. Record start/end, counts, error code, and safe context.
+Add batch logging/module context, validate dynamic identifiers, bind data values, and review definer vs invoker rights.
 
 ### Verify
 
-You can distinguish business audit data from diagnostic logging.
+You can distinguish audit vs diagnostic logging and state the bind-data/validate-identifiers rule.
+
+### Interview drill
+
+- Explain the topic aloud in 60–90 seconds.
+- Answer 3–5 follow-up questions without notes.
+- For coding/tuning sessions, narrate your reasoning while solving.
 
 ### Done when
 
 - [ ] Explain the concept in English without notes.
-- [ ] Complete the mini-lab and intentionally change or break one thing.
-- [ ] Solve at least 2–3 SQL/PLSQL exercises or review one production-style code/query sample.
-- [ ] Save the working SQL/PLSQL script in the lab repository.
-- [ ] Generate the detailed Joplin note, manual-note version, and Anki TSV.
+- [ ] Complete the mini-lab or timed exercise.
+- [ ] Intentionally change/break/inspect at least one thing where applicable.
+- [ ] Save the SQL/PLSQL script or interview notes.
+- [ ] Record any weak point as Green / Yellow / Red.
 
 ---
 
-## Day 78 — Invoker vs Definer Rights ⬜
+## Day 55 — Production Mock Interview #3 ⬜
 
-**Planned date:** 2027-01-04  
-**SQL track:** AUTHID DEFINER/CURRENT_USER  
-**Oracle / PL/SQL track:** Privilege model
-
-### Tutorial
-
-PL/SQL units can execute under definer or invoker privilege models. This affects security and reusable database APIs.
-
-### Runnable mini-lab
-
-Create a small controlled example with two users if practical, or document the privilege flow if your local setup is single-user.
-
-### Verify
-
-You can explain why privilege model is a design choice, not only syntax.
-
-### Done when
-
-- [ ] Explain the concept in English without notes.
-- [ ] Complete the mini-lab and intentionally change or break one thing.
-- [ ] Solve at least 2–3 SQL/PLSQL exercises or review one production-style code/query sample.
-- [ ] Save the working SQL/PLSQL script in the lab repository.
-- [ ] Generate the detailed Joplin note, manual-note version, and Anki TSV.
-
----
-
-## Day 79 — Dynamic SQL Security ⬜
-
-**Planned date:** 2027-01-05  
-**SQL track:** EXECUTE IMMEDIATE + validation  
-**Oracle / PL/SQL track:** SQL injection prevention
-
-### Tutorial
-
-Dynamic object names cannot generally be represented as ordinary bind values, so validate/whitelist structural input and bind actual data values.
-
-### Runnable mini-lab
-
-Create a safe report procedure with a whitelisted sort column and bound filter values. Attempt a malicious input and verify rejection.
-
-### Verify
-
-You can state: bind data values; validate dynamic identifiers.
-
-### Done when
-
-- [ ] Explain the concept in English without notes.
-- [ ] Complete the mini-lab and intentionally change or break one thing.
-- [ ] Solve at least 2–3 SQL/PLSQL exercises or review one production-style code/query sample.
-- [ ] Save the working SQL/PLSQL script in the lab repository.
-- [ ] Generate the detailed Joplin note, manual-note version, and Anki TSV.
-
----
-
-## Day 80 — Sequences, Identity & Concurrency ⬜
-
-**Planned date:** 2027-01-06  
-**SQL track:** Sequence behavior  
-**Oracle / PL/SQL track:** Surrogate-key generation
-
-### Tutorial
-
-Oracle sequences are concurrency-friendly unique-number generators but do not promise gapless business numbering. Identity columns build on sequence-like mechanisms.
-
-### Runnable mini-lab
-
-Create a sequence with CACHE, insert rows from two sessions, rollback some inserts, and observe gaps.
-
-### Verify
-
-You can explain why gaps are normal and why `MAX(id)+1` is unsafe under concurrency.
-
-### Done when
-
-- [ ] Explain the concept in English without notes.
-- [ ] Complete the mini-lab and intentionally change or break one thing.
-- [ ] Solve at least 2–3 SQL/PLSQL exercises or review one production-style code/query sample.
-- [ ] Save the working SQL/PLSQL script in the lab repository.
-- [ ] Generate the detailed Joplin note, manual-note version, and Anki TSV.
-
----
-
-## Day 81 — DBMS_SCHEDULER for Developers ⬜
-
-**Planned date:** 2027-01-07  
-**SQL track:** Job scheduling concepts  
-**Oracle / PL/SQL track:** Operational batch execution
-
-### Tutorial
-
-Learn enough Scheduler to create and inspect a developer-owned recurring or one-time database job without becoming a DBA.
-
-### Runnable mini-lab
-
-Create a safe one-time job that calls a logging procedure, run it, inspect status, then drop it.
-
-### Verify
-
-You can explain when database scheduling is appropriate vs an external enterprise scheduler.
-
-### Done when
-
-- [ ] Explain the concept in English without notes.
-- [ ] Complete the mini-lab and intentionally change or break one thing.
-- [ ] Solve at least 2–3 SQL/PLSQL exercises or review one production-style code/query sample.
-- [ ] Save the working SQL/PLSQL script in the lab repository.
-- [ ] Generate the detailed Joplin note, manual-note version, and Anki TSV.
-
----
-
-## Day 82 — Production Engineering Assessment ⬜
-
-**Planned date:** 2027-01-08  
-**SQL track:** Concurrency, security, recovery  
+**Planned date:** 2027-01-13  
+**SQL track:** Concurrency; recovery; security  
 **Oracle / PL/SQL track:** Incident reasoning
 
 ### Tutorial
 
-Close Phase 5 with scenario-driven evaluation.
+Close the engineering phase with real failure scenarios.
 
 ### Runnable mini-lab
 
-Work through: blocked payment update, deadlock, failed half-loaded batch, SQL injection risk, and runaway bulk collection. Give diagnosis and corrective design for each.
+Work through 5 incidents: blocking payment, deadlock, half-loaded batch, SQL injection risk and runaway bulk collection.
 
 ### Verify
 
-You can answer each scenario with evidence, impact, safe recovery, and prevention.
+For each: diagnose → impact → safe recovery → validation → prevention.
+
+### Interview drill
+
+- Explain the topic aloud in 60–90 seconds.
+- Answer 3–5 follow-up questions without notes.
+- For coding/tuning sessions, narrate your reasoning while solving.
 
 ### Done when
 
 - [ ] Explain the concept in English without notes.
-- [ ] Complete the mini-lab and intentionally change or break one thing.
-- [ ] Solve at least 2–3 SQL/PLSQL exercises or review one production-style code/query sample.
-- [ ] Save the working SQL/PLSQL script in the lab repository.
-- [ ] Generate the detailed Joplin note, manual-note version, and Anki TSV.
+- [ ] Complete the mini-lab or timed exercise.
+- [ ] Intentionally change/break/inspect at least one thing where applicable.
+- [ ] Save the SQL/PLSQL script or interview notes.
+- [ ] Record any weak point as Green / Yellow / Red.
 
 ---
 
-# Phase 6 — Capstone, Tuning & Final Evaluation
+# Phase 6 — Oracle Interview Bootcamp
 
-## Day 83 — Capstone Design — Financial Transaction System ⬜
-
-**Planned date:** 2027-01-09  
-**SQL track:** Schema/API design  
-**Oracle / PL/SQL track:** Requirements and workload assumptions
-
-### Tutorial
-
-Start the final capstone by defining workload before technology. Model customers, accounts, staged transactions, final transactions, errors, and batch runs.
-
-### Runnable mini-lab
-
-Write `architecture.md` plus DDL for `CUSTOMER`, `ACCOUNT`, `TRANSACTION_STAGE`, `TRANSACTION`, `TRANSACTION_ERROR`, and `BATCH_RUN`.
-
-### Verify
-
-Every index/partition key has a stated query or lifecycle reason.
-
-### Done when
-
-- [ ] Explain the concept in English without notes.
-- [ ] Complete the mini-lab and intentionally change or break one thing.
-- [ ] Solve at least 2–3 SQL/PLSQL exercises or review one production-style code/query sample.
-- [ ] Save the working SQL/PLSQL script in the lab repository.
-- [ ] Generate the detailed Joplin note, manual-note version, and Anki TSV.
-
----
-
-## Day 84 — Capstone Data Generator ⬜
-
-**Planned date:** 2027-01-11  
-**SQL track:** Exercise dataset  
-**Oracle / PL/SQL track:** Volume for real plans
-
-### Tutorial
-
-Performance skills need enough data for optimizer choices to matter. Generate a realistic skewed dataset with dates, account IDs, statuses, and amounts.
-
-### Runnable mini-lab
-
-Generate at least 500k–1M transactions locally if your machine handles it comfortably; otherwise choose the largest repeatable size that does.
-
-### Verify
-
-You can rebuild the dataset with one script and describe its skew/distribution.
-
-### Done when
-
-- [ ] Explain the concept in English without notes.
-- [ ] Complete the mini-lab and intentionally change or break one thing.
-- [ ] Solve at least 2–3 SQL/PLSQL exercises or review one production-style code/query sample.
-- [ ] Save the working SQL/PLSQL script in the lab repository.
-- [ ] Generate the detailed Joplin note, manual-note version, and Anki TSV.
-
----
-
-## Day 85 — Capstone Bulk Load Package ⬜
-
-**Planned date:** 2027-01-12  
-**SQL track:** PL/SQL bulk processing  
-**Oracle / PL/SQL track:** Validation and error capture
-
-### Tutorial
-
-Build a package that validates staged rows in batches and writes valid/error outcomes with controlled PGA usage.
-
-### Runnable mini-lab
-
-Implement BULK COLLECT LIMIT + FORALL SAVE EXCEPTIONS or a set-based alternative where better. Record batch counts.
-
-### Verify
-
-You can justify where PL/SQL bulk processing is used and where plain SQL is superior.
-
-### Done when
-
-- [ ] Explain the concept in English without notes.
-- [ ] Complete the mini-lab and intentionally change or break one thing.
-- [ ] Solve at least 2–3 SQL/PLSQL exercises or review one production-style code/query sample.
-- [ ] Save the working SQL/PLSQL script in the lab repository.
-- [ ] Generate the detailed Joplin note, manual-note version, and Anki TSV.
-
----
-
-## Day 86 — Capstone Partitioned Target ⬜
-
-**Planned date:** 2027-01-13  
-**SQL track:** Partitioning and indexes  
-**Oracle / PL/SQL track:** Monthly transaction storage
-
-### Tutorial
-
-Partition the final transaction table to match time-based access and retention. Add appropriate local/global indexes only for demonstrated access patterns.
-
-### Runnable mini-lab
-
-Rebuild/load the target as range/interval partitioned, verify pruning, and document index choices.
-
-### Verify
-
-A month-filter query prunes and an account lookup uses a sensible access path.
-
-### Done when
-
-- [ ] Explain the concept in English without notes.
-- [ ] Complete the mini-lab and intentionally change or break one thing.
-- [ ] Solve at least 2–3 SQL/PLSQL exercises or review one production-style code/query sample.
-- [ ] Save the working SQL/PLSQL script in the lab repository.
-- [ ] Generate the detailed Joplin note, manual-note version, and Anki TSV.
-
----
-
-## Day 87 — Capstone High-Speed Monthly Load ⬜
+## Day 56 — SQL Interview Bootcamp ⬜
 
 **Planned date:** 2027-01-14  
-**SQL track:** Partition exchange / APPEND  
-**Oracle / PL/SQL track:** Batch load path
+**SQL track:** Timed SQL coding  
+**Oracle / PL/SQL track:** Fast solution selection
 
 ### Tutorial
 
-Implement one high-throughput load path and measure it rather than assuming the advanced feature wins.
+Switch fully into interview mode. No broad new content.
 
 ### Runnable mini-lab
 
-Load a prepared monthly staging table using partition exchange when compatible, or compare APPEND direct-path load. Gather stats afterward.
+45 min coding: joins/subqueries, analytics, duplicates and MERGE; 30 min explanation/code review.
 
 ### Verify
 
-You can explain prerequisites, concurrency/recovery implications, and why you chose the method.
+You can solve medium SQL questions cleanly without overengineering.
+
+### Interview drill
+
+- Explain the topic aloud in 60–90 seconds.
+- Answer 3–5 follow-up questions without notes.
+- For coding/tuning sessions, narrate your reasoning while solving.
 
 ### Done when
 
 - [ ] Explain the concept in English without notes.
-- [ ] Complete the mini-lab and intentionally change or break one thing.
-- [ ] Solve at least 2–3 SQL/PLSQL exercises or review one production-style code/query sample.
-- [ ] Save the working SQL/PLSQL script in the lab repository.
-- [ ] Generate the detailed Joplin note, manual-note version, and Anki TSV.
+- [ ] Complete the mini-lab or timed exercise.
+- [ ] Intentionally change/break/inspect at least one thing where applicable.
+- [ ] Save the SQL/PLSQL script or interview notes.
+- [ ] Record any weak point as Green / Yellow / Red.
 
 ---
 
-## Day 88 — Capstone SQL Tuning ⬜
+## Day 57 — PL/SQL Interview Bootcamp ⬜
 
 **Planned date:** 2027-01-15  
-**SQL track:** Execution plans  
-**Oracle / PL/SQL track:** Measure before optimize
+**SQL track:** Timed PL/SQL coding  
+**Oracle / PL/SQL track:** Packages/cursors/collections/bulk
 
 ### Tutorial
 
-Tune three real capstone queries using plans and statistics. At least one should remain a full scan if that is genuinely optimal.
+Practice producing syntactically credible PL/SQL while narrating trade-offs.
 
 ### Runnable mini-lab
 
-Tune: account history, monthly aggregate, and high-value anomaly query. Record before/after plan and elapsed metrics available locally.
+Implement one package routine, one SYS_REFCURSOR routine and one bulk-processing task under time.
 
 ### Verify
 
-Every change has measured evidence and no cargo-cult hints.
+You can code and explain without relying on templates.
+
+### Interview drill
+
+- Explain the topic aloud in 60–90 seconds.
+- Answer 3–5 follow-up questions without notes.
+- For coding/tuning sessions, narrate your reasoning while solving.
 
 ### Done when
 
 - [ ] Explain the concept in English without notes.
-- [ ] Complete the mini-lab and intentionally change or break one thing.
-- [ ] Solve at least 2–3 SQL/PLSQL exercises or review one production-style code/query sample.
-- [ ] Save the working SQL/PLSQL script in the lab repository.
-- [ ] Generate the detailed Joplin note, manual-note version, and Anki TSV.
+- [ ] Complete the mini-lab or timed exercise.
+- [ ] Intentionally change/break/inspect at least one thing where applicable.
+- [ ] Save the SQL/PLSQL script or interview notes.
+- [ ] Record any weak point as Green / Yellow / Red.
 
 ---
 
-## Day 89 — Capstone Failure & Recovery Drill ⬜
+## Day 58 — Optimizer Rapid-Fire ⬜
 
 **Planned date:** 2027-01-16  
-**SQL track:** Idempotency and restart  
-**Oracle / PL/SQL track:** Production incident simulation
+**SQL track:** Plans; stats; access paths  
+**Oracle / PL/SQL track:** Performance explanation
 
 ### Tutorial
 
-Force realistic failures and prove the system can recover without duplicate or silently missing financial transactions.
+Make tuning answers short, structured and evidence-based.
 
 ### Runnable mini-lab
 
-Inject invalid data and a mid-batch failure. Restart from the documented checkpoint, validate row counts/balances, and inspect logs/error table.
+Review 4 unfamiliar plans and answer 20 rapid-fire questions on cardinality, access paths, joins, stats and binds.
 
 ### Verify
 
-You can explain recovery as: diagnose → impact → safe restart → validate.
+You consistently start with plan/evidence rather than guessing.
+
+### Interview drill
+
+- Explain the topic aloud in 60–90 seconds.
+- Answer 3–5 follow-up questions without notes.
+- For coding/tuning sessions, narrate your reasoning while solving.
 
 ### Done when
 
 - [ ] Explain the concept in English without notes.
-- [ ] Complete the mini-lab and intentionally change or break one thing.
-- [ ] Solve at least 2–3 SQL/PLSQL exercises or review one production-style code/query sample.
-- [ ] Save the working SQL/PLSQL script in the lab repository.
-- [ ] Generate the detailed Joplin note, manual-note version, and Anki TSV.
+- [ ] Complete the mini-lab or timed exercise.
+- [ ] Intentionally change/break/inspect at least one thing where applicable.
+- [ ] Save the SQL/PLSQL script or interview notes.
+- [ ] Record any weak point as Green / Yellow / Red.
 
 ---
 
-## Day 90 — Final Oracle Mastery Evaluation ⬜
+## Day 59 — Indexing & SQL Review Drill ⬜
 
 **Planned date:** 2027-01-18  
-**SQL track:** SQL + PL/SQL + performance  
-**Oracle / PL/SQL track:** Explain, implement, tune, recover
+**SQL track:** Index selection; sargability  
+**Oracle / PL/SQL track:** Senior code review
 
 ### Tutorial
 
-Day 90 is an evidence-based diagnostic. Demonstrate that you can solve SQL, design PL/SQL, read plans, make indexing/partitioning decisions, and troubleshoot production failures.
+Interviews may give you code rather than a direct definition question.
 
 ### Runnable mini-lab
 
-Do a 90-minute final: 25 min SQL problems, 20 min PL/SQL coding, 20 min tuning/plan review, 15 min partition/load design, 10 min production incident explanation.
+Review 10 query/index scenarios and decide: add index, change index, rewrite SQL, update stats, or do nothing.
 
 ### Verify
 
-Score every domain Strong / Needs Reinforcement / Gap and build the next 90-day plan only from actual weaknesses.
+You can defend 'do nothing / full scan is fine' when appropriate.
+
+### Interview drill
+
+- Explain the topic aloud in 60–90 seconds.
+- Answer 3–5 follow-up questions without notes.
+- For coding/tuning sessions, narrate your reasoning while solving.
 
 ### Done when
 
 - [ ] Explain the concept in English without notes.
-- [ ] Complete the mini-lab and intentionally change or break one thing.
-- [ ] Solve at least 2–3 SQL/PLSQL exercises or review one production-style code/query sample.
-- [ ] Save the working SQL/PLSQL script in the lab repository.
-- [ ] Generate the detailed Joplin note, manual-note version, and Anki TSV.
+- [ ] Complete the mini-lab or timed exercise.
+- [ ] Intentionally change/break/inspect at least one thing where applicable.
+- [ ] Save the SQL/PLSQL script or interview notes.
+- [ ] Record any weak point as Green / Yellow / Red.
 
 ---
 
-# Day 90 completion rubric
+## Day 60 — Partitioning Rapid-Fire ⬜
+
+**Planned date:** 2027-01-19  
+**SQL track:** Partitioning; pruning; indexes  
+**Oracle / PL/SQL track:** Architecture explanation
+
+### Tutorial
+
+Make the advanced area that previously surprised you one of your strongest interview sections.
+
+### Runnable mini-lab
+
+Answer 25 rapid-fire questions: types, pruning, local/global indexes, exchange, maintenance and key selection.
+
+### Verify
+
+You can explain partition exchange and pruning clearly in under 90 seconds.
+
+### Interview drill
+
+- Explain the topic aloud in 60–90 seconds.
+- Answer 3–5 follow-up questions without notes.
+- For coding/tuning sessions, narrate your reasoning while solving.
+
+### Done when
+
+- [ ] Explain the concept in English without notes.
+- [ ] Complete the mini-lab or timed exercise.
+- [ ] Intentionally change/break/inspect at least one thing where applicable.
+- [ ] Save the SQL/PLSQL script or interview notes.
+- [ ] Record any weak point as Green / Yellow / Red.
+
+---
+
+## Day 61 — High-Volume ETL / Batch Drill ⬜
+
+**Planned date:** 2027-01-20  
+**SQL track:** GTT; staging; bulk; APPEND; PARALLEL  
+**Oracle / PL/SQL track:** Design trade-offs
+
+### Tutorial
+
+Combine Oracle developer and ETL thinking into one interview scenario.
+
+### Runnable mini-lab
+
+Design two solutions for a 10M-row nightly load: set-based/partition strategy and PL/SQL bulk strategy. Explain which you prefer and why.
+
+### Verify
+
+You can choose between SQL, PL/SQL bulk, GTT/staging and partition operations based on requirements.
+
+### Interview drill
+
+- Explain the topic aloud in 60–90 seconds.
+- Answer 3–5 follow-up questions without notes.
+- For coding/tuning sessions, narrate your reasoning while solving.
+
+### Done when
+
+- [ ] Explain the concept in English without notes.
+- [ ] Complete the mini-lab or timed exercise.
+- [ ] Intentionally change/break/inspect at least one thing where applicable.
+- [ ] Save the SQL/PLSQL script or interview notes.
+- [ ] Record any weak point as Green / Yellow / Red.
+
+---
+
+## Day 62 — Transactions & Incident Drill ⬜
+
+**Planned date:** 2027-01-21  
+**SQL track:** Locks; commits; recovery  
+**Oracle / PL/SQL track:** Production judgment
+
+### Tutorial
+
+Practice the questions that distinguish senior production experience from syntax knowledge.
+
+### Runnable mini-lab
+
+Answer scenarios on duplicate requests, blocked rows, deadlocks, partial commits, retries and SELECT FOR UPDATE.
+
+### Verify
+
+Your answers explicitly cover correctness, concurrency and recovery.
+
+### Interview drill
+
+- Explain the topic aloud in 60–90 seconds.
+- Answer 3–5 follow-up questions without notes.
+- For coding/tuning sessions, narrate your reasoning while solving.
+
+### Done when
+
+- [ ] Explain the concept in English without notes.
+- [ ] Complete the mini-lab or timed exercise.
+- [ ] Intentionally change/break/inspect at least one thing where applicable.
+- [ ] Save the SQL/PLSQL script or interview notes.
+- [ ] Record any weak point as Green / Yellow / Red.
+
+---
+
+## Day 63 — Java + Oracle Boundary Review ⬜
+
+**Planned date:** 2027-01-22  
+**SQL track:** JDBC binds; result sets; transactions  
+**Oracle / PL/SQL track:** Backend integration recognition
+
+### Tutorial
+
+Your main profile is Java + Oracle, so be ready for boundary questions without turning this into a Java roadmap.
+
+### Runnable mini-lab
+
+Explain PreparedStatement/binds, calling SYS_REFCURSOR, transaction ownership, connection pooling and why N+1/database round trips matter.
+
+### Verify
+
+You can connect Oracle behavior to Java backend decisions clearly.
+
+### Interview drill
+
+- Explain the topic aloud in 60–90 seconds.
+- Answer 3–5 follow-up questions without notes.
+- For coding/tuning sessions, narrate your reasoning while solving.
+
+### Done when
+
+- [ ] Explain the concept in English without notes.
+- [ ] Complete the mini-lab or timed exercise.
+- [ ] Intentionally change/break/inspect at least one thing where applicable.
+- [ ] Save the SQL/PLSQL script or interview notes.
+- [ ] Record any weak point as Green / Yellow / Red.
+
+---
+
+## Day 64 — Full Mock Interview #1 + Gap Repair ⬜
+
+**Planned date:** 2027-01-23  
+**SQL track:** All covered areas  
+**Oracle / PL/SQL track:** 90-minute simulation
+
+### Tutorial
+
+Simulate a realistic senior Oracle technical interview and immediately turn misses into a small repair list.
+
+### Runnable mini-lab
+
+90 minutes: 25 SQL, 20 PL/SQL, 20 tuning, 15 partitioning/high-volume, 10 production. Then repair the 3 weakest answers.
+
+### Verify
+
+No new broad topics are added. Only evidence-based gap repair.
+
+### Interview drill
+
+- Explain the topic aloud in 60–90 seconds.
+- Answer 3–5 follow-up questions without notes.
+- For coding/tuning sessions, narrate your reasoning while solving.
+
+### Done when
+
+- [ ] Explain the concept in English without notes.
+- [ ] Complete the mini-lab or timed exercise.
+- [ ] Intentionally change/break/inspect at least one thing where applicable.
+- [ ] Save the SQL/PLSQL script or interview notes.
+- [ ] Record any weak point as Green / Yellow / Red.
+
+---
+
+## Day 65 — Final Oracle Interview Evaluation ⬜
+
+**Planned date:** 2027-01-25  
+**SQL track:** SQL + PL/SQL + performance + production  
+**Oracle / PL/SQL track:** Explain, code, tune, recover
+
+### Tutorial
+
+The roadmap ends with demonstrated interview readiness, not completion by calendar.
+
+### Runnable mini-lab
+
+Run a final 100-minute mock plus the completion rubric. Record Strong / Needs Reinforcement / Gap and produce a one-page last-minute review sheet.
+
+### Verify
+
+You can answer core questions concisely, code under time, read a plan, discuss partition/load trade-offs, and handle production scenarios.
+
+### Interview drill
+
+- Explain the topic aloud in 60–90 seconds.
+- Answer 3–5 follow-up questions without notes.
+- For coding/tuning sessions, narrate your reasoning while solving.
+
+### Done when
+
+- [ ] Explain the concept in English without notes.
+- [ ] Complete the mini-lab or timed exercise.
+- [ ] Intentionally change/break/inspect at least one thing where applicable.
+- [ ] Save the SQL/PLSQL script or interview notes.
+- [ ] Record any weak point as Green / Yellow / Red.
+
+---
+
+# Final completion rubric
 
 | Area | Strong | Needs reinforcement | Gap |
 |---|:---:|:---:|:---:|
-| Core SQL syntax & joins | ☐ | ☐ | ☐ |
-| Aggregation / subqueries / EXISTS | ☐ | ☐ | ☐ |
+| JOINs / aggregation / subqueries / EXISTS | ☐ | ☐ | ☐ |
 | CTE / WITH / MERGE / GTT | ☐ | ☐ | ☐ |
 | Analytic functions | ☐ | ☐ | ☐ |
-| PL/SQL blocks / procedures / functions | ☐ | ☐ | ☐ |
-| Packages & exception handling | ☐ | ☐ | ☐ |
-| Cursors & REF CURSOR | ☐ | ☐ | ☐ |
-| Collections | ☐ | ☐ | ☐ |
-| BULK COLLECT / FORALL / LIMIT | ☐ | ☐ | ☐ |
-| Dynamic SQL & security | ☐ | ☐ | ☐ |
+| Procedures / functions / packages | ☐ | ☐ | ☐ |
+| Exceptions / cursors / REF CURSOR | ☐ | ☐ | ☐ |
+| Collection types | ☐ | ☐ | ☐ |
+| BULK COLLECT / LIMIT / FORALL | ☐ | ☐ | ☐ |
+| Dynamic SQL / binds / security | ☐ | ☐ | ☐ |
 | Execution plans / DBMS_XPLAN | ☐ | ☐ | ☐ |
-| Cardinality / stats / selectivity | ☐ | ☐ | ☐ |
+| Cardinality / stats / histograms | ☐ | ☐ | ☐ |
 | Indexing | ☐ | ☐ | ☐ |
-| Bind variables / parsing | ☐ | ☐ | ☐ |
+| Join methods | ☐ | ☐ | ☐ |
+| Bind variables / hard-soft parse | ☐ | ☐ | ☐ |
 | Hints / PARALLEL / APPEND | ☐ | ☐ | ☐ |
 | Partitioning types | ☐ | ☐ | ☐ |
 | Partition pruning | ☐ | ☐ | ☐ |
+| Local / global indexes | ☐ | ☐ | ☐ |
 | Partition exchange / maintenance | ☐ | ☐ | ☐ |
-| Transactions / locking / deadlocks | ☐ | ☐ | ☐ |
+| Transactions / locks / deadlocks | ☐ | ☐ | ☐ |
 | Restartability / idempotency | ☐ | ☐ | ☐ |
 | Production troubleshooting | ☐ | ☐ | ☐ |
-| Capstone architecture & tuning | ☐ | ☐ | ☐ |
+| Timed SQL coding | ☐ | ☐ | ☐ |
+| Timed PL/SQL coding | ☐ | ☐ | ☐ |
+| Oral interview explanations | ☐ | ☐ | ☐ |
 
-The next 90-day plan should be built from this rubric. Do not repeat broad introductory material that already scores Strong.
+## Interview-readiness gate
 
-## Long-term maintenance after Day 90
+Do not judge readiness by having reached Day 65. You are ready when you can reliably do all four:
 
-Keep SQL sharp with a small permanent workout:
+~~~text
+1. Solve SQL under time pressure
+2. Write and explain PL/SQL
+3. Read a plan and justify tuning decisions
+4. Reason safely about high-volume and production failures
+~~~
 
-```text
-Monday    → joins / subqueries
-Tuesday   → GROUP BY / analytics
-Wednesday → CTE / EXISTS / MERGE
-Thursday  → execution-plan / index problem
-Friday    → mixed SQL challenge
-Saturday  → PL/SQL / batch / performance lab
-```
+## Maintenance after Day 65
 
-A maintenance session can be only 20–30 minutes. The point is to keep writing SQL continuously instead of periodically relearning syntax.
+Keep Oracle sharp with 3 short sessions/week:
+
+~~~text
+Session A → SQL challenge
+Session B → execution plan / index / partition scenario
+Session C → PL/SQL or production incident question
+~~~
+
+20–30 minutes is enough for maintenance once the main roadmap is complete.
