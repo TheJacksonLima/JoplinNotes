@@ -742,12 +742,15 @@ Run it, then expose an `Instant createdAt` field from a Spring DTO and inspect i
 - [ ] Answer 3–5 interview questions or review a short code sample.
 - [ ] Generate the detailed Joplin note, manual-note version, and Anki TSV.
 
-## Day 24 — Regular Expressions + Bean Validation ⬜
+## Day 24 — Regular Expressions + Bean Validation ✅
 
-**Planned date:** 2026-10-15  
+**Planned date:** 2026-10-15 (completed 2026-11-11)  
 **Java track:** Pattern/Matcher and regex boundaries  
 **Spring track:** @Valid, @Pattern, validation errors  
 **roadmap.sh mapping:** Java — Regular Expressions; Spring Boot — Spring MVC
+**Delay:** completed 23 study days after the planned date (2026-10-15 → 2026-11-11). Later planned dates were intentionally **not** shifted.  
+**Note:** [Regular Expressions and Bean Validation](./%5BDay%2024%5D%20Regular%20Expressions%20and%20Bean%20Validation.md)  
+**Code:** `src/spring/day24_regular_expressions_validation` — Day 23 module extended: `Main` practices `Pattern`/`Matcher` (CEP, `PAY-YYYY-NNNNNN` reference, groups, boundaries); `spring-boot-starter-validation` added; `PaymentRequest` gains `@NotNull`/`@Positive`/`@NotBlank`/`@Pattern` constraints and a `reference` field; `@Valid` on the controller; new `ValidationErrorResponse` with a field-error map, built by a `MethodArgumentNotValidException` handler in `GlobalExceptionHandler`
 
 ### Tutorial
 
@@ -773,7 +776,7 @@ Run it, then put `@Pattern` on a request DTO and POST one valid and one invalid 
 ### Done when
 
 - [ ] Explain the concept in English without notes.
-- [ ] Run/implement the mini-lab and intentionally change or break one thing.
+- [x] Run/implement the mini-lab and intentionally change or break one thing.
 - [ ] Answer 3–5 interview questions or review a short code sample.
 - [ ] Generate the detailed Joplin note, manual-note version, and Anki TSV.
 
