@@ -2,8 +2,8 @@
 
 > **Interview-focused Oracle track.** This replaces the previous 90-session plan while preserving its strongest material. The goal is to review Oracle deeply enough to perform well in **Senior Oracle Developer, Java + Oracle, and PL/SQL technical interviews** without spending weeks re-learning fundamentals you already know.
 
-**Start date:** **2026-11-11**  
-**Projected finish:** **2027-01-25** if no sessions slip  
+**Start date:** **2026-11-12**  
+**Projected finish:** **2027-01-26** if no sessions slip  
 **Cadence:** 60–90 min per study session • 6 sessions/week • Sunday off  
 **Primary objective:** interview performance through **explain + implement + tune/review + production reasoning**  
 **SQL sharpening rule:** write SQL in almost every session; do not replace practice with passive reading.  
@@ -74,7 +74,7 @@ For oral interview practice, answer in English when possible.
 
 ## Calendar rule
 
-Day 1 starts on **2026-11-11**. Sundays are rest days and are not numbered. If a session slips, move the sequence forward instead of doubling sessions the next day.
+Day 1 starts on **2026-11-12**. Sundays are rest days and are not numbered. If a session slips, move the sequence forward instead of doubling sessions the next day.
 
 ## Phase map
 
@@ -91,81 +91,83 @@ Days 56–65  Oracle Interview Bootcamp
 
 | Day | Status | Date | Phase | SQL track | Oracle / PL/SQL track |
 |---:|---|---|---|---|---|
-| 01 | 🟡 Current | 2026-11-11 | P1 — SQL Interview Sharpness | Oracle Free lab; SQL client; practice schema | Repeatable environment + baseline assessment |
-| 02 | ⬜ Upcoming | 2026-11-12 | P1 — SQL Interview Sharpness | INNER/OUTER/self joins; NULL; UNION/MINUS | Correct relational reasoning |
-| 03 | ⬜ Upcoming | 2026-11-13 | P1 — SQL Interview Sharpness | GROUP BY; HAVING; scalar/correlated subqueries | Query decomposition |
-| 04 | ⬜ Upcoming | 2026-11-14 | P1 — SQL Interview Sharpness | WITH; inline views; EXISTS/NOT EXISTS | Readable multi-step SQL |
-| 05 | ⬜ Upcoming | 2026-11-16 | P1 — SQL Interview Sharpness | ROW_NUMBER; RANK; DENSE_RANK | Partitioned ranking |
-| 06 | ⬜ Upcoming | 2026-11-17 | P1 — SQL Interview Sharpness | LAG/LEAD; SUM/AVG/COUNT OVER | Sequence and running calculations |
-| 07 | ⬜ Upcoming | 2026-11-18 | P1 — SQL Interview Sharpness | INSERT/UPDATE/DELETE/MERGE; ROWID | Safe data modification |
-| 08 | ⬜ Upcoming | 2026-11-19 | P1 — SQL Interview Sharpness | Dates; strings; NVL/COALESCE; PIVOT; hierarchy | Oracle-specific fluency |
-| 09 | ⬜ Upcoming | 2026-11-20 | P1 — SQL Interview Sharpness | Global Temporary Tables; staging | Transaction/session temporary data |
-| 10 | ⬜ Upcoming | 2026-11-21 | P1 — SQL Interview Sharpness | Timed mixed SQL | Interview retrieval under pressure |
-| 11 | ⬜ Upcoming | 2026-11-23 | P2 — PL/SQL Core, Collections & Bulk Processing | Blocks; variables; %TYPE; %ROWTYPE; records | Procedural foundations |
-| 12 | ⬜ Upcoming | 2026-11-24 | P2 — PL/SQL Core, Collections & Bulk Processing | IN/OUT/IN OUT; RETURN | Database API design |
-| 13 | ⬜ Upcoming | 2026-11-25 | P2 — PL/SQL Core, Collections & Bulk Processing | Package spec/body; private/public; overloads | Maintainable PL/SQL APIs |
-| 14 | ⬜ Upcoming | 2026-11-26 | P2 — PL/SQL Core, Collections & Bulk Processing | Predefined/custom exceptions; propagation | RAISE; RAISE_APPLICATION_ERROR |
-| 15 | ⬜ Upcoming | 2026-11-27 | P2 — PL/SQL Core, Collections & Bulk Processing | OPEN/FETCH/CLOSE; cursor FOR loop | Controlled row iteration |
-| 16 | ⬜ Upcoming | 2026-11-28 | P2 — PL/SQL Core, Collections & Bulk Processing | Weak and strong cursor variables | Returning result sets |
-| 17 | ⬜ Upcoming | 2026-11-30 | P2 — PL/SQL Core, Collections & Bulk Processing | Associative array; nested table; VARRAY | Collection trade-offs |
-| 18 | ⬜ Upcoming | 2026-12-01 | P2 — PL/SQL Core, Collections & Bulk Processing | Index-by lookup; SQL collection interaction | Choosing the right collection |
-| 19 | ⬜ Upcoming | 2026-12-02 | P2 — PL/SQL Core, Collections & Bulk Processing | Bulk fetching | Context switching + PGA control |
-| 20 | ⬜ Upcoming | 2026-12-03 | P2 — PL/SQL Core, Collections & Bulk Processing | Core PL/SQL + cursors + collections | Oral interview checkpoint |
-| 21 | ⬜ Upcoming | 2026-12-04 | P2 — PL/SQL Core, Collections & Bulk Processing | Bulk DML | SQL%BULK_EXCEPTIONS |
-| 22 | ⬜ Upcoming | 2026-12-05 | P2 — PL/SQL Core, Collections & Bulk Processing | EXECUTE IMMEDIATE; binds | Safe dynamic structure |
-| 23 | ⬜ Upcoming | 2026-12-07 | P3 — Optimizer, Execution Plans & Indexing | Cost-based optimizer | Parse → optimize → execute |
-| 24 | ⬜ Upcoming | 2026-12-08 | P3 — Optimizer, Execution Plans & Indexing | Plan reading | Access paths; predicates |
-| 25 | ⬜ Upcoming | 2026-12-09 | P3 — Optimizer, Execution Plans & Indexing | DISPLAY_CURSOR concepts | Estimated vs actual rows |
-| 26 | ⬜ Upcoming | 2026-12-10 | P3 — Optimizer, Execution Plans & Indexing | Optimizer estimates; DBMS_STATS | Data distribution |
-| 27 | ⬜ Upcoming | 2026-12-11 | P3 — Optimizer, Execution Plans & Indexing | Skewed distributions | Value-sensitive plans |
-| 28 | ⬜ Upcoming | 2026-12-12 | P3 — Optimizer, Execution Plans & Indexing | B-tree; unique; range scan | General-purpose indexing |
-| 29 | ⬜ Upcoming | 2026-12-14 | P3 — Optimizer, Execution Plans & Indexing | Leading columns; indexed expressions | Predicate alignment |
-| 30 | ⬜ Upcoming | 2026-12-15 | P3 — Optimizer, Execution Plans & Indexing | Bitmap; partition-aware indexes | Workload trade-offs |
-| 31 | ⬜ Upcoming | 2026-12-16 | P3 — Optimizer, Execution Plans & Indexing | Nested loops; hash; merge | Choosing by row volume and access |
-| 32 | ⬜ Upcoming | 2026-12-17 | P3 — Optimizer, Execution Plans & Indexing | Bind reuse; shared pool | Parse efficiency |
-| 33 | ⬜ Upcoming | 2026-12-18 | P3 — Optimizer, Execution Plans & Indexing | Bind-sensitive plans | Skew + reuse tension |
-| 34 | ⬜ Upcoming | 2026-12-19 | P3 — Optimizer, Execution Plans & Indexing | Implicit conversions; non-sargable predicates; DISTINCT | Plan-unfriendly SQL |
-| 35 | ⬜ Upcoming | 2026-12-21 | P3 — Optimizer, Execution Plans & Indexing | INDEX/FULL/join hints; PARALLEL; APPEND | Controlled optimizer/load influence |
-| 36 | ⬜ Upcoming | 2026-12-22 | P3 — Optimizer, Execution Plans & Indexing | Plans; indexes; optimizer | Evidence-based tuning |
-| 37 | ⬜ Upcoming | 2026-12-23 | P4 — Partitioning & High-Volume Loading | Partition keys; RANGE | Large-table manageability |
-| 38 | ⬜ Upcoming | 2026-12-24 | P4 — Partitioning & High-Volume Loading | INTERVAL; LIST; HASH | Partition strategy selection |
-| 39 | ⬜ Upcoming | 2026-12-25 | P4 — Partitioning & High-Volume Loading | Range-hash; range-list | Two-dimensional organization |
-| 40 | ⬜ Upcoming | 2026-12-26 | P4 — Partitioning & High-Volume Loading | Partition type selection | Rapid-fire architecture questions |
-| 41 | ⬜ Upcoming | 2026-12-28 | P4 — Partitioning & High-Volume Loading | Static/dynamic pruning concepts | Predicate design |
-| 42 | ⬜ Upcoming | 2026-12-29 | P4 — Partitioning & High-Volume Loading | LOCAL/GLOBAL | Maintenance vs access needs |
-| 43 | ⬜ Upcoming | 2026-12-30 | P4 — Partitioning & High-Volume Loading | EXCHANGE PARTITION | Fast batch loading |
-| 44 | ⬜ Upcoming | 2026-12-31 | P4 — Partitioning & High-Volume Loading | ADD/SPLIT/MERGE/TRUNCATE/DROP | Data lifecycle |
-| 45 | ⬜ Upcoming | 2027-01-01 | P4 — Partitioning & High-Volume Loading | CTAS; staging; APPEND | High-throughput data movement |
-| 46 | ⬜ Upcoming | 2027-01-02 | P4 — Partitioning & High-Volume Loading | Large MERGE; parallel DML | Controlled batch throughput |
-| 47 | ⬜ Upcoming | 2027-01-04 | P4 — Partitioning & High-Volume Loading | GTT vs collection vs permanent staging | Restartability + memory + SQL visibility |
-| 48 | ⬜ Upcoming | 2027-01-05 | P4 — Partitioning & High-Volume Loading | Partition exchange; pruning; APPEND; MERGE | End-to-end load design |
-| 49 | ⬜ Upcoming | 2027-01-06 | P5 — Transactions & Production Engineering | Undo; statement consistency | Oracle transaction model |
-| 50 | ⬜ Upcoming | 2027-01-07 | P5 — Transactions & Production Engineering | Row locking; NOWAIT/SKIP LOCKED | Pessimistic coordination |
-| 51 | ⬜ Upcoming | 2027-01-08 | P5 — Transactions & Production Engineering | Circular dependencies | ORA-00060 reasoning |
-| 52 | ⬜ Upcoming | 2027-01-09 | P5 — Transactions & Production Engineering | COMMIT/ROLLBACK/SAVEPOINT | Business atomicity |
-| 53 | ⬜ Upcoming | 2027-01-11 | P5 — Transactions & Production Engineering | Batch keys; checkpoints | Safe reruns |
-| 54 | ⬜ Upcoming | 2027-01-12 | P5 — Transactions & Production Engineering | Instrumentation; dynamic SQL safety; AUTHID | Production hygiene |
-| 55 | ⬜ Upcoming | 2027-01-13 | P5 — Transactions & Production Engineering | Concurrency; recovery; security | Incident reasoning |
-| 56 | ⬜ Upcoming | 2027-01-14 | P6 — Oracle Interview Bootcamp | Timed SQL coding | Fast solution selection |
-| 57 | ⬜ Upcoming | 2027-01-15 | P6 — Oracle Interview Bootcamp | Timed PL/SQL coding | Packages/cursors/collections/bulk |
-| 58 | ⬜ Upcoming | 2027-01-16 | P6 — Oracle Interview Bootcamp | Plans; stats; access paths | Performance explanation |
-| 59 | ⬜ Upcoming | 2027-01-18 | P6 — Oracle Interview Bootcamp | Index selection; sargability | Senior code review |
-| 60 | ⬜ Upcoming | 2027-01-19 | P6 — Oracle Interview Bootcamp | Partitioning; pruning; indexes | Architecture explanation |
-| 61 | ⬜ Upcoming | 2027-01-20 | P6 — Oracle Interview Bootcamp | GTT; staging; bulk; APPEND; PARALLEL | Design trade-offs |
-| 62 | ⬜ Upcoming | 2027-01-21 | P6 — Oracle Interview Bootcamp | Locks; commits; recovery | Production judgment |
-| 63 | ⬜ Upcoming | 2027-01-22 | P6 — Oracle Interview Bootcamp | JDBC binds; result sets; transactions | Backend integration recognition |
-| 64 | ⬜ Upcoming | 2027-01-23 | P6 — Oracle Interview Bootcamp | All covered areas | 90-minute simulation |
-| 65 | ⬜ Upcoming | 2027-01-25 | P6 — Oracle Interview Bootcamp | SQL + PL/SQL + performance + production | Explain, code, tune, recover |
+| 01 | ✅ Done | 2026-11-12 | P1 — SQL Interview Sharpness | Oracle Free lab; SQL client; practice schema | Repeatable environment + baseline assessment |
+| 02 | 🟡 Current | 2026-11-13 | P1 — SQL Interview Sharpness | INNER/OUTER/self joins; NULL; UNION/MINUS | Correct relational reasoning |
+| 03 | ⬜ Upcoming | 2026-11-14 | P1 — SQL Interview Sharpness | GROUP BY; HAVING; scalar/correlated subqueries | Query decomposition |
+| 04 | ⬜ Upcoming | 2026-11-16 | P1 — SQL Interview Sharpness | WITH; inline views; EXISTS/NOT EXISTS | Readable multi-step SQL |
+| 05 | ⬜ Upcoming | 2026-11-17 | P1 — SQL Interview Sharpness | ROW_NUMBER; RANK; DENSE_RANK | Partitioned ranking |
+| 06 | ⬜ Upcoming | 2026-11-18 | P1 — SQL Interview Sharpness | LAG/LEAD; SUM/AVG/COUNT OVER | Sequence and running calculations |
+| 07 | ⬜ Upcoming | 2026-11-19 | P1 — SQL Interview Sharpness | INSERT/UPDATE/DELETE/MERGE; ROWID | Safe data modification |
+| 08 | ⬜ Upcoming | 2026-11-20 | P1 — SQL Interview Sharpness | Dates; strings; NVL/COALESCE; PIVOT; hierarchy | Oracle-specific fluency |
+| 09 | ⬜ Upcoming | 2026-11-21 | P1 — SQL Interview Sharpness | Global Temporary Tables; staging | Transaction/session temporary data |
+| 10 | ⬜ Upcoming | 2026-11-23 | P1 — SQL Interview Sharpness | Timed mixed SQL | Interview retrieval under pressure |
+| 11 | ⬜ Upcoming | 2026-11-24 | P2 — PL/SQL Core, Collections & Bulk Processing | Blocks; variables; %TYPE; %ROWTYPE; records | Procedural foundations |
+| 12 | ⬜ Upcoming | 2026-11-25 | P2 — PL/SQL Core, Collections & Bulk Processing | IN/OUT/IN OUT; RETURN | Database API design |
+| 13 | ⬜ Upcoming | 2026-11-26 | P2 — PL/SQL Core, Collections & Bulk Processing | Package spec/body; private/public; overloads | Maintainable PL/SQL APIs |
+| 14 | ⬜ Upcoming | 2026-11-27 | P2 — PL/SQL Core, Collections & Bulk Processing | Predefined/custom exceptions; propagation | RAISE; RAISE_APPLICATION_ERROR |
+| 15 | ⬜ Upcoming | 2026-11-28 | P2 — PL/SQL Core, Collections & Bulk Processing | OPEN/FETCH/CLOSE; cursor FOR loop | Controlled row iteration |
+| 16 | ⬜ Upcoming | 2026-11-30 | P2 — PL/SQL Core, Collections & Bulk Processing | Weak and strong cursor variables | Returning result sets |
+| 17 | ⬜ Upcoming | 2026-12-01 | P2 — PL/SQL Core, Collections & Bulk Processing | Associative array; nested table; VARRAY | Collection trade-offs |
+| 18 | ⬜ Upcoming | 2026-12-02 | P2 — PL/SQL Core, Collections & Bulk Processing | Index-by lookup; SQL collection interaction | Choosing the right collection |
+| 19 | ⬜ Upcoming | 2026-12-03 | P2 — PL/SQL Core, Collections & Bulk Processing | Bulk fetching | Context switching + PGA control |
+| 20 | ⬜ Upcoming | 2026-12-04 | P2 — PL/SQL Core, Collections & Bulk Processing | Core PL/SQL + cursors + collections | Oral interview checkpoint |
+| 21 | ⬜ Upcoming | 2026-12-05 | P2 — PL/SQL Core, Collections & Bulk Processing | Bulk DML | SQL%BULK_EXCEPTIONS |
+| 22 | ⬜ Upcoming | 2026-12-07 | P2 — PL/SQL Core, Collections & Bulk Processing | EXECUTE IMMEDIATE; binds | Safe dynamic structure |
+| 23 | ⬜ Upcoming | 2026-12-08 | P3 — Optimizer, Execution Plans & Indexing | Cost-based optimizer | Parse → optimize → execute |
+| 24 | ⬜ Upcoming | 2026-12-09 | P3 — Optimizer, Execution Plans & Indexing | Plan reading | Access paths; predicates |
+| 25 | ⬜ Upcoming | 2026-12-10 | P3 — Optimizer, Execution Plans & Indexing | DISPLAY_CURSOR concepts | Estimated vs actual rows |
+| 26 | ⬜ Upcoming | 2026-12-11 | P3 — Optimizer, Execution Plans & Indexing | Optimizer estimates; DBMS_STATS | Data distribution |
+| 27 | ⬜ Upcoming | 2026-12-12 | P3 — Optimizer, Execution Plans & Indexing | Skewed distributions | Value-sensitive plans |
+| 28 | ⬜ Upcoming | 2026-12-14 | P3 — Optimizer, Execution Plans & Indexing | B-tree; unique; range scan | General-purpose indexing |
+| 29 | ⬜ Upcoming | 2026-12-15 | P3 — Optimizer, Execution Plans & Indexing | Leading columns; indexed expressions | Predicate alignment |
+| 30 | ⬜ Upcoming | 2026-12-16 | P3 — Optimizer, Execution Plans & Indexing | Bitmap; partition-aware indexes | Workload trade-offs |
+| 31 | ⬜ Upcoming | 2026-12-17 | P3 — Optimizer, Execution Plans & Indexing | Nested loops; hash; merge | Choosing by row volume and access |
+| 32 | ⬜ Upcoming | 2026-12-18 | P3 — Optimizer, Execution Plans & Indexing | Bind reuse; shared pool | Parse efficiency |
+| 33 | ⬜ Upcoming | 2026-12-19 | P3 — Optimizer, Execution Plans & Indexing | Bind-sensitive plans | Skew + reuse tension |
+| 34 | ⬜ Upcoming | 2026-12-21 | P3 — Optimizer, Execution Plans & Indexing | Implicit conversions; non-sargable predicates; DISTINCT | Plan-unfriendly SQL |
+| 35 | ⬜ Upcoming | 2026-12-22 | P3 — Optimizer, Execution Plans & Indexing | INDEX/FULL/join hints; PARALLEL; APPEND | Controlled optimizer/load influence |
+| 36 | ⬜ Upcoming | 2026-12-23 | P3 — Optimizer, Execution Plans & Indexing | Plans; indexes; optimizer | Evidence-based tuning |
+| 37 | ⬜ Upcoming | 2026-12-24 | P4 — Partitioning & High-Volume Loading | Partition keys; RANGE | Large-table manageability |
+| 38 | ⬜ Upcoming | 2026-12-25 | P4 — Partitioning & High-Volume Loading | INTERVAL; LIST; HASH | Partition strategy selection |
+| 39 | ⬜ Upcoming | 2026-12-26 | P4 — Partitioning & High-Volume Loading | Range-hash; range-list | Two-dimensional organization |
+| 40 | ⬜ Upcoming | 2026-12-28 | P4 — Partitioning & High-Volume Loading | Partition type selection | Rapid-fire architecture questions |
+| 41 | ⬜ Upcoming | 2026-12-29 | P4 — Partitioning & High-Volume Loading | Static/dynamic pruning concepts | Predicate design |
+| 42 | ⬜ Upcoming | 2026-12-30 | P4 — Partitioning & High-Volume Loading | LOCAL/GLOBAL | Maintenance vs access needs |
+| 43 | ⬜ Upcoming | 2026-12-31 | P4 — Partitioning & High-Volume Loading | EXCHANGE PARTITION | Fast batch loading |
+| 44 | ⬜ Upcoming | 2027-01-01 | P4 — Partitioning & High-Volume Loading | ADD/SPLIT/MERGE/TRUNCATE/DROP | Data lifecycle |
+| 45 | ⬜ Upcoming | 2027-01-02 | P4 — Partitioning & High-Volume Loading | CTAS; staging; APPEND | High-throughput data movement |
+| 46 | ⬜ Upcoming | 2027-01-04 | P4 — Partitioning & High-Volume Loading | Large MERGE; parallel DML | Controlled batch throughput |
+| 47 | ⬜ Upcoming | 2027-01-05 | P4 — Partitioning & High-Volume Loading | GTT vs collection vs permanent staging | Restartability + memory + SQL visibility |
+| 48 | ⬜ Upcoming | 2027-01-06 | P4 — Partitioning & High-Volume Loading | Partition exchange; pruning; APPEND; MERGE | End-to-end load design |
+| 49 | ⬜ Upcoming | 2027-01-07 | P5 — Transactions & Production Engineering | Undo; statement consistency | Oracle transaction model |
+| 50 | ⬜ Upcoming | 2027-01-08 | P5 — Transactions & Production Engineering | Row locking; NOWAIT/SKIP LOCKED | Pessimistic coordination |
+| 51 | ⬜ Upcoming | 2027-01-09 | P5 — Transactions & Production Engineering | Circular dependencies | ORA-00060 reasoning |
+| 52 | ⬜ Upcoming | 2027-01-11 | P5 — Transactions & Production Engineering | COMMIT/ROLLBACK/SAVEPOINT | Business atomicity |
+| 53 | ⬜ Upcoming | 2027-01-12 | P5 — Transactions & Production Engineering | Batch keys; checkpoints | Safe reruns |
+| 54 | ⬜ Upcoming | 2027-01-13 | P5 — Transactions & Production Engineering | Instrumentation; dynamic SQL safety; AUTHID | Production hygiene |
+| 55 | ⬜ Upcoming | 2027-01-14 | P5 — Transactions & Production Engineering | Concurrency; recovery; security | Incident reasoning |
+| 56 | ⬜ Upcoming | 2027-01-15 | P6 — Oracle Interview Bootcamp | Timed SQL coding | Fast solution selection |
+| 57 | ⬜ Upcoming | 2027-01-16 | P6 — Oracle Interview Bootcamp | Timed PL/SQL coding | Packages/cursors/collections/bulk |
+| 58 | ⬜ Upcoming | 2027-01-18 | P6 — Oracle Interview Bootcamp | Plans; stats; access paths | Performance explanation |
+| 59 | ⬜ Upcoming | 2027-01-19 | P6 — Oracle Interview Bootcamp | Index selection; sargability | Senior code review |
+| 60 | ⬜ Upcoming | 2027-01-20 | P6 — Oracle Interview Bootcamp | Partitioning; pruning; indexes | Architecture explanation |
+| 61 | ⬜ Upcoming | 2027-01-21 | P6 — Oracle Interview Bootcamp | GTT; staging; bulk; APPEND; PARALLEL | Design trade-offs |
+| 62 | ⬜ Upcoming | 2027-01-22 | P6 — Oracle Interview Bootcamp | Locks; commits; recovery | Production judgment |
+| 63 | ⬜ Upcoming | 2027-01-23 | P6 — Oracle Interview Bootcamp | JDBC binds; result sets; transactions | Backend integration recognition |
+| 64 | ⬜ Upcoming | 2027-01-25 | P6 — Oracle Interview Bootcamp | All covered areas | 90-minute simulation |
+| 65 | ⬜ Upcoming | 2027-01-26 | P6 — Oracle Interview Bootcamp | SQL + PL/SQL + performance + production | Explain, code, tune, recover |
 
 ---
 
 # Phase 1 — SQL Interview Sharpness
 
-## Day 01 — Local Oracle Lab + Baseline 🟡
+## Day 01 — Local Oracle Lab + Baseline ✅
 
-**Planned date:** 2026-11-11  
+**Planned date:** 2026-11-12 (completed 2026-11-12)  
 **SQL track:** Oracle Free lab; SQL client; practice schema  
-**Oracle / PL/SQL track:** Repeatable environment + baseline assessment
+**Oracle / PL/SQL track:** Repeatable environment + baseline assessment  
+**Note:** [Oracle SQL PL/SQL Day 01](./Oracle_SQL_PLSQL_Day_01.md)  
+**Scripts:** `src/01_schema.sql`, `src/02_seed_data.sql`
 
 ### Tutorial
 
@@ -188,16 +190,16 @@ You can reconnect from a fresh session, rebuild the lab safely, and list your cu
 ### Done when
 
 - [ ] Explain the concept in English without notes.
-- [ ] Complete the mini-lab or timed exercise.
+- [x] Complete the mini-lab or timed exercise.
 - [ ] Intentionally change/break/inspect at least one thing where applicable.
-- [ ] Save the SQL/PLSQL script or interview notes.
+- [x] Save the SQL/PLSQL script or interview notes.
 - [ ] Record any weak point as Green / Yellow / Red.
 
 ---
 
-## Day 02 — JOINs, NULLs & Set Logic ⬜
+## Day 02 — JOINs, NULLs & Set Logic 🟡
 
-**Planned date:** 2026-11-12  
+**Planned date:** 2026-11-13  
 **SQL track:** INNER/OUTER/self joins; NULL; UNION/MINUS  
 **Oracle / PL/SQL track:** Correct relational reasoning
 
@@ -231,7 +233,7 @@ You can choose the join/set operator from the requirement and explain the NOT IN
 
 ## Day 03 — Aggregation, HAVING & Subqueries ⬜
 
-**Planned date:** 2026-11-13  
+**Planned date:** 2026-11-14  
 **SQL track:** GROUP BY; HAVING; scalar/correlated subqueries  
 **Oracle / PL/SQL track:** Query decomposition
 
@@ -265,7 +267,7 @@ You can rewrite at least one correlated solution using a join or analytic functi
 
 ## Day 04 — WITH / CTE, Inline Views & EXISTS ⬜
 
-**Planned date:** 2026-11-14  
+**Planned date:** 2026-11-16  
 **SQL track:** WITH; inline views; EXISTS/NOT EXISTS  
 **Oracle / PL/SQL track:** Readable multi-step SQL
 
@@ -299,7 +301,7 @@ You can explain CTE vs inline view vs EXISTS and when each improves clarity.
 
 ## Day 05 — Analytic Functions — Ranking ⬜
 
-**Planned date:** 2026-11-16  
+**Planned date:** 2026-11-17  
 **SQL track:** ROW_NUMBER; RANK; DENSE_RANK  
 **Oracle / PL/SQL track:** Partitioned ranking
 
@@ -333,7 +335,7 @@ Without notes, explain PARTITION BY and choose ROW_NUMBER vs RANK vs DENSE_RANK 
 
 ## Day 06 — Analytic Functions — LAG, LEAD & Windows ⬜
 
-**Planned date:** 2026-11-17  
+**Planned date:** 2026-11-18  
 **SQL track:** LAG/LEAD; SUM/AVG/COUNT OVER  
 **Oracle / PL/SQL track:** Sequence and running calculations
 
@@ -367,7 +369,7 @@ You can explain how analytic ORDER BY and window frames change the result.
 
 ## Day 07 — MERGE, DML & Duplicate Cleanup ⬜
 
-**Planned date:** 2026-11-18  
+**Planned date:** 2026-11-19  
 **SQL track:** INSERT/UPDATE/DELETE/MERGE; ROWID  
 **Oracle / PL/SQL track:** Safe data modification
 
@@ -401,7 +403,7 @@ You can state exactly which rows changed and why your duplicate strategy preserv
 
 ## Day 08 — Oracle SQL Functions & Reporting Patterns ⬜
 
-**Planned date:** 2026-11-19  
+**Planned date:** 2026-11-20  
 **SQL track:** Dates; strings; NVL/COALESCE; PIVOT; hierarchy  
 **Oracle / PL/SQL track:** Oracle-specific fluency
 
@@ -435,7 +437,7 @@ You avoid wrapping indexed date columns unnecessarily and can explain CONNECT BY
 
 ## Day 09 — GTTs & Intermediate Data Choices ⬜
 
-**Planned date:** 2026-11-20  
+**Planned date:** 2026-11-21  
 **SQL track:** Global Temporary Tables; staging  
 **Oracle / PL/SQL track:** Transaction/session temporary data
 
@@ -469,7 +471,7 @@ You can answer when to use each intermediate-data mechanism and explain commit b
 
 ## Day 10 — SQL Mock Interview #1 ⬜
 
-**Planned date:** 2026-11-21  
+**Planned date:** 2026-11-23  
 **SQL track:** Timed mixed SQL  
 **Oracle / PL/SQL track:** Interview retrieval under pressure
 
@@ -505,7 +507,7 @@ Score each area Green/Yellow/Red. Any Red topic becomes a review item in later s
 
 ## Day 11 — PL/SQL Core Refresher ⬜
 
-**Planned date:** 2026-11-23  
+**Planned date:** 2026-11-24  
 **SQL track:** Blocks; variables; %TYPE; %ROWTYPE; records  
 **Oracle / PL/SQL track:** Procedural foundations
 
@@ -539,7 +541,7 @@ You can explain SQL vs PL/SQL and when procedural logic is justified.
 
 ## Day 12 — Procedures & Functions ⬜
 
-**Planned date:** 2026-11-24  
+**Planned date:** 2026-11-25  
 **SQL track:** IN/OUT/IN OUT; RETURN  
 **Oracle / PL/SQL track:** Database API design
 
@@ -573,7 +575,7 @@ You can explain procedure vs function and why callers often own the transaction 
 
 ## Day 13 — Packages & Encapsulation ⬜
 
-**Planned date:** 2026-11-25  
+**Planned date:** 2026-11-26  
 **SQL track:** Package spec/body; private/public; overloads  
 **Oracle / PL/SQL track:** Maintainable PL/SQL APIs
 
@@ -607,7 +609,7 @@ You can explain specification vs body and package state at interview level.
 
 ## Day 14 — Exception Handling ⬜
 
-**Planned date:** 2026-11-26  
+**Planned date:** 2026-11-27  
 **SQL track:** Predefined/custom exceptions; propagation  
 **Oracle / PL/SQL track:** RAISE; RAISE_APPLICATION_ERROR
 
@@ -641,7 +643,7 @@ You can explain why WHEN OTHERS THEN NULL is dangerous and when to translate/re-
 
 ## Day 15 — Explicit & Parameterized Cursors ⬜
 
-**Planned date:** 2026-11-27  
+**Planned date:** 2026-11-28  
 **SQL track:** OPEN/FETCH/CLOSE; cursor FOR loop  
 **Oracle / PL/SQL track:** Controlled row iteration
 
@@ -675,7 +677,7 @@ You can explain implicit vs explicit vs parameterized cursors and cursor attribu
 
 ## Day 16 — REF CURSOR / SYS_REFCURSOR ⬜
 
-**Planned date:** 2026-11-28  
+**Planned date:** 2026-11-30  
 **SQL track:** Weak and strong cursor variables  
 **Oracle / PL/SQL track:** Returning result sets
 
@@ -709,7 +711,7 @@ You can explain regular cursor vs REF CURSOR and weak vs strong typing.
 
 ## Day 17 — Collections — Mental Model ⬜
 
-**Planned date:** 2026-11-30  
+**Planned date:** 2026-12-01  
 **SQL track:** Associative array; nested table; VARRAY  
 **Oracle / PL/SQL track:** Collection trade-offs
 
@@ -743,7 +745,7 @@ You can compare all three in 60–90 seconds without notes.
 
 ## Day 18 — Associative Arrays + Nested Tables/VARRAYs ⬜
 
-**Planned date:** 2026-12-01  
+**Planned date:** 2026-12-02  
 **SQL track:** Index-by lookup; SQL collection interaction  
 **Oracle / PL/SQL track:** Choosing the right collection
 
@@ -777,7 +779,7 @@ Given a scenario, you can justify the collection choice.
 
 ## Day 19 — BULK COLLECT + LIMIT ⬜
 
-**Planned date:** 2026-12-02  
+**Planned date:** 2026-12-03  
 **SQL track:** Bulk fetching  
 **Oracle / PL/SQL track:** Context switching + PGA control
 
@@ -811,7 +813,7 @@ You can explain speed vs PGA trade-offs and why loading millions of rows at once
 
 ## Day 20 — PL/SQL Checkpoint Mock ⬜
 
-**Planned date:** 2026-12-03  
+**Planned date:** 2026-12-04  
 **SQL track:** Core PL/SQL + cursors + collections  
 **Oracle / PL/SQL track:** Oral interview checkpoint
 
@@ -845,7 +847,7 @@ Any answer requiring notes is marked Yellow even if technically correct.
 
 ## Day 21 — FORALL + SAVE EXCEPTIONS ⬜
 
-**Planned date:** 2026-12-04  
+**Planned date:** 2026-12-05  
 **SQL track:** Bulk DML  
 **Oracle / PL/SQL track:** SQL%BULK_EXCEPTIONS
 
@@ -879,7 +881,7 @@ You can explain BULK COLLECT vs FORALL and recover individual error details.
 
 ## Day 22 — Dynamic SQL + PL/SQL Phase Assessment ⬜
 
-**Planned date:** 2026-12-05  
+**Planned date:** 2026-12-07  
 **SQL track:** EXECUTE IMMEDIATE; binds  
 **Oracle / PL/SQL track:** Safe dynamic structure
 
@@ -915,7 +917,7 @@ You can identify SQL injection risk and score at least 80% on the phase assessme
 
 ## Day 23 — Optimizer Mental Model ⬜
 
-**Planned date:** 2026-12-07  
+**Planned date:** 2026-12-08  
 **SQL track:** Cost-based optimizer  
 **Oracle / PL/SQL track:** Parse → optimize → execute
 
@@ -949,7 +951,7 @@ You can distinguish cost from elapsed time and explain why the optimizer needs s
 
 ## Day 24 — EXPLAIN PLAN & DBMS_XPLAN ⬜
 
-**Planned date:** 2026-12-08  
+**Planned date:** 2026-12-09  
 **SQL track:** Plan reading  
 **Oracle / PL/SQL track:** Access paths; predicates
 
@@ -983,7 +985,7 @@ You can read a plan without declaring every FULL TABLE SCAN bad.
 
 ## Day 25 — Executed Plans & Runtime Statistics ⬜
 
-**Planned date:** 2026-12-09  
+**Planned date:** 2026-12-10  
 **SQL track:** DISPLAY_CURSOR concepts  
 **Oracle / PL/SQL track:** Estimated vs actual rows
 
@@ -1017,7 +1019,7 @@ You can explain what an estimate mismatch suggests and what you would investigat
 
 ## Day 26 — Cardinality, Selectivity & Statistics ⬜
 
-**Planned date:** 2026-12-10  
+**Planned date:** 2026-12-11  
 **SQL track:** Optimizer estimates; DBMS_STATS  
 **Oracle / PL/SQL track:** Data distribution
 
@@ -1051,7 +1053,7 @@ You can explain stale stats, selectivity and cardinality in practical terms.
 
 ## Day 27 — Histograms & Skew ⬜
 
-**Planned date:** 2026-12-11  
+**Planned date:** 2026-12-12  
 **SQL track:** Skewed distributions  
 **Oracle / PL/SQL track:** Value-sensitive plans
 
@@ -1085,7 +1087,7 @@ You can explain why different values may deserve different plans.
 
 ## Day 28 — B-tree Indexes & Access Paths ⬜
 
-**Planned date:** 2026-12-12  
+**Planned date:** 2026-12-14  
 **SQL track:** B-tree; unique; range scan  
 **Oracle / PL/SQL track:** General-purpose indexing
 
@@ -1119,7 +1121,7 @@ You can explain why an index may be ignored and why more indexes are not automat
 
 ## Day 29 — Composite + Function-Based Indexes ⬜
 
-**Planned date:** 2026-12-14  
+**Planned date:** 2026-12-15  
 **SQL track:** Leading columns; indexed expressions  
 **Oracle / PL/SQL track:** Predicate alignment
 
@@ -1153,7 +1155,7 @@ You can explain the leading-column principle and sargability without overclaimin
 
 ## Day 30 — Bitmap + Local/Global Index Concepts ⬜
 
-**Planned date:** 2026-12-15  
+**Planned date:** 2026-12-16  
 **SQL track:** Bitmap; partition-aware indexes  
 **Oracle / PL/SQL track:** Workload trade-offs
 
@@ -1187,7 +1189,7 @@ You can explain bitmap DML/concurrency concerns at a high level.
 
 ## Day 31 — Join Methods ⬜
 
-**Planned date:** 2026-12-16  
+**Planned date:** 2026-12-17  
 **SQL track:** Nested loops; hash; merge  
 **Oracle / PL/SQL track:** Choosing by row volume and access
 
@@ -1221,7 +1223,7 @@ You can compare the three major join methods and the concept of a driving row so
 
 ## Day 32 — Bind Variables, Hard/Soft Parse ⬜
 
-**Planned date:** 2026-12-17  
+**Planned date:** 2026-12-18  
 **SQL track:** Bind reuse; shared pool  
 **Oracle / PL/SQL track:** Parse efficiency
 
@@ -1255,7 +1257,7 @@ You can explain hard vs soft parse and why bind reuse matters.
 
 ## Day 33 — Bind Peeking & Adaptive Cursor Concepts ⬜
 
-**Planned date:** 2026-12-18  
+**Planned date:** 2026-12-19  
 **SQL track:** Bind-sensitive plans  
 **Oracle / PL/SQL track:** Skew + reuse tension
 
@@ -1289,7 +1291,7 @@ You can describe the problem without claiming behavior is identical across all O
 
 ## Day 34 — SQL Tuning Anti-Patterns ⬜
 
-**Planned date:** 2026-12-19  
+**Planned date:** 2026-12-21  
 **SQL track:** Implicit conversions; non-sargable predicates; DISTINCT  
 **Oracle / PL/SQL track:** Plan-unfriendly SQL
 
@@ -1323,7 +1325,7 @@ You can identify common plan-hostile SQL patterns quickly in code review.
 
 ## Day 35 — Hints, PARALLEL & APPEND ⬜
 
-**Planned date:** 2026-12-21  
+**Planned date:** 2026-12-22  
 **SQL track:** INDEX/FULL/join hints; PARALLEL; APPEND  
 **Oracle / PL/SQL track:** Controlled optimizer/load influence
 
@@ -1357,7 +1359,7 @@ You can explain when Oracle may ignore a hint, resource trade-offs of PARALLEL, 
 
 ## Day 36 — Performance Mock Interview #2 ⬜
 
-**Planned date:** 2026-12-22  
+**Planned date:** 2026-12-23  
 **SQL track:** Plans; indexes; optimizer  
 **Oracle / PL/SQL track:** Evidence-based tuning
 
@@ -1393,7 +1395,7 @@ You can defend every recommendation with evidence rather than 'indexes are faste
 
 ## Day 37 — Partitioning Fundamentals + Range ⬜
 
-**Planned date:** 2026-12-23  
+**Planned date:** 2026-12-24  
 **SQL track:** Partition keys; RANGE  
 **Oracle / PL/SQL track:** Large-table manageability
 
@@ -1427,7 +1429,7 @@ You can explain partitioning vs indexing and why date-based range is common.
 
 ## Day 38 — Interval, List & Hash Partitioning ⬜
 
-**Planned date:** 2026-12-24  
+**Planned date:** 2026-12-25  
 **SQL track:** INTERVAL; LIST; HASH  
 **Oracle / PL/SQL track:** Partition strategy selection
 
@@ -1461,7 +1463,7 @@ Given a workload, you can choose among range/interval/list/hash and justify it.
 
 ## Day 39 — Composite Partitioning ⬜
 
-**Planned date:** 2026-12-25  
+**Planned date:** 2026-12-26  
 **SQL track:** Range-hash; range-list  
 **Oracle / PL/SQL track:** Two-dimensional organization
 
@@ -1495,7 +1497,7 @@ You can name a real reason to use composite partitioning instead of adding compl
 
 ## Day 40 — Partitioning Checkpoint Mock ⬜
 
-**Planned date:** 2026-12-26  
+**Planned date:** 2026-12-28  
 **SQL track:** Partition type selection  
 **Oracle / PL/SQL track:** Rapid-fire architecture questions
 
@@ -1529,7 +1531,7 @@ You can answer core partitioning questions without notes in under 90 seconds eac
 
 ## Day 41 — Partition Pruning ⬜
 
-**Planned date:** 2026-12-28  
+**Planned date:** 2026-12-29  
 **SQL track:** Static/dynamic pruning concepts  
 **Oracle / PL/SQL track:** Predicate design
 
@@ -1563,7 +1565,7 @@ You can identify pruning in a plan and explain why a predicate enables or hinder
 
 ## Day 42 — Local vs Global Partitioned Indexes ⬜
 
-**Planned date:** 2026-12-29  
+**Planned date:** 2026-12-30  
 **SQL track:** LOCAL/GLOBAL  
 **Oracle / PL/SQL track:** Maintenance vs access needs
 
@@ -1597,7 +1599,7 @@ You can explain why local indexes simplify partition maintenance and when global
 
 ## Day 43 — Partition Exchange ⬜
 
-**Planned date:** 2026-12-30  
+**Planned date:** 2026-12-31  
 **SQL track:** EXCHANGE PARTITION  
 **Oracle / PL/SQL track:** Fast batch loading
 
@@ -1631,7 +1633,7 @@ You can explain 'metadata-oriented swap' plus compatibility/validation requireme
 
 ## Day 44 — Partition Maintenance ⬜
 
-**Planned date:** 2026-12-31  
+**Planned date:** 2027-01-01  
 **SQL track:** ADD/SPLIT/MERGE/TRUNCATE/DROP  
 **Oracle / PL/SQL track:** Data lifecycle
 
@@ -1665,7 +1667,7 @@ You can explain when partition maintenance is preferable to millions of DELETEs.
 
 ## Day 45 — CTAS, Staging & Direct-Path Loads ⬜
 
-**Planned date:** 2027-01-01  
+**Planned date:** 2027-01-02  
 **SQL track:** CTAS; staging; APPEND  
 **Oracle / PL/SQL track:** High-throughput data movement
 
@@ -1699,7 +1701,7 @@ You can describe the load path and recovery implications rather than just quotin
 
 ## Day 46 — MERGE at Scale + Parallel DML ⬜
 
-**Planned date:** 2027-01-02  
+**Planned date:** 2027-01-04  
 **SQL track:** Large MERGE; parallel DML  
 **Oracle / PL/SQL track:** Controlled batch throughput
 
@@ -1733,7 +1735,7 @@ You can explain why parallel DML belongs in controlled batch workloads.
 
 ## Day 47 — Intermediate Data Architecture ⬜
 
-**Planned date:** 2027-01-04  
+**Planned date:** 2027-01-05  
 **SQL track:** GTT vs collection vs permanent staging  
 **Oracle / PL/SQL track:** Restartability + memory + SQL visibility
 
@@ -1767,7 +1769,7 @@ You can justify the choice using volume, PGA, SQL visibility, cross-statement re
 
 ## Day 48 — High-Volume Load Assessment ⬜
 
-**Planned date:** 2027-01-05  
+**Planned date:** 2027-01-06  
 **SQL track:** Partition exchange; pruning; APPEND; MERGE  
 **Oracle / PL/SQL track:** End-to-end load design
 
@@ -1803,7 +1805,7 @@ Your design covers performance, correctness, observability and safe restart.
 
 ## Day 49 — Read Consistency & MVCC ⬜
 
-**Planned date:** 2027-01-06  
+**Planned date:** 2027-01-07  
 **SQL track:** Undo; statement consistency  
 **Oracle / PL/SQL track:** Oracle transaction model
 
@@ -1837,7 +1839,7 @@ You can explain why readers generally see a consistent committed view rather tha
 
 ## Day 50 — Locks, Blocking & SELECT FOR UPDATE ⬜
 
-**Planned date:** 2027-01-07  
+**Planned date:** 2027-01-08  
 **SQL track:** Row locking; NOWAIT/SKIP LOCKED  
 **Oracle / PL/SQL track:** Pessimistic coordination
 
@@ -1871,7 +1873,7 @@ You can distinguish normal blocking from a design/performance problem.
 
 ## Day 51 — Deadlocks ⬜
 
-**Planned date:** 2027-01-08  
+**Planned date:** 2027-01-09  
 **SQL track:** Circular dependencies  
 **Oracle / PL/SQL track:** ORA-00060 reasoning
 
@@ -1905,7 +1907,7 @@ You can explain blocking vs deadlock in one sentence each.
 
 ## Day 52 — Commit Boundaries & Savepoints ⬜
 
-**Planned date:** 2027-01-09  
+**Planned date:** 2027-01-11  
 **SQL track:** COMMIT/ROLLBACK/SAVEPOINT  
 **Oracle / PL/SQL track:** Business atomicity
 
@@ -1939,7 +1941,7 @@ You can defend the transaction boundary and explain why 'commit every N rows' is
 
 ## Day 53 — Restartability & Idempotency ⬜
 
-**Planned date:** 2027-01-11  
+**Planned date:** 2027-01-12  
 **SQL track:** Batch keys; checkpoints  
 **Oracle / PL/SQL track:** Safe reruns
 
@@ -1973,7 +1975,7 @@ Your recovery answer starts with what committed, restart point, idempotency and 
 
 ## Day 54 — Logging, Security & Rights ⬜
 
-**Planned date:** 2027-01-12  
+**Planned date:** 2027-01-13  
 **SQL track:** Instrumentation; dynamic SQL safety; AUTHID  
 **Oracle / PL/SQL track:** Production hygiene
 
@@ -2007,7 +2009,7 @@ You can distinguish audit vs diagnostic logging and state the bind-data/validate
 
 ## Day 55 — Production Mock Interview #3 ⬜
 
-**Planned date:** 2027-01-13  
+**Planned date:** 2027-01-14  
 **SQL track:** Concurrency; recovery; security  
 **Oracle / PL/SQL track:** Incident reasoning
 
@@ -2043,7 +2045,7 @@ For each: diagnose → impact → safe recovery → validation → prevention.
 
 ## Day 56 — SQL Interview Bootcamp ⬜
 
-**Planned date:** 2027-01-14  
+**Planned date:** 2027-01-15  
 **SQL track:** Timed SQL coding  
 **Oracle / PL/SQL track:** Fast solution selection
 
@@ -2077,7 +2079,7 @@ You can solve medium SQL questions cleanly without overengineering.
 
 ## Day 57 — PL/SQL Interview Bootcamp ⬜
 
-**Planned date:** 2027-01-15  
+**Planned date:** 2027-01-16  
 **SQL track:** Timed PL/SQL coding  
 **Oracle / PL/SQL track:** Packages/cursors/collections/bulk
 
@@ -2111,7 +2113,7 @@ You can code and explain without relying on templates.
 
 ## Day 58 — Optimizer Rapid-Fire ⬜
 
-**Planned date:** 2027-01-16  
+**Planned date:** 2027-01-18  
 **SQL track:** Plans; stats; access paths  
 **Oracle / PL/SQL track:** Performance explanation
 
@@ -2145,7 +2147,7 @@ You consistently start with plan/evidence rather than guessing.
 
 ## Day 59 — Indexing & SQL Review Drill ⬜
 
-**Planned date:** 2027-01-18  
+**Planned date:** 2027-01-19  
 **SQL track:** Index selection; sargability  
 **Oracle / PL/SQL track:** Senior code review
 
@@ -2179,7 +2181,7 @@ You can defend 'do nothing / full scan is fine' when appropriate.
 
 ## Day 60 — Partitioning Rapid-Fire ⬜
 
-**Planned date:** 2027-01-19  
+**Planned date:** 2027-01-20  
 **SQL track:** Partitioning; pruning; indexes  
 **Oracle / PL/SQL track:** Architecture explanation
 
@@ -2213,7 +2215,7 @@ You can explain partition exchange and pruning clearly in under 90 seconds.
 
 ## Day 61 — High-Volume ETL / Batch Drill ⬜
 
-**Planned date:** 2027-01-20  
+**Planned date:** 2027-01-21  
 **SQL track:** GTT; staging; bulk; APPEND; PARALLEL  
 **Oracle / PL/SQL track:** Design trade-offs
 
@@ -2247,7 +2249,7 @@ You can choose between SQL, PL/SQL bulk, GTT/staging and partition operations ba
 
 ## Day 62 — Transactions & Incident Drill ⬜
 
-**Planned date:** 2027-01-21  
+**Planned date:** 2027-01-22  
 **SQL track:** Locks; commits; recovery  
 **Oracle / PL/SQL track:** Production judgment
 
@@ -2281,7 +2283,7 @@ Your answers explicitly cover correctness, concurrency and recovery.
 
 ## Day 63 — Java + Oracle Boundary Review ⬜
 
-**Planned date:** 2027-01-22  
+**Planned date:** 2027-01-23  
 **SQL track:** JDBC binds; result sets; transactions  
 **Oracle / PL/SQL track:** Backend integration recognition
 
@@ -2315,7 +2317,7 @@ You can connect Oracle behavior to Java backend decisions clearly.
 
 ## Day 64 — Full Mock Interview #1 + Gap Repair ⬜
 
-**Planned date:** 2027-01-23  
+**Planned date:** 2027-01-25  
 **SQL track:** All covered areas  
 **Oracle / PL/SQL track:** 90-minute simulation
 
@@ -2349,7 +2351,7 @@ No new broad topics are added. Only evidence-based gap repair.
 
 ## Day 65 — Final Oracle Interview Evaluation ⬜
 
-**Planned date:** 2027-01-25  
+**Planned date:** 2027-01-26  
 **SQL track:** SQL + PL/SQL + performance + production  
 **Oracle / PL/SQL track:** Explain, code, tune, recover
 

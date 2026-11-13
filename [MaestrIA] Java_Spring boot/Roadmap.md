@@ -26,7 +26,7 @@ The original Month 1 plan was strong on Collections, Generics, exceptions, funct
 
 Day 11 is anchored to **2026-09-22** (completed; slipped from its original 2026-09-17 target). Days 13–14 were completed on **2026-09-28** (planned 2026-09-24/25). Day 15 slipped from 2026-09-29 and was completed on **2026-09-30**. Day 16 slipped from its 2026-10-01 slot (no sessions Oct 1–3) and again from its rescheduled 2026-10-05 slot; it was completed on **2026-10-07**. Day 17 was completed the same day, one day ahead of its 2026-10-08 slot, so Days 18–90 moved back one study day: Day 18 is now **2026-10-08** and Day 90 is **2026-12-31**. Days 18 and 19 were completed on schedule (**2026-10-08** and **2026-10-09**). Study days run Monday–Saturday; Sundays are rest days and are not numbered.
 
-**From Day 20 onward, planned dates are fixed.** When a session slips, the remaining dates are no longer moved; instead each finished day records its actual date as `**Planned date:** <plan> (completed <actual>)`, and its index row notes the delay, so the gap between plan and reality stays visible. Day 20 (planned 2026-10-10) was completed on **2026-10-22**, 10 study days late. Day 21 (planned 2026-10-12) was completed on **2026-10-23**, also 10 study days late. Day 22 (planned 2026-10-13) was completed on **2026-11-09**, 23 study days late. Day 23 (planned 2026-10-14) was completed on **2026-11-10**, also 23 study days late. Day 24 and later keep their original planned dates. Still don't cram two sessions into one day to catch up.
+**From Day 20 onward, planned dates are fixed.** When a session slips, the remaining dates are no longer moved; instead each finished day records its actual date as `**Planned date:** <plan> (completed <actual>)`, and its index row notes the delay, so the gap between plan and reality stays visible. Day 20 (planned 2026-10-10) was completed on **2026-10-22**, 10 study days late. Day 21 (planned 2026-10-12) was completed on **2026-10-23**, also 10 study days late. Day 22 (planned 2026-10-13) was completed on **2026-11-09**, 23 study days late. Day 23 (planned 2026-10-14) was completed on **2026-11-10**, also 23 study days late. Day 24 (planned 2026-10-15) was completed on **2026-11-11**, also 23 study days late. Day 25 (planned 2026-10-16) was completed on **2026-11-12**, also 23 study days late. Day 26 and later keep their original planned dates. Still don't cram two sessions into one day to catch up.
 
 ## Codebase continuity rule
 
@@ -65,8 +65,8 @@ From Day 17 onward, the hands-on work evolves **one codebase built around the Pa
 | 21 | ✅ Done (+10 study days) | completed | Records as immutable data carriers | Request/response DTO serialization with Jackson | Java: Object Oriented Programming → Record; Spring: Spring MVC | [Java Records and Jackson DTOs](./%5BDay%2021%5D%20Java%20Records%20and%20Jackson%20DTOs.md) |
 | 22 | ✅ Done (+23 study days) | completed | Sealed classes/interfaces and pattern matching | @ControllerAdvice and @ExceptionHandler | Java: Object Oriented Programming → Sealed Types / Pattern Matching; Spring: Spring MVC | [Sealed Types and Global Exception Handling](./%5BDay%2022%5D%20Sealed%20Types%20and%20Global%20Exception%20Handling.md) |
 | 23 | ✅ Done (+23 study days) | completed | Instant, LocalDate, LocalDateTime, ZonedDateTime, Duration | Jackson date/time serialization and API contracts | Java: Date and Time; Spring: Spring MVC | [Date Time API and JSON Dates](./%5BDay%2023%5D%20Date%20Time%20API%20and%20JSON%20Dates.md) |
-| 24 | ⬜ Upcoming | 2026-10-15 | Pattern/Matcher and regex boundaries | @Valid, @Pattern, validation errors | Java: Regular Expressions; Spring: Spring MVC | — |
-| 25 | ⬜ Upcoming | 2026-10-16 | Path, Files, buffered I/O, try-with-resources | Multipart upload/download endpoint | Java: I/O Operations / File Operations; Spring: Spring MVC | — |
+| 24 | ✅ Done (+23 study days) | completed | Pattern/Matcher and regex boundaries | @Valid, @Pattern, validation errors | Java: Regular Expressions; Spring: Spring MVC | [Regular Expressions and Bean Validation](./%5BDay%2024%5D%20Regular%20Expressions%20and%20Bean%20Validation.md) |
+| 25 | ✅ Done (+23 study days) | completed | Path, Files, buffered I/O, try-with-resources | Multipart upload/download endpoint | Java: I/O Operations / File Operations; Spring: Spring MVC | [IO File Operations and Multipart](./%5BDay%2025%5D%20IO%20File%20Operations%20and%20Multipart.md) |
 | 26 | ⬜ Upcoming | 2026-10-17 | URI, HTTP client, timeouts, status handling | Spring RestClient/WebClient fundamentals | Java: Networking; Spring: Spring MVC / Microservices | — |
 | 27 | ⬜ Upcoming | 2026-10-19 | Java modules/classpath/JAR packaging | Embedded server and Spring Boot executable JAR | Java: Modules / Build Tools; Spring: Embedded Server / Spring Boot | — |
 | 28 | ⬜ Upcoming | 2026-10-20 | Logging abstraction vs implementation, parameterized logs | Boot logging levels and configuration | Java: Logging Frameworks → SLF4J / Logback / Log4j2; Spring: Spring Boot | — |
@@ -780,12 +780,15 @@ Run it, then put `@Pattern` on a request DTO and POST one valid and one invalid 
 - [ ] Answer 3–5 interview questions or review a short code sample.
 - [ ] Generate the detailed Joplin note, manual-note version, and Anki TSV.
 
-## Day 25 — I/O and File Operations + Multipart ⬜
+## Day 25 — I/O and File Operations + Multipart ✅
 
-**Planned date:** 2026-10-16  
+**Planned date:** 2026-10-16 (completed 2026-11-12)  
 **Java track:** Path, Files, buffered I/O, try-with-resources  
 **Spring track:** Multipart upload/download endpoint  
 **roadmap.sh mapping:** Java — I/O Operations / File Operations; Spring Boot — Spring MVC
+**Delay:** completed 23 study days after the planned date (2026-10-16 → 2026-11-12). Later planned dates were intentionally **not** shifted.  
+**Note:** [IO File Operations and Multipart](./%5BDay%2025%5D%20IO%20File%20Operations%20and%20Multipart.md)  
+**Code:** `src/spring/day25_io_file_operations_multipart` — Day 24 module extended: `Main` practices `Path`/`Files` (writeString, readAllLines, buffered reader/writer with try-with-resources); new `FileStorageService` stores uploads under a fixed `uploads/` root with generated UUID names (`Files.copy` from `getInputStream()`); new `FileController` with multipart upload and download endpoints; `GlobalExceptionHandler` maps a missing stored file to 404
 
 ### Tutorial
 
@@ -813,7 +816,7 @@ Run it; then create a Spring `MultipartFile` endpoint that prints file size and 
 ### Done when
 
 - [ ] Explain the concept in English without notes.
-- [ ] Run/implement the mini-lab and intentionally change or break one thing.
+- [x] Run/implement the mini-lab and intentionally change or break one thing.
 - [ ] Answer 3–5 interview questions or review a short code sample.
 - [ ] Generate the detailed Joplin note, manual-note version, and Anki TSV.
 
