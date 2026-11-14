@@ -26,7 +26,7 @@ The original Month 1 plan was strong on Collections, Generics, exceptions, funct
 
 Day 11 is anchored to **2026-09-22** (completed; slipped from its original 2026-09-17 target). Days 13–14 were completed on **2026-09-28** (planned 2026-09-24/25). Day 15 slipped from 2026-09-29 and was completed on **2026-09-30**. Day 16 slipped from its 2026-10-01 slot (no sessions Oct 1–3) and again from its rescheduled 2026-10-05 slot; it was completed on **2026-10-07**. Day 17 was completed the same day, one day ahead of its 2026-10-08 slot, so Days 18–90 moved back one study day: Day 18 is now **2026-10-08** and Day 90 is **2026-12-31**. Days 18 and 19 were completed on schedule (**2026-10-08** and **2026-10-09**). Study days run Monday–Saturday; Sundays are rest days and are not numbered.
 
-**From Day 20 onward, planned dates are fixed.** When a session slips, the remaining dates are no longer moved; instead each finished day records its actual date as `**Planned date:** <plan> (completed <actual>)`, and its index row notes the delay, so the gap between plan and reality stays visible. Day 20 (planned 2026-10-10) was completed on **2026-10-22**, 10 study days late. Day 21 (planned 2026-10-12) was completed on **2026-10-23**, also 10 study days late. Day 22 (planned 2026-10-13) was completed on **2026-11-09**, 23 study days late. Day 23 (planned 2026-10-14) was completed on **2026-11-10**, also 23 study days late. Day 24 (planned 2026-10-15) was completed on **2026-11-11**, also 23 study days late. Day 25 (planned 2026-10-16) was completed on **2026-11-12**, also 23 study days late. Day 26 and later keep their original planned dates. Still don't cram two sessions into one day to catch up.
+**From Day 20 onward, planned dates are fixed.** When a session slips, the remaining dates are no longer moved; instead each finished day records its actual date as `**Planned date:** <plan> (completed <actual>)`, and its index row notes the delay, so the gap between plan and reality stays visible. Day 20 (planned 2026-10-10) was completed on **2026-10-22**, 10 study days late. Day 21 (planned 2026-10-12) was completed on **2026-10-23**, also 10 study days late. Day 22 (planned 2026-10-13) was completed on **2026-11-09**, 23 study days late. Day 23 (planned 2026-10-14) was completed on **2026-11-10**, also 23 study days late. Day 24 (planned 2026-10-15) was completed on **2026-11-11**, also 23 study days late. Day 25 (planned 2026-10-16) was completed on **2026-11-12**, also 23 study days late. Day 26 (planned 2026-10-17) was completed on **2026-11-13**, also 23 study days late. Day 27 and later keep their original planned dates. Still don't cram two sessions into one day to catch up.
 
 ## Codebase continuity rule
 
@@ -67,7 +67,7 @@ From Day 17 onward, the hands-on work evolves **one codebase built around the Pa
 | 23 | ✅ Done (+23 study days) | completed | Instant, LocalDate, LocalDateTime, ZonedDateTime, Duration | Jackson date/time serialization and API contracts | Java: Date and Time; Spring: Spring MVC | [Date Time API and JSON Dates](./%5BDay%2023%5D%20Date%20Time%20API%20and%20JSON%20Dates.md) |
 | 24 | ✅ Done (+23 study days) | completed | Pattern/Matcher and regex boundaries | @Valid, @Pattern, validation errors | Java: Regular Expressions; Spring: Spring MVC | [Regular Expressions and Bean Validation](./%5BDay%2024%5D%20Regular%20Expressions%20and%20Bean%20Validation.md) |
 | 25 | ✅ Done (+23 study days) | completed | Path, Files, buffered I/O, try-with-resources | Multipart upload/download endpoint | Java: I/O Operations / File Operations; Spring: Spring MVC | [IO File Operations and Multipart](./%5BDay%2025%5D%20IO%20File%20Operations%20and%20Multipart.md) |
-| 26 | ⬜ Upcoming | 2026-10-17 | URI, HTTP client, timeouts, status handling | Spring RestClient/WebClient fundamentals | Java: Networking; Spring: Spring MVC / Microservices | — |
+| 26 | ✅ Done (+23 study days) | completed | URI, HTTP client, timeouts, status handling | Spring RestClient/WebClient fundamentals | Java: Networking; Spring: Spring MVC / Microservices | [Networking HTTP Client RestClient WebClient](./%5BDay26%5D%20Networking%20HTTP%20Client%20RestClient%20WebClient.md) |
 | 27 | ⬜ Upcoming | 2026-10-19 | Java modules/classpath/JAR packaging | Embedded server and Spring Boot executable JAR | Java: Modules / Build Tools; Spring: Embedded Server / Spring Boot | — |
 | 28 | ⬜ Upcoming | 2026-10-20 | Logging abstraction vs implementation, parameterized logs | Boot logging levels and configuration | Java: Logging Frameworks → SLF4J / Logback / Log4j2; Spring: Spring Boot | — |
 | 29 | ⬜ Upcoming | 2026-10-21 | Dynamic proxies and method interception concept | AOP, @Aspect, cross-cutting concerns | Java: Object Oriented Programming → Annotations / Dynamic Binding; Spring: Introduction → Spring AOP | — |
@@ -820,12 +820,15 @@ Run it; then create a Spring `MultipartFile` endpoint that prints file size and 
 - [ ] Answer 3–5 interview questions or review a short code sample.
 - [ ] Generate the detailed Joplin note, manual-note version, and Anki TSV.
 
-## Day 26 — Networking and Java HTTP Client + RestClient ⬜
+## Day 26 — Networking and Java HTTP Client + RestClient ✅
 
-**Planned date:** 2026-10-17  
+**Planned date:** 2026-10-17 (completed 2026-11-13)  
 **Java track:** URI, HTTP client, timeouts, status handling  
 **Spring track:** Spring RestClient/WebClient fundamentals  
 **roadmap.sh mapping:** Java — Networking; Spring Boot — Spring MVC / Microservices
+**Delay:** completed 23 study days after the planned date (2026-10-17 → 2026-11-13). Later planned dates were intentionally **not** shifted.  
+**Note:** [Networking HTTP Client RestClient WebClient](./%5BDay26%5D%20Networking%20HTTP%20Client%20RestClient%20WebClient.md)  
+**Code:** `src/spring/day26_networking_http_client_restclient` — Day 25 module copied; `Main` updated for the Day 26 session. The outbound-HTTP exercises (Java `HttpClient` with timeouts and exception handling; `RestClient` GET/POST against the running payment API on `localhost:8081`, `retrieve()`, `toEntity()`, `onStatus()`) are documented in the note
 
 ### Tutorial
 
@@ -854,7 +857,7 @@ Run it with internet access; in your Spring app, repeat using `RestClient` again
 ### Done when
 
 - [ ] Explain the concept in English without notes.
-- [ ] Run/implement the mini-lab and intentionally change or break one thing.
+- [x] Run/implement the mini-lab and intentionally change or break one thing.
 - [ ] Answer 3–5 interview questions or review a short code sample.
 - [ ] Generate the detailed Joplin note, manual-note version, and Anki TSV.
 
