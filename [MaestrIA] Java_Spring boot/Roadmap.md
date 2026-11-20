@@ -26,7 +26,7 @@ The original Month 1 plan was strong on Collections, Generics, exceptions, funct
 
 Day 11 is anchored to **2026-09-22** (completed; slipped from its original 2026-09-17 target). Days 13–14 were completed on **2026-09-28** (planned 2026-09-24/25). Day 15 slipped from 2026-09-29 and was completed on **2026-09-30**. Day 16 slipped from its 2026-10-01 slot (no sessions Oct 1–3) and again from its rescheduled 2026-10-05 slot; it was completed on **2026-10-07**. Day 17 was completed the same day, one day ahead of its 2026-10-08 slot, so Days 18–90 moved back one study day: Day 18 is now **2026-10-08** and Day 90 is **2026-12-31**. Days 18 and 19 were completed on schedule (**2026-10-08** and **2026-10-09**). Study days run Monday–Saturday; Sundays are rest days and are not numbered.
 
-**From Day 20 onward, planned dates are fixed.** When a session slips, the remaining dates are no longer moved; instead each finished day records its actual date as `**Planned date:** <plan> (completed <actual>)`, and its index row notes the delay, so the gap between plan and reality stays visible. Day 20 (planned 2026-10-10) was completed on **2026-10-22**, 10 study days late. Day 21 (planned 2026-10-12) was completed on **2026-10-23**, also 10 study days late. Day 22 (planned 2026-10-13) was completed on **2026-11-09**, 23 study days late. Day 23 (planned 2026-10-14) was completed on **2026-11-10**, also 23 study days late. Day 24 (planned 2026-10-15) was completed on **2026-11-11**, also 23 study days late. Day 25 (planned 2026-10-16) was completed on **2026-11-12**, also 23 study days late. Day 26 (planned 2026-10-17) was completed on **2026-11-13**, also 23 study days late. Day 27 (planned 2026-10-19) was completed on **2026-11-16**, 24 study days late. Day 28 and later keep their original planned dates. Still don't cram two sessions into one day to catch up.
+**From Day 20 onward, planned dates are fixed.** When a session slips, the remaining dates are no longer moved; instead each finished day records its actual date as `**Planned date:** <plan> (completed <actual>)`, and its index row notes the delay, so the gap between plan and reality stays visible. Day 20 (planned 2026-10-10) was completed on **2026-10-22**, 10 study days late. Day 21 (planned 2026-10-12) was completed on **2026-10-23**, also 10 study days late. Day 22 (planned 2026-10-13) was completed on **2026-11-09**, 23 study days late. Day 23 (planned 2026-10-14) was completed on **2026-11-10**, also 23 study days late. Day 24 (planned 2026-10-15) was completed on **2026-11-11**, also 23 study days late. Day 25 (planned 2026-10-16) was completed on **2026-11-12**, also 23 study days late. Day 26 (planned 2026-10-17) was completed on **2026-11-13**, also 23 study days late. Day 27 (planned 2026-10-19) was completed on **2026-11-16**, 24 study days late. Day 28 (planned 2026-10-20) was completed on **2026-11-19**, 26 study days late. Day 29 and later keep their original planned dates. Still don't cram two sessions into one day to catch up.
 
 ## Codebase continuity rule
 
@@ -69,7 +69,7 @@ From Day 17 onward, the hands-on work evolves **one codebase built around the Pa
 | 25 | ✅ Done (+23 study days) | completed | Path, Files, buffered I/O, try-with-resources | Multipart upload/download endpoint | Java: I/O Operations / File Operations; Spring: Spring MVC | [IO File Operations and Multipart](./%5BDay%2025%5D%20IO%20File%20Operations%20and%20Multipart.md) |
 | 26 | ✅ Done (+23 study days) | completed | URI, HTTP client, timeouts, status handling | Spring RestClient/WebClient fundamentals | Java: Networking; Spring: Spring MVC / Microservices | [Networking HTTP Client RestClient WebClient](./%5BDay%2026%5D%20Networking%20HTTP%20Client%20RestClient%20WebClient.md) |
 | 27 | ✅ Done (+24 study days) | completed | Java modules/classpath/JAR packaging | Embedded server and Spring Boot executable JAR | Java: Modules / Build Tools; Spring: Embedded Server / Spring Boot | [Modules Classpath and Executable JAR](./%5BDay%2027%5D%20Modules%20Classpath%20and%20Executable%20JAR.md) |
-| 28 | ⬜ Upcoming | 2026-10-20 | Logging abstraction vs implementation, parameterized logs | Boot logging levels and configuration | Java: Logging Frameworks → SLF4J / Logback / Log4j2; Spring: Spring Boot | — |
+| 28 | ✅ Done (+26 study days) | completed | Logging abstraction vs implementation, parameterized logs | Boot logging levels and configuration | Java: Logging Frameworks → SLF4J / Logback / Log4j2; Spring: Spring Boot | [Logging SLF4J Logback and Spring Boot](./%5BDay%2028%5D%20Logging%20SLF4J%20Logback%20and%20Spring%20Boot.md) |
 | 29 | ⬜ Upcoming | 2026-10-21 | Dynamic proxies and method interception concept | AOP, @Aspect, cross-cutting concerns | Java: Object Oriented Programming → Annotations / Dynamic Binding; Spring: Introduction → Spring AOP | — |
 | 30 | ⬜ Upcoming | 2026-10-22 | JVM process, heap/stack/class loading overview | SpringApplication startup, ApplicationContext, autoconfiguration report, Actuator intro | Java: Lifecycle of a Program / Java Memory Model (preview); Spring: Spring Boot / Autoconfiguration / Actuators / Embedded Server | — |
 | 31 | ⬜ Upcoming | 2026-10-23 | JDBC connection/statement/result-set lifecycle | Spring DataSource and JdbcTemplate | Java: Database Access → JDBC; Spring: Spring Data JDBC / Spring Data | — |
@@ -897,12 +897,15 @@ Compile/run it, then package your Boot project and inspect `BOOT-INF/classes` an
 - [ ] Answer 3–5 interview questions or review a short code sample.
 - [ ] Generate the detailed Joplin note, manual-note version, and Anki TSV.
 
-## Day 28 — Logging: SLF4J/Logback + Spring Logging ⬜
+## Day 28 — Logging: SLF4J/Logback + Spring Logging ✅
 
-**Planned date:** 2026-10-20  
+**Planned date:** 2026-10-20 (completed 2026-11-19)  
 **Java track:** Logging abstraction vs implementation, parameterized logs  
 **Spring track:** Boot logging levels and configuration  
 **roadmap.sh mapping:** Java — Logging Frameworks → SLF4J / Logback / Log4j2; Spring Boot — Spring Boot
+**Delay:** completed 26 study days after the planned date (2026-10-20 → 2026-11-19). Later planned dates were intentionally **not** shifted.  
+**Note:** [Logging SLF4J Logback and Spring Boot](./%5BDay%2028%5D%20Logging%20SLF4J%20Logback%20and%20Spring%20Boot.md)  
+**Code:** `src/spring/day28_logging_slf4j_logback` — Day 27 module extended: new `mini_lab.day28.LoggingDemo` (SLF4J `LoggerFactory` logger, TRACE/DEBUG/INFO/WARN with `{}` placeholders for a sample payment); `application.properties` configures the root level, file logging to `logs/payment-app.log` and a custom console pattern
 
 ### Tutorial
 
@@ -927,7 +930,7 @@ Run inside the Boot project, then set your package to DEBUG and verify a debug m
 ### Done when
 
 - [ ] Explain the concept in English without notes.
-- [ ] Run/implement the mini-lab and intentionally change or break one thing.
+- [x] Run/implement the mini-lab and intentionally change or break one thing.
 - [ ] Answer 3–5 interview questions or review a short code sample.
 - [ ] Generate the detailed Joplin note, manual-note version, and Anki TSV.
 
