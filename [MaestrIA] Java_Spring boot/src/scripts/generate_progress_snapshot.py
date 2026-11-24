@@ -20,7 +20,16 @@ An HTML snapshot (self-contained, no build step) with:
   - a to-scale bar chart comparing "on-plan pace" vs "currently observed
     pace" finish dates,
   - a caveat about how many real data points that observed pace rests on,
-  - a recent-log table (planned vs. actual date per day) and an up-next list.
+  - a recent-log table (planned vs. actual date per day) and an up-next list,
+  - an activity calendar,
+  - a "Random review" button: the notes of completed days ("[Day NN] ....md"
+    in this folder) are embedded in the page, and the button shows one of
+    them, favouring days not reviewed recently. It shows the note's interview
+    questions with hidden answers (or the full note when it has none).
+    Review dates are kept in the browser's localStorage. Markdown is rendered
+    with src/scripts/vendor/marked.min.js (MIT), inlined into the page; if
+    that file is missing, notes show as plain text. Regenerate the page after
+    adding a note.
 
 Usage
 -----
@@ -29,11 +38,13 @@ Usage
     python3 generate_progress_snapshot.py --roadmap PATH --out PATH --repo PATH
 
 Only the standard library is used, so no pip install is needed.
+Opening the page needs no network: everything is inlined.
 """
 
 from __future__ import annotations
 
 import argparse
+import json
 import calendar
 import html
 import re
@@ -583,6 +594,435 @@ def render_activity_calendar(roadmap: Roadmap, activity: set[date], today: date)
     return "\n        ".join(months), active_count, missed_count
 
 
+# ---------------------------------------------------------------------------
+# Random review: embed completed-day notes so the page can show one for review
+# ---------------------------------------------------------------------------
+#
+# The page is opened straight from disk (file://), where browsers refuse to
+# read other local files. So the notes are read here, at generation time, and
+# embedded in the page as JSON. Regenerate the page after adding a note.
+
+NOTE_FILE_RE = re.compile(r"^\[Day\s*(\d+)\]\s*(.*?)\.md$", re.IGNORECASE)
+HEADING_RE = re.compile(r"^(#{1,6})\s+(.*?)\s*#*\s*$")
+FENCE_RE = re.compile(r"^\s*(```|~~~)")
+QUESTION_SECTION_RE = re.compile(
+    r"interview\s+(questions|concepts|cheat\s*sheet|traps)|for\s+interviews", re.IGNORECASE
+)
+FRONT_MATTER_RE = re.compile(r"\A---\s*\n(.*?)\n---\s*\n", re.DOTALL)
+DAY_PREFIX_RE = re.compile(r"^(\[Day\s*\d+\]|(Java\s+)?Day\s*\d+)\s*([—–:]|-{1,3})?\s*", re.IGNORECASE)
+ANSWER_SECTION_RE = re.compile(r"senior\s+interview\s+answer", re.IGNORECASE)
+NUMBERED_ITEM_RE = re.compile(r"^\s*(\d+)\.\s+(.*)$")
+VENDOR_MARKED = SCRIPT_DIR / "vendor" / "marked.min.js"
+
+
+def find_note_files(study_dir: Path) -> dict[int, Path]:
+    """Map day number -> note file ("[Day 07] ...md" or "[Day07] ...md").
+
+    When two files claim the same day, the most recently modified one wins.
+    """
+    found: dict[int, Path] = {}
+    for p in study_dir.glob("*.md"):
+        m = NOTE_FILE_RE.match(p.name)
+        if not m:
+            continue
+        n = int(m.group(1))
+        if n not in found or p.stat().st_mtime > found[n].stat().st_mtime:
+            found[n] = p
+    return found
+
+
+def _headings(lines: list[str]) -> list[tuple[int, int, str]]:
+    """(line index, level, text) for real headings, skipping fenced code blocks."""
+    out = []
+    in_fence = False
+    for i, line in enumerate(lines):
+        if FENCE_RE.match(line):
+            in_fence = not in_fence
+            continue
+        if in_fence:
+            continue
+        m = HEADING_RE.match(line)
+        if m:
+            out.append((i, len(m.group(1)), m.group(2).strip()))
+    return out
+
+
+def _section_end(heads: list[tuple[int, int, str]], idx: int, total_lines: int) -> int:
+    """End line (exclusive) of the section that starts at heads[idx]."""
+    _, level, _ = heads[idx]
+    for line_no, lvl, _ in heads[idx + 1:]:
+        if lvl <= level:
+            return line_no
+    return total_lines
+
+
+def _clean(md: str) -> str:
+    """Trim blank lines and trailing horizontal rules from a markdown chunk."""
+    lines = md.strip("\n").split("\n")
+    while lines and lines[-1].strip() in ("", "---", "***", "___", "-" * 72):
+        lines.pop()
+    while lines and not lines[0].strip():
+        lines.pop(0)
+    return "\n".join(lines)
+
+
+def _numbered_questions(body: list[str]) -> list[str]:
+    """Questions written as a numbered list ("1. What is ...?"), with wrapped lines joined."""
+    questions: list[str] = []
+    in_fence = False
+    for line in body:
+        if FENCE_RE.match(line):
+            in_fence = not in_fence
+            continue
+        if in_fence:
+            continue
+        m = NUMBERED_ITEM_RE.match(line)
+        if m:
+            questions.append(m.group(2).strip())
+        elif questions and line.startswith(("   ", "\t")) and line.strip():
+            questions[-1] += " " + line.strip()
+    return questions
+
+
+def extract_review(md: str) -> dict:
+    """Pull the interview Q&A out of a note.
+
+    Two formats occur in the notes:
+      * Q&A: each question is a sub-heading and its answer follows it.
+      * Question list: a numbered list of questions, with the answers in a
+        separate "Senior Interview Answer(s)" section (shown on demand).
+    """
+    lines = md.split("\n")
+    heads = _headings(lines)
+    qa: list[dict] = []
+    questions_only: list[str] = []
+    answer_blocks: list[str] = []
+
+    for idx, (line_no, level, text) in enumerate(heads):
+        if ANSWER_SECTION_RE.search(text):
+            end = _section_end(heads, idx, len(lines))
+            block = _clean("\n".join(lines[line_no + 1:end]))
+            if block:
+                answer_blocks.append(block)
+            continue
+        if not QUESTION_SECTION_RE.search(text):
+            continue
+
+        end = _section_end(heads, idx, len(lines))
+        subs = [(j, h) for j, h in enumerate(heads) if line_no < h[0] < end and h[1] > level]
+        if subs:
+            # A numbered list before the first sub-heading is a question list.
+            questions_only.extend(_numbered_questions(lines[line_no + 1:subs[0][1][0]]))
+            # Q&A format; a sub-heading followed only by a numbered list is a
+            # grouping ("## Java", "## Spring") and contributes list questions.
+            for k, (j, (s_line, s_level, s_text)) in enumerate(subs):
+                s_end = subs[k + 1][1][0] if k + 1 < len(subs) else end
+                body = lines[s_line + 1:s_end]
+                listed = _numbered_questions(body)
+                answer = _clean("\n".join(body))
+                if listed and len(listed) >= 2 and not s_text.rstrip().endswith("?"):
+                    questions_only.extend(listed)
+                elif answer:
+                    qa.append({"q": s_text, "a": answer})
+                else:
+                    questions_only.append(s_text)
+        else:
+            questions_only.extend(_numbered_questions(lines[line_no + 1:end]))
+
+    return {
+        "qa": qa,
+        "questions": questions_only,
+        "answers": "\n\n---\n\n".join(answer_blocks),
+    }
+
+
+def collect_review_notes(roadmap: Roadmap, study_dir: Path) -> list[dict]:
+    """One entry per completed day that has a note file."""
+    files = find_note_files(study_dir)
+    notes = []
+    for n in roadmap.completed_numbers:
+        path = files.get(n)
+        if not path:
+            continue
+        md = path.read_text(encoding="utf-8", errors="replace").replace("\r\n", "\n")
+        title_m = NOTE_FILE_RE.match(path.name)
+        title = title_m.group(2).strip() if title_m else path.stem
+
+        # Joplin exports start with a YAML front-matter block: use its title, then drop it.
+        fm = FRONT_MATTER_RE.match(md)
+        if fm:
+            t = re.search(r"^title:\s*(.+)$", fm.group(1), re.MULTILINE)
+            if t:
+                title = t.group(1).strip().strip("'\"").replace("\\_", " ")
+            md = md[fm.end():]
+        else:
+            # Otherwise use a level-1 heading near the top, if there is one.
+            for line in [l for l in md.split("\n") if l.strip()][:3]:
+                hm = HEADING_RE.match(line)
+                if hm and len(hm.group(1)) == 1:
+                    title = hm.group(2).strip()
+                    break
+        title = DAY_PREFIX_RE.sub("", title).strip() or title
+        review = extract_review(md)
+        notes.append({
+            "day": n,
+            "title": title,
+            "file": path.name,
+            "qa": review["qa"],
+            "questions": review["questions"],
+            "answers": review["answers"],
+            "full": md,
+        })
+    return notes
+
+
+def render_review_data(notes: list[dict]) -> str:
+    """JSON for a <script type="application/json"> block (safe against </script>)."""
+    data = json.dumps(notes, ensure_ascii=False)
+    return data.replace("</", "<\\/").replace("<!--", "<\\!--")
+
+
+def render_marked_lib() -> str:
+    """Inline the vendored markdown renderer, if present (otherwise notes show as plain text)."""
+    try:
+        js = VENDOR_MARKED.read_text(encoding="utf-8")
+    except OSError:
+        return "/* marked.min.js not found next to the script: notes render as plain text */"
+    return js.replace("</script", "<\\/script")
+
+
+REVIEW_CSS = r"""
+  .head-row { display: flex; align-items: flex-end; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+  .review-btn {
+    font: inherit; font-size: 14px; font-weight: 700; cursor: pointer;
+    color: #1B1406; background: var(--accent-strong); border: 0; border-radius: 10px;
+    padding: 10px 16px; box-shadow: var(--shadow); display: inline-flex; align-items: center; gap: 8px;
+  }
+  .review-btn:hover { filter: brightness(1.06); }
+  .review-btn:focus-visible, .rv-btn:focus-visible { outline: 2px solid var(--ink-primary); outline-offset: 2px; }
+  .review-btn kbd, .rv-hint kbd {
+    font-family: "JetBrains Mono", monospace; font-size: 11px; border-radius: 4px; padding: 0 5px;
+    border: 1px solid color-mix(in srgb, currentColor 40%, transparent);
+  }
+  .rv-overlay {
+    position: fixed; inset: 0; z-index: 50; display: none; align-items: flex-start; justify-content: center;
+    background: color-mix(in srgb, #05080C 62%, transparent); padding: 32px 16px; overflow-y: auto;
+  }
+  .rv-overlay.open { display: flex; }
+  .rv-panel {
+    width: min(860px, 100%); background: var(--surface); border: 1px solid var(--border);
+    border-radius: 16px; box-shadow: var(--shadow); padding: 24px 26px 28px;
+  }
+  .rv-top { display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; }
+  .rv-day { font-family: "JetBrains Mono", monospace; font-size: 12px; font-weight: 600; color: var(--accent-strong); letter-spacing: .04em; }
+  .rv-title { margin: 4px 0 0; font-size: 22px; font-weight: 800; letter-spacing: -.01em; }
+  .rv-meta { margin-top: 6px; font-size: 12.5px; color: var(--ink-muted); }
+  .rv-close { flex: none; background: none; border: 1px solid var(--border); color: var(--ink-secondary); border-radius: 8px; width: 34px; height: 34px; cursor: pointer; font-size: 18px; line-height: 1; }
+  .rv-actions { margin-top: 18px; display: flex; flex-wrap: wrap; gap: 8px; }
+  .rv-btn {
+    font: inherit; font-size: 13px; font-weight: 600; cursor: pointer; border-radius: 8px; padding: 8px 12px;
+    background: var(--surface-2); color: var(--ink-primary); border: 1px solid var(--border);
+  }
+  .rv-btn.primary { background: var(--good); border-color: var(--good); color: #fff; }
+  .rv-btn[aria-pressed="true"] { border-color: var(--accent-strong); color: var(--accent-strong); }
+  .rv-hint { margin-top: 10px; font-size: 12px; color: var(--ink-muted); }
+  .rv-section-title { margin: 22px 0 8px; font-size: 12px; font-weight: 700; letter-spacing: .05em; text-transform: uppercase; color: var(--ink-muted); }
+  .rv-qa details { border: 1px solid var(--border); border-radius: 10px; margin-top: 8px; background: var(--surface); }
+  .rv-qa summary { cursor: pointer; padding: 11px 14px; font-weight: 600; font-size: 14.5px; line-height: 1.45; list-style: none; display: flex; gap: 10px; }
+  .rv-qa summary::-webkit-details-marker { display: none; }
+  .rv-qa summary::before { content: "+"; flex: none; width: 18px; color: var(--accent-strong); font-family: "JetBrains Mono", monospace; }
+  .rv-qa details[open] summary::before { content: "\2212"; }
+  .rv-qa details[open] summary { border-bottom: 1px solid var(--border); }
+  .rv-qa .rv-answer { padding: 4px 16px 12px 42px; }
+  .rv-qlist { margin: 0; padding-left: 30px; }
+  .rv-qlist li { margin: 6px 0; font-size: 14.5px; line-height: 1.5; }
+  .rv-empty { color: var(--ink-secondary); font-size: 14px; }
+  .md { font-size: 14px; line-height: 1.6; color: var(--ink-secondary); overflow-wrap: anywhere; }
+  .md h1, .md h2, .md h3, .md h4 { color: var(--ink-primary); line-height: 1.3; margin: 1.2em 0 .4em; }
+  .md h1 { font-size: 20px; } .md h2 { font-size: 17px; } .md h3, .md h4 { font-size: 15px; }
+  .md p, .md ul, .md ol, .md blockquote, .md pre, .md table { margin: .55em 0; }
+  .md pre { background: var(--surface-2); border: 1px solid var(--border); border-radius: 8px; padding: 10px 12px; overflow-x: auto; }
+  .md pre code { background: none; border: 0; padding: 0; font-size: 12.5px; }
+  .md blockquote { border-left: 3px solid var(--accent); margin-left: 0; padding: 2px 12px; color: var(--ink-secondary); }
+  .md table { border-collapse: collapse; display: block; overflow-x: auto; }
+  .md th, .md td { border: 1px solid var(--border); padding: 5px 8px; text-transform: none; letter-spacing: 0; font-size: 13px; }
+  .md hr { border: 0; border-top: 1px solid var(--border); margin: 1em 0; }
+  .md .plain { white-space: pre-wrap; font-family: "JetBrains Mono", monospace; font-size: 12.5px; }
+  @media (max-width: 640px) { .rv-panel { padding: 18px; } .rv-qa .rv-answer { padding-left: 16px; } }
+"""
+
+
+REVIEW_HTML = r"""
+<div class="rv-overlay" id="rv-overlay" aria-hidden="true">
+  <div class="rv-panel" role="dialog" aria-modal="true" aria-labelledby="rv-title">
+    <div class="rv-top">
+      <div>
+        <div class="rv-day" id="rv-day"></div>
+        <h2 class="rv-title" id="rv-title"></h2>
+        <div class="rv-meta" id="rv-meta"></div>
+      </div>
+      <button class="rv-close" id="rv-close" aria-label="Close review">&times;</button>
+    </div>
+    <div class="rv-actions">
+      <button class="rv-btn primary" id="rv-done">Mark as reviewed</button>
+      <button class="rv-btn" id="rv-next">Next note</button>
+      <button class="rv-btn" id="rv-reveal">Show all answers</button>
+      <button class="rv-btn" id="rv-full" aria-pressed="false">Show full note</button>
+    </div>
+    <div class="rv-hint">Try to answer each question out loud before opening it. <kbd>R</kbd> next &middot; <kbd>Esc</kbd> close</div>
+    <div id="rv-body"></div>
+  </div>
+</div>
+"""
+
+
+REVIEW_JS = r"""
+(function () {
+  var notes = [];
+  try { notes = JSON.parse(document.getElementById('review-data').textContent || '[]'); } catch (e) { notes = []; }
+  var btn = document.getElementById('review-btn');
+  if (!btn) return;
+  if (!notes.length) { btn.disabled = true; btn.title = 'No completed notes found'; return; }
+
+  var KEY_LAST = 'jfl-review-last';      // { day: 'YYYY-MM-DD' }
+  var KEY_RECENT = 'jfl-review-recent';  // [day, day, day] most recent first
+  function load(key, fallback) { try { var v = localStorage.getItem(key); return v ? JSON.parse(v) : fallback; } catch (e) { return fallback; } }
+  function save(key, value) { try { localStorage.setItem(key, JSON.stringify(value)); } catch (e) {} }
+
+  function todayIso() { var d = new Date(); return d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0'); }
+  function daysSince(iso) { if (!iso) return null; var a = new Date(iso + 'T00:00:00'), b = new Date(todayIso() + 'T00:00:00'); return Math.round((b - a) / 86400000); }
+
+  // Least recently reviewed notes are more likely; never-reviewed ones most of all.
+  function pick() {
+    var last = load(KEY_LAST, {}), recent = load(KEY_RECENT, []);
+    var pool = notes.filter(function (n) { return recent.indexOf(n.day) === -1; });
+    if (!pool.length) pool = notes.slice();
+    var weights = pool.map(function (n) { var s = daysSince(last[n.day]); return s === null ? 90 : Math.min(s, 60) + 1; });
+    var total = weights.reduce(function (a, b) { return a + b; }, 0), r = Math.random() * total;
+    for (var i = 0; i < pool.length; i++) { r -= weights[i]; if (r <= 0) return pool[i]; }
+    return pool[pool.length - 1];
+  }
+
+  var hasMarked = typeof window.marked !== 'undefined' && window.marked && typeof window.marked.parse === 'function';
+  function md(text) {
+    var div = document.createElement('div'); div.className = 'md';
+    if (hasMarked) { div.innerHTML = window.marked.parse(text || '', { gfm: true, breaks: false }); }
+    else { var pre = document.createElement('div'); pre.className = 'plain'; pre.textContent = text || ''; div.appendChild(pre); }
+    return div;
+  }
+  function inline(text) {
+    if (!hasMarked) { var s = document.createElement('span'); s.textContent = text; return s; }
+    var span = document.createElement('span'); span.innerHTML = window.marked.parseInline(text); return span;
+  }
+  function el(tag, cls, text) { var e = document.createElement(tag); if (cls) e.className = cls; if (text != null) e.textContent = text; return e; }
+
+  var overlay = document.getElementById('rv-overlay'), body = document.getElementById('rv-body');
+  var fullBtn = document.getElementById('rv-full'), revealBtn = document.getElementById('rv-reveal'), doneBtn = document.getElementById('rv-done');
+  var current = null, lastFocus = null;
+
+  function renderMeta(n) {
+    var s = daysSince(load(KEY_LAST, {})[n.day]);
+    document.getElementById('rv-meta').textContent =
+      (s === null ? 'Never reviewed' : s === 0 ? 'Reviewed today' : 'Last reviewed ' + s + (s === 1 ? ' day ago' : ' days ago')) + ' · ' + n.file;
+  }
+
+  function renderReview(n) {
+    body.innerHTML = '';
+    var any = false;
+    if (n.qa.length) {
+      any = true;
+      body.appendChild(el('div', 'rv-section-title', 'Interview questions — click to reveal the answer'));
+      var box = el('div', 'rv-qa');
+      n.qa.forEach(function (item) {
+        var d = document.createElement('details'), sum = document.createElement('summary');
+        sum.appendChild(inline(item.q)); d.appendChild(sum);
+        var ans = md(item.a); ans.classList.add('rv-answer'); d.appendChild(ans);
+        box.appendChild(d);
+      });
+      body.appendChild(box);
+    }
+    if (n.questions.length) {
+      any = true;
+      body.appendChild(el('div', 'rv-section-title', 'Answer these without notes'));
+      var ol = el('ol', 'rv-qlist');
+      n.questions.forEach(function (q) { var li = document.createElement('li'); li.appendChild(inline(q)); ol.appendChild(li); });
+      body.appendChild(ol);
+      if (n.answers) {
+        var d2 = document.createElement('details');
+        var wrap = el('div', 'rv-qa'); var sum2 = document.createElement('summary'); sum2.textContent = 'Senior interview answers';
+        d2.appendChild(sum2); var a2 = md(n.answers); a2.classList.add('rv-answer'); d2.appendChild(a2);
+        wrap.appendChild(d2); body.appendChild(wrap);
+      }
+    }
+    if (!any) {
+      body.appendChild(el('p', 'rv-empty', 'This note has no interview-questions section, so here is the full note.'));
+      body.appendChild(md(n.full));
+    }
+    revealBtn.hidden = !any;
+  }
+
+  function show(n) {
+    current = n;
+    var recent = load(KEY_RECENT, []).filter(function (d) { return d !== n.day; });
+    recent.unshift(n.day); save(KEY_RECENT, recent.slice(0, Math.min(3, Math.max(0, notes.length - 1))));
+    document.getElementById('rv-day').textContent = 'DAY ' + String(n.day).padStart(2, '0');
+    document.getElementById('rv-title').textContent = n.title;
+    renderMeta(n);
+    fullBtn.setAttribute('aria-pressed', 'false'); fullBtn.textContent = 'Show full note';
+    doneBtn.textContent = 'Mark as reviewed'; doneBtn.disabled = false;
+    renderReview(n);
+    overlay.scrollTop = 0;
+  }
+
+  function open() {
+    lastFocus = document.activeElement;
+    overlay.classList.add('open'); overlay.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+    show(pick());
+    doneBtn.focus();
+  }
+  function close() {
+    overlay.classList.remove('open'); overlay.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+    if (lastFocus && lastFocus.focus) lastFocus.focus();
+  }
+
+  btn.addEventListener('click', open);
+  document.getElementById('rv-close').addEventListener('click', close);
+  document.getElementById('rv-next').addEventListener('click', function () { show(pick()); });
+  overlay.addEventListener('click', function (e) { if (e.target === overlay) close(); });
+  doneBtn.addEventListener('click', function () {
+    if (!current) return;
+    var last = load(KEY_LAST, {}); last[current.day] = todayIso(); save(KEY_LAST, last);
+    renderMeta(current); doneBtn.textContent = 'Reviewed ✓'; doneBtn.disabled = true;
+  });
+  revealBtn.addEventListener('click', function () {
+    var all = body.querySelectorAll('details'), openAll = Array.prototype.some.call(all, function (d) { return !d.open; });
+    all.forEach(function (d) { d.open = openAll; });
+    revealBtn.textContent = openAll ? 'Hide all answers' : 'Show all answers';
+  });
+  fullBtn.addEventListener('click', function () {
+    if (!current) return;
+    var on = fullBtn.getAttribute('aria-pressed') !== 'true';
+    fullBtn.setAttribute('aria-pressed', String(on));
+    fullBtn.textContent = on ? 'Back to questions' : 'Show full note';
+    revealBtn.textContent = 'Show all answers';
+    if (on) { body.innerHTML = ''; body.appendChild(md(current.full)); revealBtn.hidden = true; }
+    else { renderReview(current); }
+    overlay.scrollTop = 0;
+  });
+  document.addEventListener('keydown', function (e) {
+    var t = e.target && e.target.tagName;
+    if (t === 'INPUT' || t === 'TEXTAREA') return;
+    if (e.key === 'Escape' && overlay.classList.contains('open')) { close(); }
+    else if ((e.key === 'r' || e.key === 'R') && !e.ctrlKey && !e.metaKey && !e.altKey) {
+      if (overlay.classList.contains('open')) show(pick()); else open();
+    }
+  });
+})();
+"""
+
+
 TEMPLATE = Template(r"""<!doctype html>
 <meta charset="utf-8">
 <title>Reflection Point</title>
@@ -723,16 +1163,22 @@ TEMPLATE = Template(r"""<!doctype html>
   .cal-empty { margin: 12px 0 0; color: var(--ink-muted); font-size: 13px; }
   footer { text-align: center; font-size: 12px; color: var(--ink-muted); padding-top: 4px; }
   footer .mono { font-size: 11.5px; }
+$REVIEW_CSS
 </style>
 
 <div class="layout">
   <header>
+    <div class="head-row">
+    <div>
     <div class="eyebrow">Java + Spring Boot &middot; $TOTAL_DAYS-Day Roadmap</div>
     <h1>Reflection Point</h1>
     <p class="subhead">
       A pace check on the roadmap, generated on <code>$TODAY</code>.
       $INTRO_NOTE
     </p>
+    </div>
+    <button class="review-btn" id="review-btn" type="button" title="Review a random completed day ($REVIEW_COUNT notes)">Random review <kbd>R</kbd></button>
+    </div>
   </header>
 
   <div class="page">
@@ -819,10 +1265,15 @@ TEMPLATE = Template(r"""<!doctype html>
     <div class="mono">Snapshot generated $TODAY by src/scripts/generate_progress_snapshot.py</div>
   </footer>
 </div>
+$REVIEW_HTML
+<script id="review-data" type="application/json">$REVIEW_DATA</script>
+<script>$REVIEW_LIB</script>
+<script>$REVIEW_JS</script>
 """)
 
 
-def build_html(roadmap: Roadmap, pace: PaceProjection, today: date, activity: set[date] | None = None) -> str:
+def build_html(roadmap: Roadmap, pace: PaceProjection, today: date, activity: set[date] | None = None,
+               review_notes: list[dict] | None = None) -> str:
     total = roadmap.total
     completed_count = len(roadmap.completed_numbers)
     pct = completed_count / total * 100 if total else 0
@@ -841,7 +1292,15 @@ def build_html(roadmap: Roadmap, pace: PaceProjection, today: date, activity: se
         activity = {d.actual_date for d in roadmap.days.values() if d.actual_date}
     cal_months, cal_active, cal_missed = render_activity_calendar(roadmap, activity, today)
 
+    review_notes = review_notes or []
+
     return TEMPLATE.substitute(
+        REVIEW_CSS=REVIEW_CSS,
+        REVIEW_HTML=REVIEW_HTML,
+        REVIEW_DATA=render_review_data(review_notes),
+        REVIEW_LIB=render_marked_lib(),
+        REVIEW_JS=REVIEW_JS,
+        REVIEW_COUNT=len(review_notes),
         CAL_MONTHS=cal_months,
         CAL_ACTIVE=cal_active,
         CAL_MISSED=cal_missed,
@@ -902,10 +1361,13 @@ def main() -> None:
     activity = {d.actual_date for d in days.values() if d.actual_date}
     activity |= git_activity_dates(repo_root)
 
-    out_html = build_html(roadmap, pace, today, activity)
+    review_notes = collect_review_notes(roadmap, args.roadmap.parent)
+
+    out_html = build_html(roadmap, pace, today, activity, review_notes)
     args.out.write_text(out_html, encoding="utf-8")
 
     completed = len(roadmap.completed_numbers)
+    print(f"Random review: {len(review_notes)} completed-day notes embedded")
     print(f"Progress: {completed}/{roadmap.total} days ({completed / roadmap.total * 100:.1f}%)")
     print(f"On-plan finish:      {pace.on_plan_finish.isoformat()} ({pace.on_plan_days} days from today)")
     if pace.current_pace_finish:
